@@ -13,7 +13,7 @@
             --bg-body: #ffffff;
             --text-main: #1f2937;
             --text-secondary: #4b5563;
-            --bg-card: rgba(255, 255, 255, 0.85); /* Un poco más opaco para leer mejor */
+            --bg-card: rgba(255, 255, 255, 0.85);
             --bg-section: rgba(249, 250, 251, 0.7);
             --border-color: rgba(229, 231, 235, 0.8);
             --shadow-color: rgba(0, 0, 0, 0.08);
@@ -27,7 +27,7 @@
         body.dark-mode {
             --bg-body: #111827;
             --text-main: #f9fafb;
-            --text-secondary: #d1d5db; /* Texto más claro en modo oscuro */
+            --text-secondary: #d1d5db;
             --bg-card: rgba(31, 41, 55, 0.85);
             --bg-section: rgba(17, 24, 39, 0.7);
             --border-color: rgba(55, 65, 81, 0.8);
@@ -85,7 +85,7 @@
         .blob-3 { width: 300px; height: 300px; top: 40%; left: 40%; animation-duration: 35s; animation-delay: -10s; }
 
         @keyframes moveWater {
-            0% { transform: translate(0, 0) scale(1); border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+            0% { transform: translate(0, 0) scale(1); }
             100% { transform: translate(0, 0) scale(1); border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
         }
 
@@ -354,7 +354,7 @@
         .cv-title { font-size: 1.15rem; font-weight: 700; color: var(--text-main); margin: 0 0 8px 0; line-height: 1.4; }
         .cv-date { font-size: 0.85rem; color: var(--text-secondary); margin-top: auto; padding-top: 15px; font-style: italic; display: block; }
 
-        /* --- 11. CARRUSEL MEJORADO (NO CROP) --- */
+        /* --- 11. CARRUSEL AJUSTADO --- */
         .carousel-wrapper {
             position: relative;
             max-width: 900px;
@@ -363,7 +363,7 @@
             overflow: hidden;
             box-shadow: 0 20px 30px -10px var(--shadow-color);
             border: 1px solid var(--border-color);
-            background: var(--bg-card); /* Fondo del marco */
+            background: var(--bg-card);
         }
 
         .carousel-container {
@@ -375,14 +375,13 @@
         .carousel-slide {
             min-width: 100%;
             position: relative;
-            height: 500px; /* Altura fija para mantener el diseño */
+            height: 550px; /* Altura generosa para fotos verticales */
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: rgba(0,0,0,0.03); /* Fondo sutil para fotos que no llenen el espacio */
+            background-color: rgba(0,0,0,0.03);
         }
         
-        /* AJUSTE PARA MODO OSCURO */
         body.dark-mode .carousel-slide {
             background-color: rgba(0,0,0,0.2);
         }
@@ -398,9 +397,9 @@
             position: absolute;
             bottom: 20px;
             left: 50%;
-            transform: translateX(-50%); /* Centrado */
-            width: 90%;
-            background: rgba(255, 255, 255, 0.95);
+            transform: translateX(-50%);
+            width: 85%;
+            background: rgba(255, 255, 255, 0.9);
             padding: 15px 25px;
             border-radius: 12px;
             border: 1px solid rgba(0,0,0,0.1);
@@ -662,7 +661,7 @@
 
     <div class="skills-wrapper animate-enter delay-5" style="margin-top: 80px;">
         <h2 class="section-title">
-            <i data-lucide="heart"></i> <span id="title-hobbies">Más allá del trabajo</span>
+            <span id="title-hobbies">Más allá de la Ingeniería</span>
         </h2>
 
         <div class="carousel-wrapper">
@@ -670,7 +669,7 @@
             <div class="carousel-container">
                 
                 <div class="carousel-slide">
-                    <img src="foto_gym.jpg" alt="Entrenamiento y Disciplina"> 
+                    <img src="hobby_gym.jpg" alt="Entrenamiento y Disciplina"> 
                     <div class="carousel-caption">
                         <span class="caption-title" id="hobby-t1">Disciplina y Constancia</span>
                         <span class="caption-desc" id="hobby-d1">El deporte como pilar de superación diaria.</span>
@@ -678,7 +677,7 @@
                 </div>
 
                 <div class="carousel-slide">
-                    <img src="foto_equipo.jpg" alt="Equipo Deportivo">
+                    <img src="hobby_team.jpg" alt="Equipo Deportivo">
                     <div class="carousel-caption">
                         <span class="caption-title" id="hobby-t2">Trabajo en Equipo</span>
                         <span class="caption-desc" id="hobby-d2">Colaboración y estrategia en la cancha.</span>
@@ -686,7 +685,7 @@
                 </div>
 
                 <div class="carousel-slide">
-                    <img src="foto_libro.jpg" alt="Lectura Científica">
+                    <img src="hobby_reading.jpg" alt="Lectura Científica">
                     <div class="carousel-caption">
                         <span class="caption-title" id="hobby-t3">Curiosidad Científica</span>
                         <span class="caption-desc" id="hobby-d3">Explorando el universo a través de la lectura.</span>
@@ -694,7 +693,7 @@
                 </div>
 
                 <div class="carousel-slide">
-                    <img src="foto_dibujo.jpg" alt="Arte y Dibujo">
+                    <img src="hobby_art.jpg" alt="Arte y Dibujo">
                     <div class="carousel-caption">
                         <span class="caption-title" id="hobby-t4">Creatividad y Detalle</span>
                         <span class="caption-desc" id="hobby-d4">Expresión artística y atención al detalle.</span>
@@ -702,7 +701,7 @@
                 </div>
 
                  <div class="carousel-slide">
-                    <img src="foto_social.jpg" alt="Voluntariado y Liderazgo">
+                    <img src="hobby_social.jpg" alt="Voluntariado y Liderazgo">
                     <div class="carousel-caption">
                         <span class="caption-title" id="hobby-t5">Liderazgo Social</span>
                         <span class="caption-desc" id="hobby-d5">Impacto positivo en la comunidad.</span>
@@ -755,7 +754,7 @@
             'btn_ia': 'IA & Generativa',
             'btn_prod': 'Productividad',
             'btn_mgmt': 'Gestión & Otros',
-            'title_hobbies': 'Más allá del trabajo',
+            'title_hobbies': 'Más allá de la Ingeniería',
             'hobby_t1': 'Disciplina y Constancia', 'hobby_d1': 'El deporte como pilar de superación diaria.',
             'hobby_t2': 'Trabajo en Equipo', 'hobby_d2': 'Colaboración y estrategia en la cancha.',
             'hobby_t3': 'Curiosidad Científica', 'hobby_d3': 'Explorando el universo a través de la lectura.',
@@ -777,7 +776,7 @@
             'btn_ia': 'AI & Generative',
             'btn_prod': 'Productivity',
             'btn_mgmt': 'Management & Others',
-            'title_hobbies': 'Beyond Work',
+            'title_hobbies': 'Beyond Engineering',
             'hobby_t1': 'Discipline & Persistence', 'hobby_d1': 'Sports as a pillar of daily improvement.',
             'hobby_t2': 'Teamwork', 'hobby_d2': 'Collaboration and strategy on the field.',
             'hobby_t3': 'Scientific Curiosity', 'hobby_d3': 'Exploring the universe through reading.',
@@ -804,7 +803,6 @@
         document.getElementById('btn-prod').innerHTML = t.btn_prod;
         document.getElementById('btn-mgmt').innerHTML = t.btn_mgmt;
         
-        // Hobbies
         document.getElementById('title-hobbies').innerHTML = t.title_hobbies;
         document.getElementById('hobby-t1').innerHTML = t.hobby_t1; document.getElementById('hobby-d1').innerHTML = t.hobby_d1;
         document.getElementById('hobby-t2').innerHTML = t.hobby_t2; document.getElementById('hobby-d2').innerHTML = t.hobby_d2;
@@ -871,6 +869,7 @@
 
 </body>
 </html>
+
 
 
 
