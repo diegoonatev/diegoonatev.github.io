@@ -13,15 +13,13 @@
             --bg-body: #ffffff;
             --text-main: #1f2937;
             --text-secondary: #4b5563;
-            --bg-card: rgba(255, 255, 255, 0.8); /* Semi-transparente para ver el fondo */
-            --bg-section: rgba(249, 250, 251, 0.6); /* Más transparente */
+            --bg-card: rgba(255, 255, 255, 0.8);
+            --bg-section: rgba(249, 250, 251, 0.6);
             --border-color: rgba(229, 231, 235, 0.8);
             --shadow-color: rgba(0, 0, 0, 0.05);
             --primary-color: #059669;
             --primary-hover: #047857;
             --accent-bg: #ecfdf5;
-            
-            /* Color del "Agua" en modo claro */
             --water-blob: #34d399; 
         }
 
@@ -30,15 +28,13 @@
             --bg-body: #111827;
             --text-main: #f9fafb;
             --text-secondary: #9ca3af;
-            --bg-card: rgba(31, 41, 55, 0.7); /* Vidrio oscuro */
+            --bg-card: rgba(31, 41, 55, 0.7);
             --bg-section: rgba(31, 41, 55, 0.5);
             --border-color: rgba(55, 65, 81, 0.8);
             --shadow-color: rgba(0, 0, 0, 0.4);
             --primary-color: #34d399;
             --primary-hover: #10b981;
             --accent-bg: #064e3b;
-            
-            /* Color del "Agua" en modo oscuro */
             --water-blob: #059669;
         }
 
@@ -60,7 +56,7 @@
             margin: 0 auto;
             padding: 20px;
             position: relative;
-            z-index: 10; /* Asegura que el contenido esté sobre el agua */
+            z-index: 10;
         }
 
         /* --- 3. FONDO DE AGUA ANIMADO --- */
@@ -71,54 +67,29 @@
             width: 100vw;
             height: 100vh;
             overflow: hidden;
-            z-index: -1; /* Detrás de todo */
-            pointer-events: none; /* No interfiere con clics */
+            z-index: -1;
+            pointer-events: none;
         }
 
         .water-blob {
             position: absolute;
             background: var(--water-blob);
             border-radius: 50%;
-            filter: blur(80px); /* El secreto del efecto líquido */
-            opacity: 0.15; /* Semi-transparencia */
+            filter: blur(80px);
+            opacity: 0.15;
             animation: moveWater 25s infinite alternate;
         }
 
-        /* Tres gotas de agua gigantes moviéndose */
-        .blob-1 {
-            width: 500px; height: 500px;
-            top: -100px; left: -100px;
-            animation-duration: 30s;
-        }
-        .blob-2 {
-            width: 400px; height: 400px;
-            bottom: -50px; right: -50px;
-            animation-duration: 25s;
-            animation-delay: -5s;
-            background: var(--primary-color); /* Un poco diferente */
-        }
-        .blob-3 {
-            width: 300px; height: 300px;
-            top: 40%; left: 40%;
-            animation-duration: 35s;
-            animation-delay: -10s;
-        }
+        .blob-1 { width: 500px; height: 500px; top: -100px; left: -100px; animation-duration: 30s; }
+        .blob-2 { width: 400px; height: 400px; bottom: -50px; right: -50px; animation-duration: 25s; animation-delay: -5s; background: var(--primary-color); }
+        .blob-3 { width: 300px; height: 300px; top: 40%; left: 40%; animation-duration: 35s; animation-delay: -10s; }
 
         @keyframes moveWater {
             0% { transform: translate(0, 0) scale(1); border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
-            33% { transform: translate(30px, -50px) scale(1.1); border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%; }
-            66% { transform: translate(-20px, 20px) scale(0.9); border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%; }
             100% { transform: translate(0, 0) scale(1); border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
         }
 
-        /* --- 4. EFECTO VIDRIO (GLASSMORPHISM) --- */
-        /* Hacemos que las tarjetas sean un poco transparentes para ver el agua detrás */
-        .skill-card, .cv-card, .cv-section, .filter-btn {
-            backdrop-filter: blur(10px); /* Efecto vidrio esmerilado */
-            -webkit-backdrop-filter: blur(10px);
-        }
-
-        /* --- 5. OTRAS ANIMACIONES --- */
+        /* --- 4. ANIMACIONES --- */
         @keyframes slideUpFade {
             from { opacity: 0; transform: translateY(40px); }
             to { opacity: 1; transform: translateY(0); }
@@ -131,12 +102,18 @@
         .delay-2 { animation-delay: 0.3s; }
         .delay-3 { animation-delay: 0.5s; }
         .delay-4 { animation-delay: 0.7s; }
-        .delay-5 { animation-delay: 0.9s; } /* Para Hobbies */
+        .delay-5 { animation-delay: 0.9s; }
 
         @keyframes float {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-12px); }
             100% { transform: translateY(0px); }
+        }
+
+        /* --- 5. COMPONENTES COMUNES --- */
+        .skill-card, .cv-card, .cv-section, .filter-btn, .carousel-caption, .control-btn {
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
 
         /* --- 6. CONTROLES --- */
@@ -162,7 +139,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            backdrop-filter: blur(5px);
         }
 
         .control-btn:hover {
@@ -200,12 +176,7 @@
             line-height: 1.2;
         }
 
-        /* ESTILO NUEVO PARA RESALTAR EL NOMBRE */
-        .highlight-name {
-            color: var(--primary-color);
-            position: relative;
-            display: inline-block;
-        }
+        .highlight-name { color: var(--primary-color); }
 
         .hero-description {
             font-size: 1.15rem;
@@ -223,7 +194,7 @@
             font-size: 1.05rem;
         }
 
-        /* --- 8. SKILLS & HOBBIES SECTION --- */
+        /* --- 8. SKILLS SECTION --- */
         .skills-wrapper { margin-bottom: 80px; }
 
         .section-title {
@@ -282,11 +253,6 @@
             transform: rotate(360deg);
         }
 
-        /* Override para los iconos de Hobbies para que tengan colores específicos si se desea, o usar el default */
-        .hobby-icon {
-             /* Usará los colores definidos inline o heredará */
-        }
-
         .skill-name {
             font-weight: 700;
             color: var(--text-main);
@@ -322,33 +288,14 @@
             transition: all 0.3s;
             position: relative;
             overflow: hidden;
-            z-index: 1; /* Para que sea clickeable sobre el efecto */
+            z-index: 1;
         }
 
-        .btn-primary {
-            background: var(--primary-color);
-            color: white;
-            border: 1px solid var(--primary-color);
-        }
+        .btn-primary { background: var(--primary-color); color: white; border: 1px solid var(--primary-color); }
+        .btn-primary:hover { background: var(--primary-hover); transform: translateY(-4px); box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.4); }
 
-        .btn-primary:hover {
-            background: var(--primary-hover);
-            transform: translateY(-4px);
-            box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.4);
-        }
-
-        .btn-secondary {
-            background: var(--bg-card);
-            color: var(--text-main);
-            border: 1px solid var(--border-color);
-        }
-
-        .btn-secondary:hover {
-            background: var(--bg-section);
-            transform: translateY(-4px);
-            box-shadow: 0 10px 15px -3px var(--shadow-color);
-            border-color: var(--text-secondary);
-        }
+        .btn-secondary { background: var(--bg-card); color: var(--text-main); border: 1px solid var(--border-color); }
+        .btn-secondary:hover { background: var(--bg-section); transform: translateY(-4px); box-shadow: 0 10px 15px -3px var(--shadow-color); border-color: var(--text-secondary); }
 
         /* --- 10. CERTIFICACIONES --- */
         .cert-header { text-align: center; margin-bottom: 30px; }
@@ -373,18 +320,8 @@
             transition: all 0.3s ease;
         }
 
-        .filter-btn:hover {
-            background-color: var(--bg-section);
-            transform: translateY(-2px);
-            color: var(--text-main);
-        }
-
-        .filter-btn.active {
-            background-color: var(--primary-color);
-            color: white;
-            border-color: var(--primary-color);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
+        .filter-btn:hover { background-color: var(--bg-section); transform: translateY(-2px); color: var(--text-main); }
+        .filter-btn.active { background-color: var(--primary-color); color: white; border-color: var(--primary-color); box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); }
 
         .grid-container {
             display: grid;
@@ -405,50 +342,120 @@
             animation: fadeIn 0.5s ease forwards;
         }
 
-        .cv-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 25px -5px var(--shadow-color);
-            border-color: var(--primary-color);
-        }
+        .cv-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px var(--shadow-color); border-color: var(--primary-color); }
 
         .cv-header { display: flex; align-items: center; margin-bottom: 15px; }
 
         .icon-box {
-            background-color: var(--accent-bg);
-            color: var(--primary-color);
-            padding: 10px;
-            border-radius: 10px;
+            background-color: var(--accent-bg); color: var(--primary-color); padding: 10px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-right: 15px; flex-shrink: 0;
+        }
+
+        .category { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-secondary); font-weight: 700; }
+        .cv-title { font-size: 1.15rem; font-weight: 700; color: var(--text-main); margin: 0 0 8px 0; line-height: 1.4; }
+        .cv-date { font-size: 0.85rem; color: var(--text-secondary); margin-top: auto; padding-top: 15px; font-style: italic; display: block; }
+
+        /* --- 11. CARRUSEL (HOBBIES) --- */
+        .carousel-wrapper {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px var(--shadow-color);
+            border: 1px solid var(--border-color);
+            background: var(--bg-card);
+        }
+
+        .carousel-container {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+            width: 100%;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            position: relative;
+            height: 450px;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .carousel-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9); /* Respaldo para modo claro */
+            padding: 15px 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.5);
+            max-width: 100%;
+        }
+        
+        body.dark-mode .carousel-caption {
+            background: rgba(17, 24, 39, 0.9);
+            border-color: rgba(55, 65, 81, 0.8);
+        }
+
+        .caption-title {
+            font-weight: 800;
+            color: var(--text-main);
+            display: block;
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+        }
+
+        .caption-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 15px;
-            flex-shrink: 0;
+            transition: all 0.3s;
+            z-index: 5;
         }
 
-        .category {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--text-secondary);
-            font-weight: 700;
+        .carousel-btn:hover { background: var(--primary-color); color: white; border-color: var(--primary-color); }
+        .carousel-btn.prev { left: 15px; }
+        .carousel-btn.next { right: 15px; }
+
+        .carousel-dots {
+            position: absolute;
+            bottom: 25px; /* Ajustado para no chocar con caption */
+            right: 25px;
+            display: flex;
+            gap: 8px;
+            z-index: 10;
         }
 
-        .cv-title {
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: var(--text-main);
-            margin: 0 0 8px 0;
-            line-height: 1.4;
+        .dot {
+            width: 8px;
+            height: 8px;
+            background: rgba(156, 163, 175, 0.8);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
         }
 
-        .cv-date {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            margin-top: auto;
-            padding-top: 15px;
-            font-style: italic;
-            display: block;
-        }
+        .dot.active { background: var(--primary-color); transform: scale(1.3); }
 
         .hide { display: none !important; }
 
@@ -666,33 +673,59 @@
             <i data-lucide="heart"></i> <span id="title-hobbies">Más allá del trabajo</span>
         </h2>
 
-        <div class="skills-grid">
-            <div class="skill-card">
-                <div class="skill-icon-box" style="background-color: #fff1f2; color: #e11d48;">
-                    <i data-lucide="camera"></i>
-                </div> 
-                <span class="skill-name" id="hobby-1">Fotografía</span>
-            </div>
+        <div class="carousel-wrapper">
+            <button class="carousel-btn prev" onclick="moveSlide(-1)"><i data-lucide="chevron-left"></i></button>
+            <div class="carousel-container">
+                
+                <div class="carousel-slide">
+                    <img src="hobby_gym.jpg" alt="Entrenamiento y Disciplina"> 
+                    <div class="carousel-caption">
+                        <span class="caption-title" id="hobby-t1">Disciplina y Constancia</span>
+                        <span class="caption-desc" id="hobby-d1">El deporte como pilar de superación diaria.</span>
+                    </div>
+                </div>
 
-            <div class="skill-card">
-                <div class="skill-icon-box" style="background-color: #eff6ff; color: #2563eb;">
-                    <i data-lucide="mountain"></i>
-                </div> 
-                <span class="skill-name" id="hobby-2">Trekking</span>
-            </div>
+                <div class="carousel-slide">
+                    <img src="hobby_team.jpg" alt="Equipo Deportivo">
+                    <div class="carousel-caption">
+                        <span class="caption-title" id="hobby-t2">Trabajo en Equipo</span>
+                        <span class="caption-desc" id="hobby-d2">Colaboración y estrategia en la cancha.</span>
+                    </div>
+                </div>
 
-            <div class="skill-card">
-                <div class="skill-icon-box" style="background-color: #fefce8; color: #ca8a04;">
-                    <i data-lucide="book-open"></i>
-                </div> 
-                <span class="skill-name" id="hobby-3">Lectura Técnica</span>
-            </div>
+                <div class="carousel-slide">
+                    <img src="hobby_reading.jpg" alt="Lectura Científica">
+                    <div class="carousel-caption">
+                        <span class="caption-title" id="hobby-t3">Curiosidad Científica</span>
+                        <span class="caption-desc" id="hobby-d3">Explorando el universo a través de la lectura.</span>
+                    </div>
+                </div>
 
-            <div class="skill-card">
-                <div class="skill-icon-box" style="background-color: #f0fdf4; color: #16a34a;">
-                    <i data-lucide="gamepad-2"></i>
-                </div> 
-                <span class="skill-name" id="hobby-4">Estrategia</span>
+                <div class="carousel-slide">
+                    <img src="hobby_art.jpg" alt="Arte y Dibujo">
+                    <div class="carousel-caption">
+                        <span class="caption-title" id="hobby-t4">Creatividad y Detalle</span>
+                        <span class="caption-desc" id="hobby-d4">Expresión artística y atención al detalle.</span>
+                    </div>
+                </div>
+
+                 <div class="carousel-slide">
+                    <img src="hobby_social.jpg" alt="Voluntariado y Liderazgo">
+                    <div class="carousel-caption">
+                        <span class="caption-title" id="hobby-t5">Liderazgo Social</span>
+                        <span class="caption-desc" id="hobby-d5">Impacto positivo en la comunidad.</span>
+                    </div>
+                </div>
+
+            </div>
+            <button class="carousel-btn next" onclick="moveSlide(1)"><i data-lucide="chevron-right"></i></button>
+            
+            <div class="carousel-dots">
+                <span class="dot active" onclick="currentSlide(0)"></span>
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+                <span class="dot" onclick="currentSlide(4)"></span>
             </div>
         </div>
     </div>
@@ -700,7 +733,37 @@
 </div> 
 
 <script>
-    // --- JS: TRADUCCIONES Y FUNCIONALIDAD ---
+    // --- LÓGICA DE CARRUSEL ---
+    let slideIndex = 0;
+    const slides = document.querySelectorAll('.carousel-slide');
+    const dots = document.querySelectorAll('.dot');
+    let autoPlayTimer = setInterval(() => moveSlide(1), 5000); // Autoplay 5 seg
+
+    function showSlides(n) {
+        if (n >= slides.length) slideIndex = 0;
+        if (n < 0) slideIndex = slides.length - 1;
+        
+        const container = document.querySelector('.carousel-container');
+        container.style.transform = `translateX(-${slideIndex * 100}%)`;
+        
+        dots.forEach(dot => dot.classList.remove('active'));
+        dots[slideIndex].classList.add('active');
+    }
+
+    function moveSlide(n) {
+        clearInterval(autoPlayTimer); 
+        autoPlayTimer = setInterval(() => moveSlide(1), 5000);
+        showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+        clearInterval(autoPlayTimer);
+        autoPlayTimer = setInterval(() => moveSlide(1), 5000);
+        slideIndex = n;
+        showSlides(slideIndex);
+    }
+
+    // --- TRADUCCIÓN ---
     let currentLang = 'es'; 
 
     const translations = {
@@ -719,12 +782,12 @@
             'btn_ia': 'IA & Generativa',
             'btn_prod': 'Productividad',
             'btn_mgmt': 'Gestión & Otros',
-            // Traducciones de Hobbies
             'title_hobbies': 'Más allá del trabajo',
-            'hobby_1': 'Fotografía',
-            'hobby_2': 'Trekking',
-            'hobby_3': 'Lectura Técnica',
-            'hobby_4': 'Estrategia'
+            'hobby_t1': 'Disciplina y Constancia', 'hobby_d1': 'El deporte como pilar de superación diaria.',
+            'hobby_t2': 'Trabajo en Equipo', 'hobby_d2': 'Colaboración y estrategia en la cancha.',
+            'hobby_t3': 'Curiosidad Científica', 'hobby_d3': 'Explorando el universo a través de la lectura.',
+            'hobby_t4': 'Creatividad y Detalle', 'hobby_d4': 'Expresión artística y atención al detalle.',
+            'hobby_t5': 'Liderazgo Social', 'hobby_d5': 'Impacto positivo en la comunidad.'
         },
         'en': {
             'desc': 'Industrial Civil Engineering student with experience in project management and a passion for connecting technical capability with people development. My goal is to apply my analytical skills to optimize processes.',
@@ -741,12 +804,12 @@
             'btn_ia': 'AI & Generative',
             'btn_prod': 'Productivity',
             'btn_mgmt': 'Management & Others',
-            // Hobbies Translations
             'title_hobbies': 'Beyond Work',
-            'hobby_1': 'Photography',
-            'hobby_2': 'Trekking',
-            'hobby_3': 'Tech Reading',
-            'hobby_4': 'Strategy'
+            'hobby_t1': 'Discipline & Persistence', 'hobby_d1': 'Sports as a pillar of daily improvement.',
+            'hobby_t2': 'Teamwork', 'hobby_d2': 'Collaboration and strategy on the field.',
+            'hobby_t3': 'Scientific Curiosity', 'hobby_d3': 'Exploring the universe through reading.',
+            'hobby_t4': 'Creativity & Detail', 'hobby_d4': 'Artistic expression and attention to detail.',
+            'hobby_t5': 'Social Leadership', 'hobby_d5': 'Positive impact on the community.'
         }
     };
 
@@ -767,13 +830,14 @@
         document.getElementById('btn-ia').innerHTML = t.btn_ia;
         document.getElementById('btn-prod').innerHTML = t.btn_prod;
         document.getElementById('btn-mgmt').innerHTML = t.btn_mgmt;
-
-        // Actualizar Hobbies
+        
+        // Hobbies
         document.getElementById('title-hobbies').innerHTML = t.title_hobbies;
-        document.getElementById('hobby-1').innerHTML = t.hobby_1;
-        document.getElementById('hobby-2').innerHTML = t.hobby_2;
-        document.getElementById('hobby-3').innerHTML = t.hobby_3;
-        document.getElementById('hobby-4').innerHTML = t.hobby_4;
+        document.getElementById('hobby-t1').innerHTML = t.hobby_t1; document.getElementById('hobby-d1').innerHTML = t.hobby_d1;
+        document.getElementById('hobby-t2').innerHTML = t.hobby_t2; document.getElementById('hobby-d2').innerHTML = t.hobby_d2;
+        document.getElementById('hobby-t3').innerHTML = t.hobby_t3; document.getElementById('hobby-d3').innerHTML = t.hobby_d3;
+        document.getElementById('hobby-t4').innerHTML = t.hobby_t4; document.getElementById('hobby-d4').innerHTML = t.hobby_d4;
+        document.getElementById('hobby-t5').innerHTML = t.hobby_t5; document.getElementById('hobby-d5').innerHTML = t.hobby_d5;
 
         const titles = document.querySelectorAll('.cv-title');
         titles.forEach(title => {
