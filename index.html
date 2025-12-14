@@ -7,21 +7,19 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     
     <style>
-        /* --- 1. VARIABLES DE COLORES --- */
+        /* --- 1. VARIABLES --- */
         :root {
             /* MODO CLARO */
             --bg-body: #ffffff;
             --text-main: #1f2937;
             --text-secondary: #4b5563;
-            --bg-card: rgba(255, 255, 255, 0.8);
-            --bg-section: rgba(249, 250, 251, 0.6);
+            --bg-card: rgba(255, 255, 255, 0.85);
+            --bg-section: rgba(249, 250, 251, 0.7);
             --border-color: rgba(229, 231, 235, 0.8);
-            --shadow-color: rgba(0, 0, 0, 0.05);
+            --shadow-color: rgba(0, 0, 0, 0.08);
             --primary-color: #059669;
             --primary-hover: #047857;
             --accent-bg: #ecfdf5;
-            
-            /* Color del "Agua" en modo claro */
             --water-blob: #34d399; 
         }
 
@@ -29,16 +27,14 @@
         body.dark-mode {
             --bg-body: #111827;
             --text-main: #f9fafb;
-            --text-secondary: #9ca3af;
-            --bg-card: rgba(31, 41, 55, 0.7);
-            --bg-section: rgba(31, 41, 55, 0.5);
+            --text-secondary: #d1d5db;
+            --bg-card: rgba(31, 41, 55, 0.85);
+            --bg-section: rgba(17, 24, 39, 0.7);
             --border-color: rgba(55, 65, 81, 0.8);
-            --shadow-color: rgba(0, 0, 0, 0.4);
+            --shadow-color: rgba(0, 0, 0, 0.5);
             --primary-color: #34d399;
             --primary-hover: #10b981;
             --accent-bg: #064e3b;
-            
-            /* Color del "Agua" en modo oscuro */
             --water-blob: #059669;
         }
 
@@ -63,386 +59,160 @@
             z-index: 10;
         }
 
-        /* --- 3. FONDO DE AGUA ANIMADO --- */
+        /* --- 3. FONDO ANIMADO --- */
         .water-background {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            overflow: hidden;
-            z-index: -1;
-            pointer-events: none;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            overflow: hidden; z-index: -1; pointer-events: none;
         }
-
         .water-blob {
-            position: absolute;
-            background: var(--water-blob);
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.15;
+            position: absolute; background: var(--water-blob);
+            border-radius: 50%; filter: blur(80px); opacity: 0.15;
             animation: moveWater 25s infinite alternate;
         }
-
-        .blob-1 {
-            width: 500px; height: 500px;
-            top: -100px; left: -100px;
-            animation-duration: 30s;
-        }
-        .blob-2 {
-            width: 400px; height: 400px;
-            bottom: -50px; right: -50px;
-            animation-duration: 25s;
-            animation-delay: -5s;
-            background: var(--primary-color);
-        }
-        .blob-3 {
-            width: 300px; height: 300px;
-            top: 40%; left: 40%;
-            animation-duration: 35s;
-            animation-delay: -10s;
-        }
-
+        .blob-1 { width: 500px; height: 500px; top: -100px; left: -100px; animation-duration: 30s; }
+        .blob-2 { width: 400px; height: 400px; bottom: -50px; right: -50px; animation-duration: 25s; animation-delay: -5s; background: var(--primary-color); }
+        .blob-3 { width: 300px; height: 300px; top: 40%; left: 40%; animation-duration: 35s; animation-delay: -10s; }
         @keyframes moveWater {
-            0% { transform: translate(0, 0) scale(1); border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
-            33% { transform: translate(30px, -50px) scale(1.1); border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%; }
-            66% { transform: translate(-20px, 20px) scale(0.9); border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%; }
+            0% { transform: translate(0, 0) scale(1); }
             100% { transform: translate(0, 0) scale(1); border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
         }
 
-        /* --- 4. EFECTO VIDRIO --- */
-        .skill-card, .cv-card, .cv-section, .filter-btn {
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+        /* --- 4. COMPONENTES COMUNES --- */
+        .skill-card, .cv-card, .cv-section, .filter-btn, .carousel-caption, .control-btn, .project-card, .nav-btn {
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
         }
 
-        /* --- 5. OTRAS ANIMACIONES --- */
-        @keyframes slideUpFade {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-enter {
-            opacity: 0;
-            animation: slideUpFade 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-        }
-        .delay-1 { animation-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.3s; }
-        .delay-3 { animation-delay: 0.5s; }
-        .delay-4 { animation-delay: 0.7s; }
-
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-12px); }
-            100% { transform: translateY(0px); }
-        }
-
-        /* --- 6. CONTROLES --- */
+        /* --- 5. CONTROLES (Top Right) --- */
         .controls-container {
-            position: absolute;
-            top: 0;
-            right: 0;
-            display: flex;
-            gap: 12px;
-            z-index: 50;
+            position: absolute; top: 0; right: 0; display: flex; gap: 12px; z-index: 50;
         }
-
         .control-btn {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            color: var(--text-main);
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            cursor: pointer;
-            box-shadow: 0 4px 6px var(--shadow-color);
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(5px);
+            background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-main);
+            width: 44px; height: 44px; border-radius: 50%; cursor: pointer;
+            box-shadow: 0 4px 6px var(--shadow-color); transition: all 0.3s;
+            display: flex; align-items: center; justify-content: center;
         }
+        .control-btn:hover { transform: scale(1.15) rotate(10deg); border-color: var(--primary-color); color: var(--primary-color); }
 
-        .control-btn:hover {
-            transform: scale(1.15) rotate(10deg);
-            border-color: var(--primary-color);
-            color: var(--primary-color);
-        }
-
-        /* --- 7. HERO SECTION --- */
-        .hero-section {
-            text-align: center;
-            margin-bottom: 60px;
-            padding: 60px 20px 40px;
-        }
-
+        /* --- 6. HERO (Siempre visible) --- */
+        .hero-section { text-align: center; margin-bottom: 30px; padding: 40px 20px 20px; }
         .profile-photo {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            object-fit: cover;
-            object-position: top center;
-            margin-bottom: 25px;
-            border: 4px solid var(--bg-card);
-            background-color: var(--bg-section);
+            width: 160px; height: 160px; border-radius: 50%; object-fit: cover; object-position: top center;
+            margin-bottom: 20px; border: 4px solid var(--bg-card); background-color: var(--bg-section);
             box-shadow: 0 20px 25px -5px var(--shadow-color);
             animation: float 6s ease-in-out infinite;
         }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        .hero-name { font-size: 2.5rem; font-weight: 800; color: var(--text-main); margin: 0 0 10px 0; letter-spacing: -0.03em; line-height: 1.2; }
+        .highlight-name { color: var(--primary-color); }
+        .hero-description { font-size: 1.1rem; color: var(--text-secondary); max-width: 750px; margin: 0 auto 20px auto; }
+        .hero-quote { display: block; font-style: italic; color: var(--primary-color); font-weight: 600; margin-bottom: 10px; font-size: 1rem; }
+        .btn-contact-hero {
+            display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 20px;
+            text-decoration: none; font-weight: 600; font-size: 0.9rem; margin-top: 10px;
+            background: var(--bg-card); color: var(--text-main); border: 1px solid var(--border-color);
+            transition: all 0.3s;
+        }
+        .btn-contact-hero:hover { border-color: var(--primary-color); color: var(--primary-color); transform: translateY(-2px); }
 
-        .hero-name {
-            font-size: 2.8rem;
-            font-weight: 800;
-            color: var(--text-main);
-            margin: 0 0 15px 0;
-            letter-spacing: -0.03em;
-            line-height: 1.2;
+        /* --- 7. NAVEGACIÓN (PESTAÑAS) --- */
+        .nav-container {
+            display: flex; justify-content: center; gap: 10px; margin-bottom: 40px; flex-wrap: wrap;
+            position: sticky; top: 10px; z-index: 40; /* Sticky para que se quede al bajar */
+        }
+        .nav-btn {
+            background-color: var(--bg-card); border: 1px solid var(--border-color);
+            color: var(--text-secondary); padding: 12px 24px; border-radius: 12px;
+            cursor: pointer; font-weight: 600; font-size: 0.95rem; transition: all 0.3s ease;
+            box-shadow: 0 4px 6px -1px var(--shadow-color);
+            display: flex; align-items: center; gap: 8px;
+        }
+        .nav-btn:hover { background-color: var(--bg-section); transform: translateY(-2px); color: var(--text-main); }
+        .nav-btn.active {
+            background-color: var(--primary-color); color: white; border-color: var(--primary-color);
+            box-shadow: 0 8px 15px -3px rgba(5, 150, 105, 0.3); transform: translateY(-2px);
         }
 
-        /* ESTILO NUEVO PARA RESALTAR EL NOMBRE */
-        .highlight-name {
-            color: var(--primary-color);
-            position: relative;
-            display: inline-block;
-        }
+        /* --- 8. SISTEMA DE PESTAÑAS (Mostrar/Ocultar) --- */
+        .tab-content { display: none; opacity: 0; transition: opacity 0.4s ease; }
+        .tab-content.active { display: block; opacity: 1; animation: slideUpFade 0.6s ease forwards; }
+        @keyframes slideUpFade { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        .hero-description {
-            font-size: 1.15rem;
-            color: var(--text-secondary);
-            max-width: 750px;
-            margin: 0 auto 25px auto;
-        }
-
-        .hero-quote {
-            display: block;
-            font-style: italic;
-            color: var(--primary-color);
-            font-weight: 600;
-            margin-bottom: 35px;
-            font-size: 1.05rem;
-        }
-
-        /* --- 8. SKILLS SECTION --- */
-        .skills-wrapper { margin-bottom: 80px; }
-
-        .section-title {
-            font-size: 1.8rem;
-            color: var(--text-main);
-            margin-bottom: 40px;
-            font-weight: 800;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 25px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
+        /* --- ESTILOS DE SKILLS (Para Pestaña 1) --- */
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 20px; }
         .skill-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 25px 15px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-            transition: all 0.4s;
-            box-shadow: 0 4px 6px var(--shadow-color);
+            background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px;
+            padding: 20px 10px; display: flex; flex-direction: column; align-items: center; gap: 12px;
+            transition: all 0.4s; box-shadow: 0 4px 6px var(--shadow-color);
         }
-
-        .skill-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            border-color: var(--primary-color);
-            box-shadow: 0 20px 25px -5px var(--shadow-color);
-        }
-
+        .skill-card:hover { transform: translateY(-5px); border-color: var(--primary-color); }
         .skill-icon-box {
-            padding: 15px;
-            border-radius: 50%;
-            background-color: var(--bg-section);
-            color: var(--text-secondary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            padding: 12px; border-radius: 50%; background-color: var(--bg-section);
+            color: var(--text-secondary); display: flex; align-items: center; justify-content: center;
             transition: all 0.4s ease;
         }
+        .skill-card:hover .skill-icon-box { background-color: var(--accent-bg); color: var(--primary-color); transform: rotate(360deg); }
+        .skill-name { font-weight: 700; color: var(--text-main); font-size: 0.9rem; }
 
-        .skill-card:hover .skill-icon-box {
-            background-color: var(--accent-bg);
-            color: var(--primary-color);
-            transform: rotate(360deg);
+        /* --- ESTILOS DE PROYECTOS (Para Pestaña 2) --- */
+        .project-card {
+            background: var(--bg-card); border-radius: 16px; padding: 25px;
+            border: 1px solid var(--border-color); box-shadow: 0 4px 6px -1px var(--shadow-color);
+            display: flex; flex-direction: column; transition: all 0.4s; text-align: left;
         }
+        .project-card:hover { transform: translateY(-5px); border-color: var(--primary-color); box-shadow: 0 15px 30px -5px var(--shadow-color); }
+        .project-header { display: flex; align-items: center; margin-bottom: 12px; gap: 12px; }
+        .project-title { font-size: 1.1rem; font-weight: 700; color: var(--text-main); margin: 0; }
+        .project-desc { font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 15px; line-height: 1.5; }
+        .tags-container { margin-top: auto; display: flex; flex-wrap: wrap; gap: 8px; }
+        .tag { font-size: 0.75rem; background: var(--bg-section); color: var(--primary-color); padding: 4px 10px; border-radius: 20px; font-weight: 600; border: 1px solid var(--border-color); }
 
-        .skill-name {
-            font-weight: 700;
-            color: var(--text-main);
-            font-size: 0.95rem;
+        /* --- ESTILOS DE CV & CERTIFICACIONES (Para Pestaña 3) --- */
+        .cv-section { padding: 40px; background: var(--bg-section); border-radius: 24px; text-align: center; border: 1px solid var(--border-color); margin-bottom: 40px; }
+        .btn-container { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        .btn { display: inline-flex; align-items: center; gap: 10px; padding: 12px 24px; border-radius: 12px; text-decoration: none; font-weight: 600; transition: all 0.3s; }
+        .btn-primary { background: var(--primary-color); color: white; border: 1px solid var(--primary-color); }
+        .btn-primary:hover { background: var(--primary-hover); transform: translateY(-2px); }
+        .btn-secondary { background: var(--bg-card); color: var(--text-main); border: 1px solid var(--border-color); }
+        .btn-secondary:hover { background: var(--bg-section); transform: translateY(-2px); border-color: var(--text-secondary); }
+        
+        .filter-container { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
+        .filter-btn { background-color: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-secondary); padding: 8px 20px; border-radius: 100px; cursor: pointer; font-weight: 600; transition: all 0.3s; }
+        .filter-btn:hover { background-color: var(--bg-section); color: var(--text-main); }
+        .filter-btn.active { background-color: var(--primary-color); color: white; border-color: var(--primary-color); }
+        
+        .cv-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .cv-card { background: var(--bg-card); border-radius: 16px; padding: 20px; border: 1px solid var(--border-color); box-shadow: 0 4px 6px -1px var(--shadow-color); display: flex; flex-direction: column; transition: all 0.4s; }
+        .cv-card:hover { transform: translateY(-5px); border-color: var(--primary-color); }
+        .cv-header { display: flex; align-items: center; margin-bottom: 10px; }
+        .icon-box { background-color: var(--accent-bg); color: var(--primary-color); padding: 8px; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-right: 12px; flex-shrink: 0; }
+        .category { font-size: 0.7rem; text-transform: uppercase; font-weight: 700; color: var(--text-secondary); }
+        .cv-title { font-size: 1.1rem; font-weight: 700; color: var(--text-main); margin: 0 0 5px 0; }
+        .cv-date { font-size: 0.8rem; color: var(--text-secondary); margin-top: auto; font-style: italic; }
+
+        /* --- ESTILOS DE CARRUSEL (Para Pestaña 4) --- */
+        .carousel-wrapper { position: relative; max-width: 800px; margin: 0 auto; border-radius: 20px; overflow: hidden; border: 1px solid var(--border-color); background: var(--bg-card); }
+        .carousel-container { display: flex; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); width: 100%; }
+        .carousel-slide { min-width: 100%; position: relative; height: 500px; display: flex; align-items: center; justify-content: center; }
+        .carousel-slide img { width: 100%; height: 100%; object-fit: contain; display: block; }
+        .carousel-caption {
+            position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); width: 85%;
+            background: rgba(255, 255, 255, 0.9); padding: 15px; border-radius: 12px;
+            border: 1px solid rgba(0,0,0,0.1); box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center;
         }
-
-        /* --- 9. CV SECTION --- */
-        .cv-section {
-            margin-bottom: 80px;
-            padding: 50px 20px;
-            background: var(--bg-section);
-            border-radius: 24px;
-            text-align: center;
-            border: 1px solid var(--border-color);
+        body.dark-mode .carousel-caption { background: rgba(31, 41, 55, 0.95); border-color: rgba(255, 255, 255, 0.1); }
+        .caption-title { font-weight: 800; color: var(--text-main); display: block; font-size: 1.1rem; }
+        .caption-desc { font-size: 0.9rem; color: var(--text-secondary); }
+        .carousel-btn {
+            position: absolute; top: 50%; transform: translateY(-50%); background: var(--bg-card); border: 1px solid var(--border-color);
+            color: var(--text-main); width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 5;
         }
-
-        .btn-container {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 14px 28px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .btn-primary {
-            background: var(--primary-color);
-            color: white;
-            border: 1px solid var(--primary-color);
-        }
-
-        .btn-primary:hover {
-            background: var(--primary-hover);
-            transform: translateY(-4px);
-            box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.4);
-        }
-
-        .btn-secondary {
-            background: var(--bg-card);
-            color: var(--text-main);
-            border: 1px solid var(--border-color);
-        }
-
-        .btn-secondary:hover {
-            background: var(--bg-section);
-            transform: translateY(-4px);
-            box-shadow: 0 10px 15px -3px var(--shadow-color);
-            border-color: var(--text-secondary);
-        }
-
-        /* --- 10. CERTIFICACIONES --- */
-        .cert-header { text-align: center; margin-bottom: 30px; }
-
-        .filter-container {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin-bottom: 50px;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-color);
-            color: var(--text-secondary);
-            padding: 12px 28px;
-            border-radius: 100px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-        }
-
-        .filter-btn:hover {
-            background-color: var(--bg-section);
-            transform: translateY(-2px);
-            color: var(--text-main);
-        }
-
-        .filter-btn.active {
-            background-color: var(--primary-color);
-            color: white;
-            border-color: var(--primary-color);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
-            width: 100%;
-        }
-
-        .cv-card {
-            background: var(--bg-card);
-            border-radius: 16px;
-            padding: 25px;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 4px 6px -1px var(--shadow-color);
-            display: flex;
-            flex-direction: column;
-            transition: all 0.4s;
-            animation: fadeIn 0.5s ease forwards;
-        }
-
-        .cv-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 25px -5px var(--shadow-color);
-            border-color: var(--primary-color);
-        }
-
-        .cv-header { display: flex; align-items: center; margin-bottom: 15px; }
-
-        .icon-box {
-            background-color: var(--accent-bg);
-            color: var(--primary-color);
-            padding: 10px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            flex-shrink: 0;
-        }
-
-        .category {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--text-secondary);
-            font-weight: 700;
-        }
-
-        .cv-title {
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: var(--text-main);
-            margin: 0 0 8px 0;
-            line-height: 1.4;
-        }
-
-        .cv-date {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            margin-top: auto;
-            padding-top: 15px;
-            font-style: italic;
-            display: block;
-        }
+        .carousel-btn:hover { background: var(--primary-color); color: white; }
+        .carousel-btn.prev { left: 15px; } .carousel-btn.next { right: 15px; }
 
         .hide { display: none !important; }
+        .section-header { text-align: center; margin-bottom: 30px; font-size: 1.5rem; font-weight: 800; color: var(--text-main); display: flex; align-items: center; justify-content: center; gap: 10px; }
 
     </style>
 </head>
@@ -456,241 +226,315 @@
 
 <div class="main-wrapper">
 
-    <div class="controls-container animate-enter delay-1">
-        <button class="control-btn" onclick="toggleLanguage()" title="Español / English">
-            <i data-lucide="languages"></i>
-        </button>
-        <button class="control-btn" onclick="toggleTheme()" title="Claro / Oscuro">
-            <i data-lucide="moon" id="theme-icon"></i>
-        </button>
+    <div class="controls-container">
+        <button class="control-btn" onclick="toggleLanguage()" title="Español / English"><i data-lucide="languages"></i></button>
+        <button class="control-btn" onclick="toggleTheme()" title="Claro / Oscuro"><i data-lucide="moon" id="theme-icon"></i></button>
     </div>
 
-    <div class="hero-section animate-enter delay-1">
+    <div class="hero-section">
         <img src="Foto de Perfil.jpg" alt="Diego Oñate" class="profile-photo">
         <h1 class="hero-name">Hola, soy <span class="highlight-name">Diego</span></h1>
         <p class="hero-description" id="txt-desc">
-            Estudiante de Ingeniería Civil Industrial con experiencia en gestión de proyectos y pasión por conectar la capacidad técnica con el desarrollo de personas. Mi objetivo es aplicar mi capacidad de análisis para optimizar procesos.
+            Estudiante de Ingeniería Civil Industrial con experiencia en gestión de proyectos y pasión por conectar la capacidad técnica con el desarrollo de personas.
         </p>
         <span class="hero-quote" id="txt-quote">"Sinergia entre eficiencia de procesos y liderazgo humano"</span>
-        <div class="btn-container">
-            <a href="https://www.linkedin.com/in/diego-oñate" target="_blank" class="btn btn-primary">
-                <i data-lucide="linkedin"></i> LinkedIn
-            </a>
-            <a href="mailto:d.onate06@ufromail.cl" class="btn btn-secondary" id="btn-contact">
-                <i data-lucide="mail"></i> Contactar
-            </a>
+        <div style="display: flex; justify-content: center; gap: 10px;">
+            <a href="https://www.linkedin.com/in/diego-oñate" target="_blank" class="btn-contact-hero"><i data-lucide="linkedin"></i> LinkedIn</a>
+            <a href="mailto:d.onate06@ufromail.cl" class="btn-contact-hero"><i data-lucide="mail"></i> Contactar</a>
         </div>
     </div>
 
+    <nav class="nav-container">
+        <button class="nav-btn active" onclick="openTab('tab-home')" id="nav-home">
+            <i data-lucide="user"></i> Perfil
+        </button>
+        <button class="nav-btn" onclick="openTab('tab-projects')" id="nav-projects">
+            <i data-lucide="folder-kanban"></i> Proyectos
+        </button>
+        <button class="nav-btn" onclick="openTab('tab-certs')" id="nav-certs">
+            <i data-lucide="award"></i> Certificaciones
+        </button>
+        <button class="nav-btn" onclick="openTab('tab-hobbies')" id="nav-hobbies">
+            <i data-lucide="heart"></i> Intereses
+        </button>
+    </nav>
 
-    <div class="skills-wrapper animate-enter delay-2">
-        <h2 class="section-title" id="title-stack">
-            <i data-lucide="cpu"></i> Stack Tecnológico
-        </h2>
-        <div class="skills-grid">
-            <div class="skill-card">
-                <div class="skill-icon-box"><i data-lucide="terminal"></i></div> 
-                <span class="skill-name">Python</span>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon-box"><i data-lucide="database"></i></div> 
-                <span class="skill-name">SQL</span>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon-box"><i data-lucide="bar-chart-big"></i></div> 
-                <span class="skill-name">PowerBI</span>
-            </div>
-             <div class="skill-card">
-                <div class="skill-icon-box"><i data-lucide="file-spreadsheet"></i></div> 
-                <span class="skill-name" id="skill-excel">Excel Avanzado</span>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon-box"><i data-lucide="workflow"></i></div> 
-                <span class="skill-name">Bizagi</span>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon-box"><i data-lucide="function-square"></i></div> 
-                <span class="skill-name">CPLEX</span>
+    <div id="tab-home" class="tab-content active">
+        
+        <h2 class="section-header" id="title-stack"><i data-lucide="cpu"></i> Stack Tecnológico</h2>
+        <div class="skills-grid" style="margin-bottom: 50px;">
+            <div class="skill-card"><div class="skill-icon-box"><i data-lucide="terminal"></i></div><span class="skill-name">Python</span></div>
+            <div class="skill-card"><div class="skill-icon-box"><i data-lucide="database"></i></div><span class="skill-name">SQL</span></div>
+            <div class="skill-card"><div class="skill-icon-box"><i data-lucide="bar-chart-big"></i></div><span class="skill-name">PowerBI</span></div>
+            <div class="skill-card"><div class="skill-icon-box"><i data-lucide="file-spreadsheet"></i></div><span class="skill-name" id="skill-excel">Excel Avanzado</span></div>
+            <div class="skill-card"><div class="skill-icon-box"><i data-lucide="workflow"></i></div><span class="skill-name">Bizagi</span></div>
+            <div class="skill-card"><div class="skill-icon-box"><i data-lucide="function-square"></i></div><span class="skill-name">CPLEX</span></div>
+        </div>
+
+        <div class="cv-section">
+            <h2 class="section-header" id="title-cv" style="margin-bottom: 20px;"><i data-lucide="file-user"></i> Mi Curriculum Vitae</h2>
+            <div class="btn-container">
+                <a href="https://docs.google.com/document/d/12oMtW12oNcIXESputu2PM4OSS2scAG0S/export?format=pdf" class="btn btn-primary" id="btn-download"><i data-lucide="download"></i> Descargar PDF</a>
+                <a href="https://docs.google.com/document/d/12oMtW12oNcIXESputu2PM4OSS2scAG0S/preview" target="_blank" class="btn btn-secondary" id="btn-full"><i data-lucide="external-link"></i> Ver Online</a>
             </div>
         </div>
     </div>
 
-
-    <div class="cv-section animate-enter delay-3">
-        <h2 class="section-title" id="title-cv"><i data-lucide="file-user"></i> Mi Curriculum Vitae</h2>
-        <div class="btn-container">
-            <a href="https://docs.google.com/document/d/12oMtW12oNcIXESputu2PM4OSS2scAG0S/export?format=pdf" 
-               class="btn btn-primary" id="btn-download">
-                <i data-lucide="download"></i> Descargar PDF
-            </a>
-            <a href="https://docs.google.com/document/d/12oMtW12oNcIXESputu2PM4OSS2scAG0S/preview" 
-               target="_blank" 
-               class="btn btn-secondary" id="btn-full">
-                <i data-lucide="external-link"></i> Ver Pantalla Completa
-            </a>
+    <div id="tab-projects" class="tab-content">
+        <h2 class="section-header" id="title-projects"><i data-lucide="folder-kanban"></i> Proyectos Destacados</h2>
+        
+        <div class="grid-container">
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="icon-box"><i data-lucide="sun"></i></div>
+                    <h3 class="project-title" id="proj-t1">Sistemas Fotovoltaicos</h3>
+                </div>
+                <p class="project-desc" id="proj-d1">Modelado y simulación de sistemas solares para la optimización de potencia y mantenimiento predictivo.</p>
+                <div class="tags-container"><span class="tag">MatLab/Simulink</span><span class="tag">Energía</span></div>
+            </div>
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="icon-box"><i data-lucide="activity"></i></div>
+                    <h3 class="project-title" id="proj-t2">Optimización Ganadera</h3>
+                </div>
+                <p class="project-desc" id="proj-d2">Modelo de investigación de operaciones para maximizar la vida útil y productividad del ganado.</p>
+                <div class="tags-container"><span class="tag">Python</span><span class="tag">CPLEX</span><span class="tag">Optimización</span></div>
+            </div>
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="icon-box"><i data-lucide="glasses"></i></div>
+                    <h3 class="project-title" id="proj-t3">Smartsight</h3>
+                </div>
+                <p class="project-desc" id="proj-d3">Diseño y estrategia de mercado para gafas inteligentes destinadas a personas con discapacidad visual.</p>
+                <div class="tags-container"><span class="tag">Innovación</span><span class="tag">Marketing</span><span class="tag">Inclusión</span></div>
+            </div>
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="icon-box"><i data-lucide="briefcase"></i></div>
+                    <h3 class="project-title" id="proj-t4">Gestión Empresarial SAP</h3>
+                </div>
+                <p class="project-desc" id="proj-d4">Propuesta estratégica de implementación de ERP SAP S/4HANA para optimización de procesos.</p>
+                <div class="tags-container"><span class="tag">SAP S/4HANA</span><span class="tag">Gestión</span></div>
+            </div>
+            <div class="project-card" style="border-color: var(--primary-color);">
+                <div class="project-header">
+                    <div class="icon-box" style="background-color: var(--primary-color); color: white;"><i data-lucide="heart-handshake"></i></div>
+                    <h3 class="project-title" id="proj-t5">Voluntariado REFOOD</h3>
+                </div>
+                <p class="project-desc" id="proj-d5">Liderazgo y participación activa en iniciativas de recuperación de alimentos para la comunidad.</p>
+                <div class="tags-container"><span class="tag">Liderazgo Social</span><span class="tag">Voluntariado</span></div>
+            </div>
         </div>
     </div>
 
-
-    <div class="animate-enter delay-4">
-        <div class="cert-header">
-            <h2 class="section-title" id="title-cert"><i data-lucide="award"></i> Mis Certificaciones</h2>
-            <p style="color: var(--text-secondary);" id="txt-filter">Selecciona una categoría para filtrar</p>
-        </div>
-
+    <div id="tab-certs" class="tab-content">
+        <h2 class="section-header" id="title-cert"><i data-lucide="award"></i> Mis Certificaciones</h2>
+        
         <div class="filter-container">
             <button class="filter-btn active" onclick="filterSelection('all', this)" id="btn-all">Todas</button>
             <button class="filter-btn" onclick="filterSelection('ia', this)" id="btn-ia">IA & Generativa</button>
             <button class="filter-btn" onclick="filterSelection('prod', this)" id="btn-prod">Productividad</button>
-            <button class="filter-btn" onclick="filterSelection('gestion', this)" id="btn-mgmt">Gestión & Otros</button>
+            <button class="filter-btn" onclick="filterSelection('gestion', this)" id="btn-mgmt">Gestión</button>
         </div>
 
-        <div class="grid-container">
+        <div class="cv-grid">
             <div class="cv-card" data-category="ia">
-                <div class="cv-header">
-                    <div class="icon-box"><i data-lucide="bar-chart-big"></i></div>
-                    <span class="category">Santander Open Academy</span>
-                </div>
-                <h3 class="cv-title" data-en="Introduction to Data Science">Introducción a la Ciencia de Datos</h3>
-                <span class="cv-date">Dic. 11, 2025</span>
+                <div class="cv-header"><div class="icon-box"><i data-lucide="bar-chart-big"></i></div><span class="category">Santander Open Academy</span></div>
+                <h3 class="cv-title" data-en="Introduction to Data Science">Introducción a la Ciencia de Datos</h3><span class="cv-date">Dic. 11, 2025</span>
             </div>
             <div class="cv-card" data-category="ia">
-                <div class="cv-header">
-                    <div class="icon-box"><i data-lucide="bot"></i></div>
-                    <span class="category">Santander Open Academy</span>
-                </div>
-                <h3 class="cv-title" data-en="Google: AI and Productivity">Google: Inteligencia Artificial y productividad</h3>
-                <span class="cv-date">Sep. 25, 2025</span>
+                <div class="cv-header"><div class="icon-box"><i data-lucide="bot"></i></div><span class="category">Santander Open Academy</span></div>
+                <h3 class="cv-title" data-en="Google: AI and Productivity">Google: Inteligencia Artificial y productividad</h3><span class="cv-date">Sep. 25, 2025</span>
             </div>
             <div class="cv-card" data-category="ia">
-                <div class="cv-header">
-                    <div class="icon-box"><i data-lucide="briefcase"></i></div>
-                    <span class="category">Coursera</span>
-                </div>
-                <h3 class="cv-title">Business Implications of AI: A Nano-course</h3>
-                <span class="cv-date">Sep. 20, 2025</span>
+                <div class="cv-header"><div class="icon-box"><i data-lucide="briefcase"></i></div><span class="category">Coursera</span></div>
+                <h3 class="cv-title">Business Implications of AI: A Nano-course</h3><span class="cv-date">Sep. 20, 2025</span>
             </div>
             <div class="cv-card" data-category="ia">
-                <div class="cv-header">
-                    <div class="icon-box"><i data-lucide="sparkles"></i></div>
-                    <span class="category">Coursera</span>
-                </div>
-                <h3 class="cv-title">Introduction to Generative AI</h3>
-                <span class="cv-date">Sep. 19, 2025</span>
+                <div class="cv-header"><div class="icon-box"><i data-lucide="sparkles"></i></div><span class="category">Coursera</span></div>
+                <h3 class="cv-title">Introduction to Generative AI</h3><span class="cv-date">Sep. 19, 2025</span>
             </div>
             <div class="cv-card" data-category="ia">
-                <div class="cv-header">
-                    <div class="icon-box"><i data-lucide="message-square"></i></div>
-                    <span class="category">LinkedIn Learning</span>
-                </div>
-                <h3 class="cv-title" data-en="Prompt Engineering: How to talk to GenAI">Prompt Engineering: Aprende a hablar con una IA generativa</h3>
-                <span class="cv-date">Mar. 22, 2025</span>
+                <div class="cv-header"><div class="icon-box"><i data-lucide="message-square"></i></div><span class="category">LinkedIn Learning</span></div>
+                <h3 class="cv-title" data-en="Prompt Engineering: How to talk to GenAI">Prompt Engineering: Aprende a hablar con una IA generativa</h3><span class="cv-date">Mar. 22, 2025</span>
             </div>
             <div class="cv-card" data-category="prod">
-                <div class="cv-header">
-                    <div class="icon-box"><i data-lucide="zap"></i></div>
-                    <span class="category">LinkedIn Learning</span>
-                </div>
-                <h3 class="cv-title" data-en="Develop proactivity skills with GenAI">Desarrolla tus habilidades de proactividad con IA generativa</h3>
-                <span class="cv-date">Abr. 18, 2025</span>
+                <div class="cv-header"><div class="icon-box"><i data-lucide="zap"></i></div><span class="category">LinkedIn Learning</span></div>
+                <h3 class="cv-title" data-en="Develop proactivity skills with GenAI">Desarrolla tus habilidades de proactividad con IA generativa</h3><span class="cv-date">Abr. 18, 2025</span>
             </div>
             <div class="cv-card" data-category="prod">
-                <div class="cv-header">
-                    <div class="icon-box"><i data-lucide="monitor-play"></i></div>
-                    <span class="category">LinkedIn Learning</span>
-                </div>
-                <h3 class="cv-title" data-en="Copilot in PowerPoint: Create impactful presentations">Copilot en PowerPoint: crea presentaciones impactantes</h3>
-                <span class="cv-date">Abr. 18, 2025</span>
+                <div class="cv-header"><div class="icon-box"><i data-lucide="monitor-play"></i></div><span class="category">LinkedIn Learning</span></div>
+                <h3 class="cv-title" data-en="Copilot in PowerPoint: Create impactful presentations">Copilot en PowerPoint: crea presentaciones impactantes</h3><span class="cv-date">Abr. 18, 2025</span>
             </div>
             <div class="cv-card" data-category="prod">
-                <div class="cv-header">
-                    <div class="icon-box"><i data-lucide="file-spreadsheet"></i></div>
-                    <span class="category">LinkedIn Learning</span>
-                </div>
-                <h3 class="cv-title" data-en="Excel and Copilot: AI-Assisted Data Analysis">Excel y Copilot: Análisis de datos asistidos por IA</h3>
-                <span class="cv-date">Abr. 18, 2025</span>
+                <div class="cv-header"><div class="icon-box"><i data-lucide="file-spreadsheet"></i></div><span class="category">LinkedIn Learning</span></div>
+                <h3 class="cv-title" data-en="Excel and Copilot: AI-Assisted Data Analysis">Excel y Copilot: Análisis de datos asistidos por IA</h3><span class="cv-date">Abr. 18, 2025</span>
             </div>
             <div class="cv-card" data-category="prod">
-                <div class="cv-header">
-                    <div class="icon-box"><i data-lucide="rocket"></i></div>
-                    <span class="category">LinkedIn Learning</span>
-                </div>
-                <h3 class="cv-title" data-en="Productivity Hacks with AI">Trucos de productividad con IA para reimaginar tu jornada</h3>
-                <span class="cv-date">Mar. 22, 2025</span>
+                <div class="cv-header"><div class="icon-box"><i data-lucide="rocket"></i></div><span class="category">LinkedIn Learning</span></div>
+                <h3 class="cv-title" data-en="Productivity Hacks with AI">Trucos de productividad con IA para reimaginar tu jornada</h3><span class="cv-date">Mar. 22, 2025</span>
             </div>
             <div class="cv-card" data-category="gestion">
-                <div class="cv-header">
-                    <div class="icon-box"><i data-lucide="users"></i></div>
-                    <span class="category">Santander Open Academy</span>
-                </div>
-                <h3 class="cv-title" data-en="Effective Project and Team Management">Gestión Efectiva de proyectos y equipos</h3>
-                <span class="cv-date">Sep. 29, 2025</span>
+                <div class="cv-header"><div class="icon-box"><i data-lucide="users"></i></div><span class="category">Santander Open Academy</span></div>
+                <h3 class="cv-title" data-en="Effective Project and Team Management">Gestión Efectiva de proyectos y equipos</h3><span class="cv-date">Sep. 29, 2025</span>
             </div>
             <div class="cv-card" data-category="ia">
-                <div class="cv-header">
-                    <div class="icon-box"><i data-lucide="palette"></i></div>
-                    <span class="category">LinkedIn Learning</span>
-                </div>
-                <h3 class="cv-title" data-en="GenAI for Creatives: Challenges & Ethics">IA generativa para profesionales creativos: Retos y ética</h3>
-                <span class="cv-date">Mar. 22, 2025</span>
+                <div class="cv-header"><div class="icon-box"><i data-lucide="palette"></i></div><span class="category">LinkedIn Learning</span></div>
+                <h3 class="cv-title" data-en="GenAI for Creatives: Challenges & Ethics">IA generativa para profesionales creativos: Retos y ética</h3><span class="cv-date">Mar. 22, 2025</span>
             </div>
             <div class="cv-card" data-category="gestion">
-                <div class="cv-header">
-                    <div class="icon-box"><i data-lucide="graduation-cap"></i></div>
-                    <span class="category">Universidad de La Frontera</span>
-                </div>
-                <h3 class="cv-title" data-en="Prepare for your professional future">Prepárate para tu futuro profesional</h3>
-                <span class="cv-date">Dic. 2024</span>
+                <div class="cv-header"><div class="icon-box"><i data-lucide="graduation-cap"></i></div><span class="category">Universidad de La Frontera</span></div>
+                <h3 class="cv-title" data-en="Prepare for your professional future">Prepárate para tu futuro profesional</h3><span class="cv-date">Dic. 2024</span>
             </div>
             <div class="cv-card" data-category="gestion">
-                <div class="cv-header">
-                    <div class="icon-box"><i data-lucide="shield-check"></i></div>
-                    <span class="category">SQM</span>
-                </div>
-                <h3 class="cv-title" data-en="Risk Management Induction 2023">Inducción en gestión de riesgos 2023</h3>
-                <span class="cv-date">Ene. 2023</span>
+                <div class="cv-header"><div class="icon-box"><i data-lucide="shield-check"></i></div><span class="category">SQM</span></div>
+                <h3 class="cv-title" data-en="Risk Management Induction 2023">Inducción en gestión de riesgos 2023</h3><span class="cv-date">Ene. 2023</span>
             </div>
+        </div>
+    </div>
+
+    <div id="tab-hobbies" class="tab-content">
+        <h2 class="section-header"><span id="title-hobbies">Más allá de la Ingeniería</span></h2>
+        
+        <div class="carousel-wrapper">
+            <button class="carousel-btn prev" onclick="moveSlide(-1)"><i data-lucide="chevron-left"></i></button>
+            <div class="carousel-container">
+                <div class="carousel-slide">
+                    <img src="gym.jpg" alt="Entrenamiento"> 
+                    <div class="carousel-caption"><span class="caption-title" id="hobby-t1">Disciplina y Constancia</span><span class="caption-desc" id="hobby-d1">El deporte como pilar de superación diaria.</span></div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="equipo.jpg" alt="Equipo Deportivo">
+                    <div class="carousel-caption"><span class="caption-title" id="hobby-t2">Trabajo en Equipo</span><span class="caption-desc" id="hobby-d2">Colaboración y estrategia en la cancha.</span></div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="libro.jpg" alt="Lectura Científica">
+                    <div class="carousel-caption"><span class="caption-title" id="hobby-t3">Curiosidad Científica</span><span class="caption-desc" id="hobby-d3">Explorando el universo a través de la lectura.</span></div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="dibujo.jpg" alt="Arte y Dibujo">
+                    <div class="carousel-caption"><span class="caption-title" id="hobby-t4">Creatividad y Detalle</span><span class="caption-desc" id="hobby-d4">Expresión artística y atención al detalle.</span></div>
+                </div>
+                 <div class="carousel-slide">
+                    <img src="social.jpg" alt="Voluntariado y Liderazgo">
+                    <div class="carousel-caption"><span class="caption-title" id="hobby-t5">Liderazgo Social</span><span class="caption-desc" id="hobby-d5">Impacto positivo en la comunidad.</span></div>
+                </div>
+            </div>
+            <button class="carousel-btn next" onclick="moveSlide(1)"><i data-lucide="chevron-right"></i></button>
         </div>
     </div>
 
 </div> 
 
 <script>
-    // --- JS: TRADUCCIONES Y FUNCIONALIDAD ---
-    let currentLang = 'es'; 
+    // --- LÓGICA DE PESTAÑAS (TABS) ---
+    function openTab(tabName) {
+        // Ocultar todas las pestañas
+        var tabs = document.getElementsByClassName("tab-content");
+        for (var i = 0; i < tabs.length; i++) {
+            tabs[i].classList.remove("active");
+        }
+        // Desactivar todos los botones
+        var btns = document.getElementsByClassName("nav-btn");
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].classList.remove("active");
+        }
+        // Mostrar pestaña actual
+        document.getElementById(tabName).classList.add("active");
+        
+        // Activar botón correspondiente
+        var btnId = tabName.replace('tab-', 'nav-');
+        document.getElementById(btnId).classList.add("active");
+        
+        // Reiniciar animaciones de la pestaña
+        lucide.createIcons();
+    }
 
+    // --- LÓGICA DE CARRUSEL ---
+    let slideIndex = 0;
+    const slides = document.querySelectorAll('.carousel-slide');
+    let autoPlayTimer = setInterval(() => moveSlide(1), 6000); 
+
+    function showSlides(n) {
+        if (n >= slides.length) slideIndex = 0;
+        if (n < 0) slideIndex = slides.length - 1;
+        document.querySelector('.carousel-container').style.transform = `translateX(-${slideIndex * 100}%)`;
+    }
+
+    function moveSlide(n) {
+        clearInterval(autoPlayTimer); 
+        autoPlayTimer = setInterval(() => moveSlide(1), 6000);
+        showSlides(slideIndex += n);
+    }
+
+    // --- TRADUCCIÓN ---
+    let currentLang = 'es'; 
     const translations = {
         'es': {
-            'desc': 'Estudiante de Ingeniería Civil Industrial con experiencia en gestión de proyectos y pasión por conectar la capacidad técnica con el desarrollo de personas. Mi objetivo es aplicar mi capacidad de análisis para optimizar procesos.',
+            'desc': 'Estudiante de Ingeniería Civil Industrial con experiencia en gestión de proyectos y pasión por conectar la capacidad técnica con el desarrollo de personas.',
             'quote': '"Sinergia entre eficiencia de procesos y liderazgo humano"',
-            'contact': '<i data-lucide="mail"></i> Contactar',
-            'stack': '<i data-lucide="cpu"></i> Stack Tecnológico',
-            'excel': 'Excel Avanzado',
-            'cv_title': '<i data-lucide="file-user"></i> Mi Curriculum Vitae',
-            'download': '<i data-lucide="download"></i> Descargar PDF',
-            'full': '<i data-lucide="external-link"></i> Ver Pantalla Completa',
-            'cert_title': '<i data-lucide="award"></i> Mis Certificaciones',
+            // Navegación
+            'nav_home': '<i data-lucide="user"></i> Perfil',
+            'nav_projects': '<i data-lucide="folder-kanban"></i> Proyectos',
+            'nav_certs': '<i data-lucide="award"></i> Certificaciones',
+            'nav_hobbies': '<i data-lucide="heart"></i> Intereses',
+            // Perfil
+            'title_stack': '<i data-lucide="cpu"></i> Stack Tecnológico',
+            'skill_excel': 'Excel Avanzado',
+            'title_cv': '<i data-lucide="file-user"></i> Mi Curriculum Vitae',
+            'btn_download': '<i data-lucide="download"></i> Descargar PDF',
+            'btn_full': '<i data-lucide="external-link"></i> Ver Online',
+            // Proyectos
+            'title_projects': '<i data-lucide="folder-kanban"></i> Proyectos Destacados',
+            'proj_t1': 'Sistemas Fotovoltaicos', 'proj_d1': 'Modelado y simulación de sistemas solares para la optimización de potencia y mantenimiento predictivo.',
+            'proj_t2': 'Optimización Ganadera', 'proj_d2': 'Modelo de investigación de operaciones para maximizar la vida útil y productividad del ganado.',
+            'proj_t3': 'Smartsight', 'proj_d3': 'Diseño y estrategia de mercado para gafas inteligentes destinadas a personas con discapacidad visual.',
+            'proj_t4': 'Gestión Empresarial SAP', 'proj_d4': 'Propuesta estratégica de implementación de ERP SAP S/4HANA para optimización de procesos.',
+            'proj_t5': 'Voluntariado REFOOD', 'proj_d5': 'Liderazgo y participación activa en iniciativas de recuperación de alimentos para la comunidad.',
+            // Certificaciones
+            'title_cert': '<i data-lucide="award"></i> Mis Certificaciones',
             'filter_txt': 'Selecciona una categoría para filtrar',
-            'btn_all': 'Todas',
-            'btn_ia': 'IA & Generativa',
-            'btn_prod': 'Productividad',
-            'btn_mgmt': 'Gestión & Otros'
+            'btn_all': 'Todas', 'btn_ia': 'IA & Generativa', 'btn_prod': 'Productividad', 'btn_mgmt': 'Gestión',
+            // Hobbies
+            'title_hobbies': 'Más allá de la Ingeniería',
+            'hobby_t1': 'Disciplina y Constancia', 'hobby_d1': 'El deporte como pilar de superación diaria.',
+            'hobby_t2': 'Trabajo en Equipo', 'hobby_d2': 'Colaboración y estrategia en la cancha.',
+            'hobby_t3': 'Curiosidad Científica', 'hobby_d3': 'Explorando el universo a través de la lectura.',
+            'hobby_t4': 'Creatividad y Detalle', 'hobby_d4': 'Expresión artística y atención al detalle.',
+            'hobby_t5': 'Liderazgo Social', 'hobby_d5': 'Impacto positivo en la comunidad.'
         },
         'en': {
-            'desc': 'Industrial Civil Engineering student with experience in project management and a passion for connecting technical capability with people development. My goal is to apply my analytical skills to optimize processes.',
+            'desc': 'Industrial Civil Engineering student with experience in project management and a passion for connecting technical capability with people development.',
             'quote': '"Synergy between process efficiency and human leadership"',
-            'contact': '<i data-lucide="mail"></i> Contact',
-            'stack': '<i data-lucide="cpu"></i> Tech Stack',
-            'excel': 'Advanced Excel',
-            'cv_title': '<i data-lucide="file-user"></i> My Curriculum Vitae',
-            'download': '<i data-lucide="download"></i> Download PDF',
-            'full': '<i data-lucide="external-link"></i> View Full Screen',
-            'cert_title': '<i data-lucide="award"></i> My Certifications',
+            // Navigation
+            'nav_home': '<i data-lucide="user"></i> Profile',
+            'nav_projects': '<i data-lucide="folder-kanban"></i> Projects',
+            'nav_certs': '<i data-lucide="award"></i> Certs',
+            'nav_hobbies': '<i data-lucide="heart"></i> Interests',
+            // Profile
+            'title_stack': '<i data-lucide="cpu"></i> Tech Stack',
+            'skill_excel': 'Advanced Excel',
+            'title_cv': '<i data-lucide="file-user"></i> My Curriculum Vitae',
+            'btn_download': '<i data-lucide="download"></i> Download PDF',
+            'btn_full': '<i data-lucide="external-link"></i> View Online',
+            // Projects
+            'title_projects': '<i data-lucide="folder-kanban"></i> Featured Projects',
+            'proj_t1': 'Photovoltaic Systems', 'proj_d1': 'Modeling and simulation of solar systems for power optimization and predictive maintenance.',
+            'proj_t2': 'Livestock Optimization', 'proj_d2': 'Operations research model to maximize livestock lifespan and productivity.',
+            'proj_t3': 'Smartsight', 'proj_d3': 'Design and market strategy for smart glasses aimed at visually impaired people.',
+            'proj_t4': 'SAP Business Management', 'proj_d4': 'Strategic proposal for SAP S/4HANA ERP implementation for process optimization.',
+            'proj_t5': 'REFOOD Volunteering', 'proj_d5': 'Leadership and active participation in food recovery initiatives for the community.',
+            // Certs
+            'title_cert': '<i data-lucide="award"></i> My Certifications',
             'filter_txt': 'Select a category to filter',
-            'btn_all': 'All',
-            'btn_ia': 'AI & Generative',
-            'btn_prod': 'Productivity',
-            'btn_mgmt': 'Management & Others'
+            'btn_all': 'All', 'btn_ia': 'AI & Generative', 'btn_prod': 'Productivity', 'btn_mgmt': 'Management',
+            // Hobbies
+            'title_hobbies': 'Beyond Engineering',
+            'hobby_t1': 'Discipline & Persistence', 'hobby_d1': 'Sports as a pillar of daily improvement.',
+            'hobby_t2': 'Teamwork', 'hobby_d2': 'Collaboration and strategy on the field.',
+            'hobby_t3': 'Scientific Curiosity', 'hobby_d3': 'Exploring the universe through reading.',
+            'hobby_t4': 'Creativity & Detail', 'hobby_d4': 'Artistic expression and attention to detail.',
+            'hobby_t5': 'Social Leadership', 'hobby_d5': 'Positive impact on the community.'
         }
     };
 
@@ -699,18 +543,40 @@
         const t = translations[currentLang];
         document.getElementById('txt-desc').innerHTML = t.desc;
         document.getElementById('txt-quote').innerHTML = t.quote;
-        document.getElementById('btn-contact').innerHTML = t.contact;
-        document.getElementById('title-stack').innerHTML = t.stack;
-        document.getElementById('skill-excel').innerHTML = t.excel;
-        document.getElementById('title-cv').innerHTML = t.cv_title;
-        document.getElementById('btn-download').innerHTML = t.download;
-        document.getElementById('btn-full').innerHTML = t.full;
-        document.getElementById('title-cert').innerHTML = t.cert_title;
+        
+        // Nav
+        document.getElementById('nav-home').innerHTML = t.nav_home;
+        document.getElementById('nav-projects').innerHTML = t.nav_projects;
+        document.getElementById('nav-certs').innerHTML = t.nav_certs;
+        document.getElementById('nav-hobbies').innerHTML = t.nav_hobbies;
+
+        // Content
+        document.getElementById('title-stack').innerHTML = t.title_stack;
+        document.getElementById('skill-excel').innerHTML = t.skill_excel;
+        document.getElementById('title-cv').innerHTML = t.title_cv;
+        document.getElementById('btn-download').innerHTML = t.btn_download;
+        document.getElementById('btn-full').innerHTML = t.btn_full;
+        
+        document.getElementById('title-projects').innerHTML = t.title_projects;
+        document.getElementById('proj-t1').innerHTML = t.proj_t1; document.getElementById('proj-d1').innerHTML = t.proj_d1;
+        document.getElementById('proj-t2').innerHTML = t.proj_t2; document.getElementById('proj-d2').innerHTML = t.proj_d2;
+        document.getElementById('proj-t3').innerHTML = t.proj_t3; document.getElementById('proj-d3').innerHTML = t.proj_d3;
+        document.getElementById('proj-t4').innerHTML = t.proj_t4; document.getElementById('proj-d4').innerHTML = t.proj_d4;
+        document.getElementById('proj-t5').innerHTML = t.proj_t5; document.getElementById('proj-d5').innerHTML = t.proj_d5;
+
+        document.getElementById('title-cert').innerHTML = t.title_cert;
         document.getElementById('txt-filter').innerHTML = t.filter_txt;
         document.getElementById('btn-all').innerHTML = t.btn_all;
         document.getElementById('btn-ia').innerHTML = t.btn_ia;
         document.getElementById('btn-prod').innerHTML = t.btn_prod;
         document.getElementById('btn-mgmt').innerHTML = t.btn_mgmt;
+        
+        document.getElementById('title-hobbies').innerHTML = t.title_hobbies;
+        document.getElementById('hobby-t1').innerHTML = t.hobby_t1; document.getElementById('hobby-d1').innerHTML = t.hobby_d1;
+        document.getElementById('hobby-t2').innerHTML = t.hobby_t2; document.getElementById('hobby-d2').innerHTML = t.hobby_d2;
+        document.getElementById('hobby-t3').innerHTML = t.hobby_t3; document.getElementById('hobby-d3').innerHTML = t.hobby_d3;
+        document.getElementById('hobby-t4').innerHTML = t.hobby_t4; document.getElementById('hobby-d4').innerHTML = t.hobby_d4;
+        document.getElementById('hobby-t5').innerHTML = t.hobby_t5; document.getElementById('hobby-d5').innerHTML = t.hobby_d5;
 
         const titles = document.querySelectorAll('.cv-title');
         titles.forEach(title => {
@@ -771,4 +637,5 @@
 
 </body>
 </html>
+
 
