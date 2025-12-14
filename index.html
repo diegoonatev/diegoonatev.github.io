@@ -7,9 +7,9 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     
     <style>
-        /* --- VARIABLES DE COLORES (Aquí ocurre la magia del Modo Oscuro) --- */
+        /* --- VARIABLES DE COLORES --- */
         :root {
-            /* Modo Claro (Por defecto) */
+            /* Modo Claro */
             --bg-body: #FFFFFF;
             --text-main: #1f2937;
             --text-secondary: #4b5563;
@@ -22,18 +22,18 @@
             --accent-bg: #ecfdf5;
         }
 
-        /* Variables para Modo Oscuro */
+        /* Modo Oscuro */
         body.dark-mode {
-            --bg-body: #111827;         /* Fondo muy oscuro */
-            --text-main: #f9fafb;       /* Texto casi blanco */
-            --text-secondary: #9ca3af;  /* Texto gris claro */
-            --bg-card: #1f2937;         /* Tarjetas gris oscuro */
-            --bg-section: #1f2937;      /* Secciones gris oscuro */
-            --border-color: #374151;    /* Bordes sutiles */
+            --bg-body: #111827;
+            --text-main: #f9fafb;
+            --text-secondary: #9ca3af;
+            --bg-card: #1f2937;
+            --bg-section: #1f2937;
+            --border-color: #374151;
             --shadow-color: rgba(0, 0, 0, 0.3);
-            --primary-color: #10b981;   /* Verde más brillante para resaltar en oscuro */
+            --primary-color: #10b981;
             --primary-hover: #34d399;
-            --accent-bg: #064e3b;       /* Fondo de iconos oscuro */
+            --accent-bg: #064e3b;
         }
 
         /* --- ESTILOS GENERALES --- */
@@ -44,17 +44,17 @@
             padding: 20px;
             margin: 0;
             line-height: 1.5;
-            transition: background-color 0.3s, color 0.3s; /* Transición suave */
+            transition: background-color 0.3s, color 0.3s;
         }
 
         .main-wrapper {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
-            position: relative; /* Para posicionar los botones */
+            position: relative;
         }
 
-        /* --- BOTONES DE CONTROL (Oscuro / Inglés) --- */
+        /* --- BOTONES DE CONTROL --- */
         .controls-container {
             position: absolute;
             top: 0;
@@ -90,7 +90,6 @@
             padding: 40px 20px 40px 20px;
         }
 
-        /* ESTILO PARA LA FOTO DE PERFIL */
         .profile-photo {
             width: 180px;
             height: 180px;
@@ -99,7 +98,7 @@
             object-position: top center; 
             margin-bottom: 25px;
             box-shadow: 0 10px 15px -3px var(--shadow-color);
-            border: 4px solid var(--bg-card); /* El borde se adapta al modo oscuro */
+            border: 4px solid var(--bg-card);
             background-color: var(--bg-section);
         }
 
@@ -207,17 +206,6 @@
             align-items: center;
         }
 
-        .cv-frame {
-            width: 100%;
-            max-width: 800px; 
-            height: 500px;
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px var(--shadow-color);
-            background: white; /* El iframe siempre blanco para leer el PDF */
-            margin-bottom: 25px;
-        }
-
         /* Botones */
         .btn-container { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
         
@@ -313,10 +301,10 @@
 <div class="main-wrapper">
 
     <div class="controls-container">
-        <button class="control-btn" onclick="toggleLanguage()" title="Cambiar Idioma / Change Language">
+        <button class="control-btn" onclick="toggleLanguage()" title="Cambiar Idioma">
             <i data-lucide="languages"></i>
         </button>
-        <button class="control-btn" onclick="toggleTheme()" title="Modo Oscuro / Dark Mode">
+        <button class="control-btn" onclick="toggleTheme()" title="Modo Oscuro">
             <i data-lucide="moon" id="theme-icon"></i>
         </button>
     </div>
@@ -380,12 +368,6 @@
     <div class="cv-section">
         <h2 class="section-title" id="title-cv"><i data-lucide="file-user"></i> Mi Curriculum Vitae</h2>
         
-        <iframe 
-            src="https://docs.google.com/document/d/12oMtW12oNcIXESputu2PM4OSS2scAG0S/preview" 
-            class="cv-frame" 
-            title="Vista previa CV">
-        </iframe>
-
         <div class="btn-container">
             <a href="https://docs.google.com/document/d/12oMtW12oNcIXESputu2PM4OSS2scAG0S/export?format=pdf" 
                class="btn btn-primary" id="btn-download">
@@ -536,10 +518,9 @@
 </div> 
 
 <script>
-    // --- LÓGICA DE TRADUCCIÓN ---
-    let currentLang = 'es'; // Idioma por defecto
+    // --- TRADUCCIÓN ---
+    let currentLang = 'es'; 
 
-    // Diccionario de textos
     const translations = {
         'es': {
             'desc': 'Estudiante de Ingeniería Civil Industrial con experiencia en gestión de proyectos y pasión por conectar la capacidad técnica con el desarrollo de personas. Mi objetivo es aplicar mi capacidad de análisis para optimizar procesos.',
@@ -576,11 +557,9 @@
     };
 
     function toggleLanguage() {
-        // Cambiar estado
         currentLang = currentLang === 'es' ? 'en' : 'es';
         const t = translations[currentLang];
 
-        // Actualizar textos principales
         document.getElementById('txt-desc').innerHTML = t.desc;
         document.getElementById('txt-quote').innerHTML = t.quote;
         document.getElementById('btn-contact').innerHTML = t.contact;
@@ -592,44 +571,38 @@
         document.getElementById('title-cert').innerHTML = t.cert_title;
         document.getElementById('txt-filter').innerHTML = t.filter_txt;
         
-        // Actualizar botones de filtro
         document.getElementById('btn-all').innerHTML = t.btn_all;
         document.getElementById('btn-ia').innerHTML = t.btn_ia;
         document.getElementById('btn-prod').innerHTML = t.btn_prod;
         document.getElementById('btn-mgmt').innerHTML = t.btn_mgmt;
 
-        // Actualizar títulos de tarjetas (Búsqueda inteligente)
         const titles = document.querySelectorAll('.cv-title');
         titles.forEach(title => {
             const englishText = title.getAttribute('data-en');
-            // Si estamos en inglés y existe traducción, úsala. Si no, vuelve al original (que perdemos si no lo guardamos, pero para simplificar, asumimos español como base en HTML)
             if (currentLang === 'en' && englishText) {
-                if (!title.getAttribute('data-es')) title.setAttribute('data-es', title.innerText); // Guardar español original
+                if (!title.getAttribute('data-es')) title.setAttribute('data-es', title.innerText);
                 title.innerText = englishText;
             } else if (currentLang === 'es' && title.getAttribute('data-es')) {
                 title.innerText = title.getAttribute('data-es');
             }
         });
-
-        // Reiniciar iconos de Lucide tras cambiar el HTML
         lucide.createIcons();
     }
 
-    // --- LÓGICA DE MODO OSCURO ---
+    // --- MODO OSCURO ---
     function toggleTheme() {
         document.body.classList.toggle('dark-mode');
         const icon = document.getElementById('theme-icon');
         
-        // Cambiar icono Sol/Luna
         if (document.body.classList.contains('dark-mode')) {
-            icon.setAttribute('data-lucide', 'sun'); // Mostrar sol para volver a claro
+            icon.setAttribute('data-lucide', 'sun');
         } else {
-            icon.setAttribute('data-lucide', 'moon'); // Mostrar luna para ir a oscuro
+            icon.setAttribute('data-lucide', 'moon');
         }
         lucide.createIcons();
     }
 
-    // 1. FILTROS (Existente)
+    // 1. FILTROS
     function filterSelection(category, btnElement) {
         var cards = document.getElementsByClassName("cv-card");
         var btns = document.getElementsByClassName("filter-btn");
@@ -659,7 +632,6 @@
         }
     }
 
-    // 2. ICONOS (Inicialización)
     try {
         if (typeof lucide !== 'undefined') {
             lucide.createIcons();
