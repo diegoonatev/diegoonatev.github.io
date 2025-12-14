@@ -354,7 +354,7 @@
         .cv-title { font-size: 1.15rem; font-weight: 700; color: var(--text-main); margin: 0 0 8px 0; line-height: 1.4; }
         .cv-date { font-size: 0.85rem; color: var(--text-secondary); margin-top: auto; padding-top: 15px; font-style: italic; display: block; }
 
-        /* --- 11. CARRUSEL AJUSTADO --- */
+        /* --- 11. CARRUSEL TRANSPARENTE (CAMBIOS AQUÍ) --- */
         .carousel-wrapper {
             position: relative;
             max-width: 900px;
@@ -363,7 +363,7 @@
             overflow: hidden;
             box-shadow: 0 20px 30px -10px var(--shadow-color);
             border: 1px solid var(--border-color);
-            background: var(--bg-card);
+            background: var(--bg-card); /* Mantiene el marco del carrusel */
         }
 
         .carousel-container {
@@ -375,21 +375,22 @@
         .carousel-slide {
             min-width: 100%;
             position: relative;
-            height: 550px; /* Altura generosa para fotos verticales */
+            height: 550px; 
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: rgba(0,0,0,0.03);
+            /* AQUÍ ESTÁ EL CAMBIO: FONDO TRANSPARENTE */
+            background-color: transparent; 
         }
         
         body.dark-mode .carousel-slide {
-            background-color: rgba(0,0,0,0.2);
+            background-color: transparent;
         }
 
         .carousel-slide img {
             width: 100%;
             height: 100%;
-            object-fit: contain; /* CLAVE: Muestra la foto entera sin cortar */
+            object-fit: contain; /* Ajusta la imagen sin cortar */
             display: block;
         }
 
@@ -616,259 +617,7 @@
                 <h3 class="cv-title" data-en="Excel and Copilot: AI-Assisted Data Analysis">Excel y Copilot: Análisis de datos asistidos por IA</h3>
                 <span class="cv-date">Abr. 18, 2025</span>
             </div>
-            <div class="cv-card" data-category="prod">
-                <div class="cv-header">
-                    <div class="icon-box"><i data-lucide="rocket"></i></div>
-                    <span class="category">LinkedIn Learning</span>
-                </div>
-                <h3 class="cv-title" data-en="Productivity Hacks with AI">Trucos de productividad con IA para reimaginar tu jornada</h3>
-                <span class="cv-date">Mar. 22, 2025</span>
-            </div>
-            <div class="cv-card" data-category="gestion">
-                <div class="cv-header">
-                    <div class="icon-box"><i data-lucide="users"></i></div>
-                    <span class="category">Santander Open Academy</span>
-                </div>
-                <h3 class="cv-title" data-en="Effective Project and Team Management">Gestión Efectiva de proyectos y equipos</h3>
-                <span class="cv-date">Sep. 29, 2025</span>
-            </div>
-            <div class="cv-card" data-category="ia">
-                <div class="cv-header">
-                    <div class="icon-box"><i data-lucide="palette"></i></div>
-                    <span class="category">LinkedIn Learning</span>
-                </div>
-                <h3 class="cv-title" data-en="GenAI for Creatives: Challenges & Ethics">IA generativa para profesionales creativos: Retos y ética</h3>
-                <span class="cv-date">Mar. 22, 2025</span>
-            </div>
-            <div class="cv-card" data-category="gestion">
-                <div class="cv-header">
-                    <div class="icon-box"><i data-lucide="graduation-cap"></i></div>
-                    <span class="category">Universidad de La Frontera</span>
-                </div>
-                <h3 class="cv-title" data-en="Prepare for your professional future">Prepárate para tu futuro profesional</h3>
-                <span class="cv-date">Dic. 2024</span>
-            </div>
-            <div class="cv-card" data-category="gestion">
-                <div class="cv-header">
-                    <div class="icon-box"><i data-lucide="shield-check"></i></div>
-                    <span class="category">SQM</span>
-                </div>
-                <h3 class="cv-title" data-en="Risk Management Induction 2023">Inducción en gestión de riesgos 2023</h3>
-                <span class="cv-date">Ene. 2023</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="skills-wrapper animate-enter delay-5" style="margin-top: 80px;">
-        <h2 class="section-title">
-            <span id="title-hobbies">Más allá de la Ingeniería</span>
-        </h2>
-
-        <div class="carousel-wrapper">
-            <button class="carousel-btn prev" onclick="moveSlide(-1)"><i data-lucide="chevron-left"></i></button>
-            <div class="carousel-container">
-                
-                <div class="carousel-slide">
-                    <img src="hobby_gym.jpg" alt="Entrenamiento y Disciplina"> 
-                    <div class="carousel-caption">
-                        <span class="caption-title" id="hobby-t1">Disciplina y Constancia</span>
-                        <span class="caption-desc" id="hobby-d1">El deporte como pilar de superación diaria.</span>
-                    </div>
-                </div>
-
-                <div class="carousel-slide">
-                    <img src="hobby_team.jpg" alt="Equipo Deportivo">
-                    <div class="carousel-caption">
-                        <span class="caption-title" id="hobby-t2">Trabajo en Equipo</span>
-                        <span class="caption-desc" id="hobby-d2">Colaboración y estrategia en la cancha.</span>
-                    </div>
-                </div>
-
-                <div class="carousel-slide">
-                    <img src="hobby_reading.jpg" alt="Lectura Científica">
-                    <div class="carousel-caption">
-                        <span class="caption-title" id="hobby-t3">Curiosidad Científica</span>
-                        <span class="caption-desc" id="hobby-d3">Explorando el universo a través de la lectura.</span>
-                    </div>
-                </div>
-
-                <div class="carousel-slide">
-                    <img src="hobby_art.jpg" alt="Arte y Dibujo">
-                    <div class="carousel-caption">
-                        <span class="caption-title" id="hobby-t4">Creatividad y Detalle</span>
-                        <span class="caption-desc" id="hobby-d4">Expresión artística y atención al detalle.</span>
-                    </div>
-                </div>
-
-                 <div class="carousel-slide">
-                    <img src="hobby_social.jpg" alt="Voluntariado y Liderazgo">
-                    <div class="carousel-caption">
-                        <span class="caption-title" id="hobby-t5">Liderazgo Social</span>
-                        <span class="caption-desc" id="hobby-d5">Impacto positivo en la comunidad.</span>
-                    </div>
-                </div>
-
-            </div>
-            <button class="carousel-btn next" onclick="moveSlide(1)"><i data-lucide="chevron-right"></i></button>
-        </div>
-    </div>
-
-</div> 
-
-<script>
-    // --- LÓGICA DE CARRUSEL ---
-    let slideIndex = 0;
-    const slides = document.querySelectorAll('.carousel-slide');
-    let autoPlayTimer = setInterval(() => moveSlide(1), 6000); 
-
-    function showSlides(n) {
-        if (n >= slides.length) slideIndex = 0;
-        if (n < 0) slideIndex = slides.length - 1;
-        
-        const container = document.querySelector('.carousel-container');
-        container.style.transform = `translateX(-${slideIndex * 100}%)`;
-    }
-
-    function moveSlide(n) {
-        clearInterval(autoPlayTimer); 
-        autoPlayTimer = setInterval(() => moveSlide(1), 6000);
-        showSlides(slideIndex += n);
-    }
-
-    // --- TRADUCCIÓN ---
-    let currentLang = 'es'; 
-
-    const translations = {
-        'es': {
-            'desc': 'Estudiante de Ingeniería Civil Industrial con experiencia en gestión de proyectos y pasión por conectar la capacidad técnica con el desarrollo de personas. Mi objetivo es aplicar mi capacidad de análisis para optimizar procesos.',
-            'quote': '"Sinergia entre eficiencia de procesos y liderazgo humano"',
-            'contact': '<i data-lucide="mail"></i> Contactar',
-            'stack': '<i data-lucide="cpu"></i> Stack Tecnológico',
-            'excel': 'Excel Avanzado',
-            'cv_title': '<i data-lucide="file-user"></i> Mi Curriculum Vitae',
-            'download': '<i data-lucide="download"></i> Descargar PDF',
-            'full': '<i data-lucide="external-link"></i> Ver Pantalla Completa',
-            'cert_title': '<i data-lucide="award"></i> Mis Certificaciones',
-            'filter_txt': 'Selecciona una categoría para filtrar',
-            'btn_all': 'Todas',
-            'btn_ia': 'IA & Generativa',
-            'btn_prod': 'Productividad',
-            'btn_mgmt': 'Gestión & Otros',
-            'title_hobbies': 'Más allá de la Ingeniería',
-            'hobby_t1': 'Disciplina y Constancia', 'hobby_d1': 'El deporte como pilar de superación diaria.',
-            'hobby_t2': 'Trabajo en Equipo', 'hobby_d2': 'Colaboración y estrategia en la cancha.',
-            'hobby_t3': 'Curiosidad Científica', 'hobby_d3': 'Explorando el universo a través de la lectura.',
-            'hobby_t4': 'Creatividad y Detalle', 'hobby_d4': 'Expresión artística y atención al detalle.',
-            'hobby_t5': 'Liderazgo Social', 'hobby_d5': 'Impacto positivo en la comunidad.'
-        },
-        'en': {
-            'desc': 'Industrial Civil Engineering student with experience in project management and a passion for connecting technical capability with people development. My goal is to apply my analytical skills to optimize processes.',
-            'quote': '"Synergy between process efficiency and human leadership"',
-            'contact': '<i data-lucide="mail"></i> Contact',
-            'stack': '<i data-lucide="cpu"></i> Tech Stack',
-            'excel': 'Advanced Excel',
-            'cv_title': '<i data-lucide="file-user"></i> My Curriculum Vitae',
-            'download': '<i data-lucide="download"></i> Download PDF',
-            'full': '<i data-lucide="external-link"></i> View Full Screen',
-            'cert_title': '<i data-lucide="award"></i> My Certifications',
-            'filter_txt': 'Select a category to filter',
-            'btn_all': 'All',
-            'btn_ia': 'AI & Generative',
-            'btn_prod': 'Productivity',
-            'btn_mgmt': 'Management & Others',
-            'title_hobbies': 'Beyond Engineering',
-            'hobby_t1': 'Discipline & Persistence', 'hobby_d1': 'Sports as a pillar of daily improvement.',
-            'hobby_t2': 'Teamwork', 'hobby_d2': 'Collaboration and strategy on the field.',
-            'hobby_t3': 'Scientific Curiosity', 'hobby_d3': 'Exploring the universe through reading.',
-            'hobby_t4': 'Creativity & Detail', 'hobby_d4': 'Artistic expression and attention to detail.',
-            'hobby_t5': 'Social Leadership', 'hobby_d5': 'Positive impact on the community.'
-        }
-    };
-
-    function toggleLanguage() {
-        currentLang = currentLang === 'es' ? 'en' : 'es';
-        const t = translations[currentLang];
-        document.getElementById('txt-desc').innerHTML = t.desc;
-        document.getElementById('txt-quote').innerHTML = t.quote;
-        document.getElementById('btn-contact').innerHTML = t.contact;
-        document.getElementById('title-stack').innerHTML = t.stack;
-        document.getElementById('skill-excel').innerHTML = t.excel;
-        document.getElementById('title-cv').innerHTML = t.cv_title;
-        document.getElementById('btn-download').innerHTML = t.download;
-        document.getElementById('btn-full').innerHTML = t.full;
-        document.getElementById('title-cert').innerHTML = t.cert_title;
-        document.getElementById('txt-filter').innerHTML = t.filter_txt;
-        document.getElementById('btn-all').innerHTML = t.btn_all;
-        document.getElementById('btn-ia').innerHTML = t.btn_ia;
-        document.getElementById('btn-prod').innerHTML = t.btn_prod;
-        document.getElementById('btn-mgmt').innerHTML = t.btn_mgmt;
-        
-        document.getElementById('title-hobbies').innerHTML = t.title_hobbies;
-        document.getElementById('hobby-t1').innerHTML = t.hobby_t1; document.getElementById('hobby-d1').innerHTML = t.hobby_d1;
-        document.getElementById('hobby-t2').innerHTML = t.hobby_t2; document.getElementById('hobby-d2').innerHTML = t.hobby_d2;
-        document.getElementById('hobby-t3').innerHTML = t.hobby_t3; document.getElementById('hobby-d3').innerHTML = t.hobby_d3;
-        document.getElementById('hobby-t4').innerHTML = t.hobby_t4; document.getElementById('hobby-d4').innerHTML = t.hobby_d4;
-        document.getElementById('hobby-t5').innerHTML = t.hobby_t5; document.getElementById('hobby-d5').innerHTML = t.hobby_d5;
-
-        const titles = document.querySelectorAll('.cv-title');
-        titles.forEach(title => {
-            const englishText = title.getAttribute('data-en');
-            if (currentLang === 'en' && englishText) {
-                if (!title.getAttribute('data-es')) title.setAttribute('data-es', title.innerText);
-                title.innerText = englishText;
-            } else if (currentLang === 'es' && title.getAttribute('data-es')) {
-                title.innerText = title.getAttribute('data-es');
-            }
-        });
-        lucide.createIcons();
-    }
-
-    function toggleTheme() {
-        document.body.classList.toggle('dark-mode');
-        const icon = document.getElementById('theme-icon');
-        if (document.body.classList.contains('dark-mode')) {
-            icon.setAttribute('data-lucide', 'sun');
-        } else {
-            icon.setAttribute('data-lucide', 'moon');
-        }
-        lucide.createIcons();
-    }
-
-    function filterSelection(category, btnElement) {
-        var cards = document.getElementsByClassName("cv-card");
-        var btns = document.getElementsByClassName("filter-btn");
-        if (btns && btns.length > 0) {
-            for (var i = 0; i < btns.length; i++) {
-                btns[i].classList.remove("active");
-            }
-        }
-        if (btnElement) {
-            btnElement.classList.add("active");
-        }
-        if (category == "all") category = "";
-        for (var i = 0; i < cards.length; i++) {
-            var card = cards[i];
-            card.classList.remove("hide");
-            var cardCategory = card.getAttribute("data-category");
-            if (cardCategory) {
-                if (cardCategory.indexOf(category) == -1) {
-                    card.classList.add("hide");
-                }
-            }
-        }
-    }
-
-    try {
-        if (typeof lucide !== 'undefined') {
-            lucide.createIcons();
-        }
-    } catch (e) {
-        console.error("Error al iniciar iconos:", e);
-    }
-</script>
-
-</body>
-</html>
+            <div class="cv-card" data-category="prod
 
 
 
