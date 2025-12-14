@@ -13,8 +13,8 @@
             --bg-body: #ffffff;
             --text-main: #1f2937;
             --text-secondary: #4b5563;
-            --bg-card: rgba(255, 255, 255, 0.8);
-            --bg-section: rgba(249, 250, 251, 0.6);
+            --bg-card: rgba(255, 255, 255, 0.8); /* Semi-transparente para ver el fondo */
+            --bg-section: rgba(249, 250, 251, 0.6); /* Más transparente */
             --border-color: rgba(229, 231, 235, 0.8);
             --shadow-color: rgba(0, 0, 0, 0.05);
             --primary-color: #059669;
@@ -30,7 +30,7 @@
             --bg-body: #111827;
             --text-main: #f9fafb;
             --text-secondary: #9ca3af;
-            --bg-card: rgba(31, 41, 55, 0.7);
+            --bg-card: rgba(31, 41, 55, 0.7); /* Vidrio oscuro */
             --bg-section: rgba(31, 41, 55, 0.5);
             --border-color: rgba(55, 65, 81, 0.8);
             --shadow-color: rgba(0, 0, 0, 0.4);
@@ -60,7 +60,7 @@
             margin: 0 auto;
             padding: 20px;
             position: relative;
-            z-index: 10;
+            z-index: 10; /* Asegura que el contenido esté sobre el agua */
         }
 
         /* --- 3. FONDO DE AGUA ANIMADO --- */
@@ -71,19 +71,20 @@
             width: 100vw;
             height: 100vh;
             overflow: hidden;
-            z-index: -1;
-            pointer-events: none;
+            z-index: -1; /* Detrás de todo */
+            pointer-events: none; /* No interfiere con clics */
         }
 
         .water-blob {
             position: absolute;
             background: var(--water-blob);
             border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.15;
+            filter: blur(80px); /* El secreto del efecto líquido */
+            opacity: 0.15; /* Semi-transparencia */
             animation: moveWater 25s infinite alternate;
         }
 
+        /* Tres gotas de agua gigantes moviéndose */
         .blob-1 {
             width: 500px; height: 500px;
             top: -100px; left: -100px;
@@ -94,7 +95,7 @@
             bottom: -50px; right: -50px;
             animation-duration: 25s;
             animation-delay: -5s;
-            background: var(--primary-color);
+            background: var(--primary-color); /* Un poco diferente */
         }
         .blob-3 {
             width: 300px; height: 300px;
@@ -110,9 +111,10 @@
             100% { transform: translate(0, 0) scale(1); border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
         }
 
-        /* --- 4. EFECTO VIDRIO --- */
+        /* --- 4. EFECTO VIDRIO (GLASSMORPHISM) --- */
+        /* Hacemos que las tarjetas sean un poco transparentes para ver el agua detrás */
         .skill-card, .cv-card, .cv-section, .filter-btn {
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px); /* Efecto vidrio esmerilado */
             -webkit-backdrop-filter: blur(10px);
         }
 
@@ -129,6 +131,7 @@
         .delay-2 { animation-delay: 0.3s; }
         .delay-3 { animation-delay: 0.5s; }
         .delay-4 { animation-delay: 0.7s; }
+        .delay-5 { animation-delay: 0.9s; } /* Para Hobbies */
 
         @keyframes float {
             0% { transform: translateY(0px); }
@@ -220,7 +223,7 @@
             font-size: 1.05rem;
         }
 
-        /* --- 8. SKILLS SECTION --- */
+        /* --- 8. SKILLS & HOBBIES SECTION --- */
         .skills-wrapper { margin-bottom: 80px; }
 
         .section-title {
@@ -279,6 +282,11 @@
             transform: rotate(360deg);
         }
 
+        /* Override para los iconos de Hobbies para que tengan colores específicos si se desea, o usar el default */
+        .hobby-icon {
+             /* Usará los colores definidos inline o heredará */
+        }
+
         .skill-name {
             font-weight: 700;
             color: var(--text-main);
@@ -314,7 +322,7 @@
             transition: all 0.3s;
             position: relative;
             overflow: hidden;
-            z-index: 1;
+            z-index: 1; /* Para que sea clickeable sobre el efecto */
         }
 
         .btn-primary {
@@ -502,7 +510,7 @@
             </div>
              <div class="skill-card">
                 <div class="skill-icon-box"><i data-lucide="file-spreadsheet"></i></div> 
-                <span class="skill-name" id="skill-excel">Excel</span>
+                <span class="skill-name" id="skill-excel">Excel Avanzado</span>
             </div>
             <div class="skill-card">
                 <div class="skill-icon-box"><i data-lucide="workflow"></i></div> 
@@ -653,6 +661,42 @@
         </div>
     </div>
 
+    <div class="skills-wrapper animate-enter delay-5" style="margin-top: 80px;">
+        <h2 class="section-title">
+            <i data-lucide="heart"></i> <span id="title-hobbies">Más allá del trabajo</span>
+        </h2>
+
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon-box" style="background-color: #fff1f2; color: #e11d48;">
+                    <i data-lucide="camera"></i>
+                </div> 
+                <span class="skill-name" id="hobby-1">Fotografía</span>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-icon-box" style="background-color: #eff6ff; color: #2563eb;">
+                    <i data-lucide="mountain"></i>
+                </div> 
+                <span class="skill-name" id="hobby-2">Trekking</span>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-icon-box" style="background-color: #fefce8; color: #ca8a04;">
+                    <i data-lucide="book-open"></i>
+                </div> 
+                <span class="skill-name" id="hobby-3">Lectura Técnica</span>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-icon-box" style="background-color: #f0fdf4; color: #16a34a;">
+                    <i data-lucide="gamepad-2"></i>
+                </div> 
+                <span class="skill-name" id="hobby-4">Estrategia</span>
+            </div>
+        </div>
+    </div>
+
 </div> 
 
 <script>
@@ -674,7 +718,13 @@
             'btn_all': 'Todas',
             'btn_ia': 'IA & Generativa',
             'btn_prod': 'Productividad',
-            'btn_mgmt': 'Gestión & Otros'
+            'btn_mgmt': 'Gestión & Otros',
+            // Traducciones de Hobbies
+            'title_hobbies': 'Más allá del trabajo',
+            'hobby_1': 'Fotografía',
+            'hobby_2': 'Trekking',
+            'hobby_3': 'Lectura Técnica',
+            'hobby_4': 'Estrategia'
         },
         'en': {
             'desc': 'Industrial Civil Engineering student with experience in project management and a passion for connecting technical capability with people development. My goal is to apply my analytical skills to optimize processes.',
@@ -690,7 +740,13 @@
             'btn_all': 'All',
             'btn_ia': 'AI & Generative',
             'btn_prod': 'Productivity',
-            'btn_mgmt': 'Management & Others'
+            'btn_mgmt': 'Management & Others',
+            // Hobbies Translations
+            'title_hobbies': 'Beyond Work',
+            'hobby_1': 'Photography',
+            'hobby_2': 'Trekking',
+            'hobby_3': 'Tech Reading',
+            'hobby_4': 'Strategy'
         }
     };
 
@@ -711,6 +767,13 @@
         document.getElementById('btn-ia').innerHTML = t.btn_ia;
         document.getElementById('btn-prod').innerHTML = t.btn_prod;
         document.getElementById('btn-mgmt').innerHTML = t.btn_mgmt;
+
+        // Actualizar Hobbies
+        document.getElementById('title-hobbies').innerHTML = t.title_hobbies;
+        document.getElementById('hobby-1').innerHTML = t.hobby_1;
+        document.getElementById('hobby-2').innerHTML = t.hobby_2;
+        document.getElementById('hobby-3').innerHTML = t.hobby_3;
+        document.getElementById('hobby-4').innerHTML = t.hobby_4;
 
         const titles = document.querySelectorAll('.cv-title');
         titles.forEach(title => {
@@ -771,5 +834,6 @@
 
 </body>
 </html>
+
 
 
