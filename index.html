@@ -13,13 +13,15 @@
             --bg-body: #ffffff;
             --text-main: #1f2937;
             --text-secondary: #4b5563;
-            --bg-card: rgba(255, 255, 255, 0.85);
-            --bg-section: rgba(249, 250, 251, 0.7);
+            --bg-card: rgba(255, 255, 255, 0.8);
+            --bg-section: rgba(249, 250, 251, 0.6);
             --border-color: rgba(229, 231, 235, 0.8);
-            --shadow-color: rgba(0, 0, 0, 0.08);
+            --shadow-color: rgba(0, 0, 0, 0.05);
             --primary-color: #059669;
             --primary-hover: #047857;
             --accent-bg: #ecfdf5;
+            
+            /* Color del "Agua" en modo claro */
             --water-blob: #34d399; 
         }
 
@@ -27,14 +29,16 @@
         body.dark-mode {
             --bg-body: #111827;
             --text-main: #f9fafb;
-            --text-secondary: #d1d5db;
-            --bg-card: rgba(31, 41, 55, 0.85);
-            --bg-section: rgba(17, 24, 39, 0.7);
+            --text-secondary: #9ca3af;
+            --bg-card: rgba(31, 41, 55, 0.7);
+            --bg-section: rgba(31, 41, 55, 0.5);
             --border-color: rgba(55, 65, 81, 0.8);
-            --shadow-color: rgba(0, 0, 0, 0.5);
+            --shadow-color: rgba(0, 0, 0, 0.4);
             --primary-color: #34d399;
             --primary-hover: #10b981;
             --accent-bg: #064e3b;
+            
+            /* Color del "Agua" en modo oscuro */
             --water-blob: #059669;
         }
 
@@ -80,16 +84,39 @@
             animation: moveWater 25s infinite alternate;
         }
 
-        .blob-1 { width: 500px; height: 500px; top: -100px; left: -100px; animation-duration: 30s; }
-        .blob-2 { width: 400px; height: 400px; bottom: -50px; right: -50px; animation-duration: 25s; animation-delay: -5s; background: var(--primary-color); }
-        .blob-3 { width: 300px; height: 300px; top: 40%; left: 40%; animation-duration: 35s; animation-delay: -10s; }
+        .blob-1 {
+            width: 500px; height: 500px;
+            top: -100px; left: -100px;
+            animation-duration: 30s;
+        }
+        .blob-2 {
+            width: 400px; height: 400px;
+            bottom: -50px; right: -50px;
+            animation-duration: 25s;
+            animation-delay: -5s;
+            background: var(--primary-color);
+        }
+        .blob-3 {
+            width: 300px; height: 300px;
+            top: 40%; left: 40%;
+            animation-duration: 35s;
+            animation-delay: -10s;
+        }
 
         @keyframes moveWater {
-            0% { transform: translate(0, 0) scale(1); }
+            0% { transform: translate(0, 0) scale(1); border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+            33% { transform: translate(30px, -50px) scale(1.1); border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%; }
+            66% { transform: translate(-20px, 20px) scale(0.9); border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%; }
             100% { transform: translate(0, 0) scale(1); border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
         }
 
-        /* --- 4. ANIMACIONES --- */
+        /* --- 4. EFECTO VIDRIO --- */
+        .skill-card, .cv-card, .cv-section, .filter-btn {
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        /* --- 5. OTRAS ANIMACIONES --- */
         @keyframes slideUpFade {
             from { opacity: 0; transform: translateY(40px); }
             to { opacity: 1; transform: translateY(0); }
@@ -102,18 +129,11 @@
         .delay-2 { animation-delay: 0.3s; }
         .delay-3 { animation-delay: 0.5s; }
         .delay-4 { animation-delay: 0.7s; }
-        .delay-5 { animation-delay: 0.9s; }
 
         @keyframes float {
             0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-12px); }
             100% { transform: translateY(0px); }
-        }
-
-        /* --- 5. COMPONENTES COMUNES --- */
-        .skill-card, .cv-card, .cv-section, .filter-btn, .carousel-caption, .control-btn {
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
         }
 
         /* --- 6. CONTROLES --- */
@@ -139,6 +159,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            backdrop-filter: blur(5px);
         }
 
         .control-btn:hover {
@@ -176,7 +197,12 @@
             line-height: 1.2;
         }
 
-        .highlight-name { color: var(--primary-color); }
+        /* ESTILO NUEVO PARA RESALTAR EL NOMBRE */
+        .highlight-name {
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+        }
 
         .hero-description {
             font-size: 1.15rem;
@@ -291,11 +317,30 @@
             z-index: 1;
         }
 
-        .btn-primary { background: var(--primary-color); color: white; border: 1px solid var(--primary-color); }
-        .btn-primary:hover { background: var(--primary-hover); transform: translateY(-4px); box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.4); }
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+            border: 1px solid var(--primary-color);
+        }
 
-        .btn-secondary { background: var(--bg-card); color: var(--text-main); border: 1px solid var(--border-color); }
-        .btn-secondary:hover { background: var(--bg-section); transform: translateY(-4px); box-shadow: 0 10px 15px -3px var(--shadow-color); border-color: var(--text-secondary); }
+        .btn-primary:hover {
+            background: var(--primary-hover);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-section);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px var(--shadow-color);
+            border-color: var(--text-secondary);
+        }
 
         /* --- 10. CERTIFICACIONES --- */
         .cert-header { text-align: center; margin-bottom: 30px; }
@@ -320,8 +365,18 @@
             transition: all 0.3s ease;
         }
 
-        .filter-btn:hover { background-color: var(--bg-section); transform: translateY(-2px); color: var(--text-main); }
-        .filter-btn.active { background-color: var(--primary-color); color: white; border-color: var(--primary-color); box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); }
+        .filter-btn:hover {
+            background-color: var(--bg-section);
+            transform: translateY(-2px);
+            color: var(--text-main);
+        }
+
+        .filter-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
 
         .grid-container {
             display: grid;
@@ -342,112 +397,50 @@
             animation: fadeIn 0.5s ease forwards;
         }
 
-        .cv-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px var(--shadow-color); border-color: var(--primary-color); }
+        .cv-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px var(--shadow-color);
+            border-color: var(--primary-color);
+        }
 
         .cv-header { display: flex; align-items: center; margin-bottom: 15px; }
 
         .icon-box {
-            background-color: var(--accent-bg); color: var(--primary-color); padding: 10px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-right: 15px; flex-shrink: 0;
-        }
-
-        .category { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-secondary); font-weight: 700; }
-        .cv-title { font-size: 1.15rem; font-weight: 700; color: var(--text-main); margin: 0 0 8px 0; line-height: 1.4; }
-        .cv-date { font-size: 0.85rem; color: var(--text-secondary); margin-top: auto; padding-top: 15px; font-style: italic; display: block; }
-
-        /* --- 11. CARRUSEL TRANSPARENTE (CAMBIOS AQUÍ) --- */
-        .carousel-wrapper {
-            position: relative;
-            max-width: 900px;
-            margin: 0 auto;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 30px -10px var(--shadow-color);
-            border: 1px solid var(--border-color);
-            background: var(--bg-card); /* Mantiene el marco del carrusel */
-        }
-
-        .carousel-container {
-            display: flex;
-            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-            width: 100%;
-        }
-
-        .carousel-slide {
-            min-width: 100%;
-            position: relative;
-            height: 550px; 
+            background-color: var(--accent-bg);
+            color: var(--primary-color);
+            padding: 10px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            /* AQUÍ ESTÁ EL CAMBIO: FONDO TRANSPARENTE */
-            background-color: transparent; 
-        }
-        
-        body.dark-mode .carousel-slide {
-            background-color: transparent;
+            margin-right: 15px;
+            flex-shrink: 0;
         }
 
-        .carousel-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain; /* Ajusta la imagen sin cortar */
-            display: block;
-        }
-
-        .carousel-caption {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 85%;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 15px 25px;
-            border-radius: 12px;
-            border: 1px solid rgba(0,0,0,0.1);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-        
-        body.dark-mode .carousel-caption {
-            background: rgba(31, 41, 55, 0.95);
-            border-color: rgba(255, 255, 255, 0.1);
-        }
-
-        .caption-title {
-            font-weight: 800;
-            color: var(--text-main);
-            display: block;
-            font-size: 1.1rem;
-            margin-bottom: 4px;
-        }
-
-        .caption-desc {
-            font-size: 0.9rem;
+        .category {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
             color: var(--text-secondary);
+            font-weight: 700;
         }
 
-        .carousel-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
+        .cv-title {
+            font-size: 1.15rem;
+            font-weight: 700;
             color: var(--text-main);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
-            z-index: 5;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            margin: 0 0 8px 0;
+            line-height: 1.4;
         }
 
-        .carousel-btn:hover { background: var(--primary-color); color: white; border-color: var(--primary-color); }
-        .carousel-btn.prev { left: 15px; }
-        .carousel-btn.next { right: 15px; }
+        .cv-date {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: auto;
+            padding-top: 15px;
+            font-style: italic;
+            display: block;
+        }
 
         .hide { display: none !important; }
 
@@ -617,7 +610,167 @@
                 <h3 class="cv-title" data-en="Excel and Copilot: AI-Assisted Data Analysis">Excel y Copilot: Análisis de datos asistidos por IA</h3>
                 <span class="cv-date">Abr. 18, 2025</span>
             </div>
-            <div class="cv-card" data-category="prod
+            <div class="cv-card" data-category="prod">
+                <div class="cv-header">
+                    <div class="icon-box"><i data-lucide="rocket"></i></div>
+                    <span class="category">LinkedIn Learning</span>
+                </div>
+                <h3 class="cv-title" data-en="Productivity Hacks with AI">Trucos de productividad con IA para reimaginar tu jornada</h3>
+                <span class="cv-date">Mar. 22, 2025</span>
+            </div>
+            <div class="cv-card" data-category="gestion">
+                <div class="cv-header">
+                    <div class="icon-box"><i data-lucide="users"></i></div>
+                    <span class="category">Santander Open Academy</span>
+                </div>
+                <h3 class="cv-title" data-en="Effective Project and Team Management">Gestión Efectiva de proyectos y equipos</h3>
+                <span class="cv-date">Sep. 29, 2025</span>
+            </div>
+            <div class="cv-card" data-category="ia">
+                <div class="cv-header">
+                    <div class="icon-box"><i data-lucide="palette"></i></div>
+                    <span class="category">LinkedIn Learning</span>
+                </div>
+                <h3 class="cv-title" data-en="GenAI for Creatives: Challenges & Ethics">IA generativa para profesionales creativos: Retos y ética</h3>
+                <span class="cv-date">Mar. 22, 2025</span>
+            </div>
+            <div class="cv-card" data-category="gestion">
+                <div class="cv-header">
+                    <div class="icon-box"><i data-lucide="graduation-cap"></i></div>
+                    <span class="category">Universidad de La Frontera</span>
+                </div>
+                <h3 class="cv-title" data-en="Prepare for your professional future">Prepárate para tu futuro profesional</h3>
+                <span class="cv-date">Dic. 2024</span>
+            </div>
+            <div class="cv-card" data-category="gestion">
+                <div class="cv-header">
+                    <div class="icon-box"><i data-lucide="shield-check"></i></div>
+                    <span class="category">SQM</span>
+                </div>
+                <h3 class="cv-title" data-en="Risk Management Induction 2023">Inducción en gestión de riesgos 2023</h3>
+                <span class="cv-date">Ene. 2023</span>
+            </div>
+        </div>
+    </div>
+
+</div> 
+
+<script>
+    // --- JS: TRADUCCIONES Y FUNCIONALIDAD ---
+    let currentLang = 'es'; 
+
+    const translations = {
+        'es': {
+            'desc': 'Estudiante de Ingeniería Civil Industrial con experiencia en gestión de proyectos y pasión por conectar la capacidad técnica con el desarrollo de personas. Mi objetivo es aplicar mi capacidad de análisis para optimizar procesos.',
+            'quote': '"Sinergia entre eficiencia de procesos y liderazgo humano"',
+            'contact': '<i data-lucide="mail"></i> Contactar',
+            'stack': '<i data-lucide="cpu"></i> Stack Tecnológico',
+            'excel': 'Excel Avanzado',
+            'cv_title': '<i data-lucide="file-user"></i> Mi Curriculum Vitae',
+            'download': '<i data-lucide="download"></i> Descargar PDF',
+            'full': '<i data-lucide="external-link"></i> Ver Pantalla Completa',
+            'cert_title': '<i data-lucide="award"></i> Mis Certificaciones',
+            'filter_txt': 'Selecciona una categoría para filtrar',
+            'btn_all': 'Todas',
+            'btn_ia': 'IA & Generativa',
+            'btn_prod': 'Productividad',
+            'btn_mgmt': 'Gestión & Otros'
+        },
+        'en': {
+            'desc': 'Industrial Civil Engineering student with experience in project management and a passion for connecting technical capability with people development. My goal is to apply my analytical skills to optimize processes.',
+            'quote': '"Synergy between process efficiency and human leadership"',
+            'contact': '<i data-lucide="mail"></i> Contact',
+            'stack': '<i data-lucide="cpu"></i> Tech Stack',
+            'excel': 'Advanced Excel',
+            'cv_title': '<i data-lucide="file-user"></i> My Curriculum Vitae',
+            'download': '<i data-lucide="download"></i> Download PDF',
+            'full': '<i data-lucide="external-link"></i> View Full Screen',
+            'cert_title': '<i data-lucide="award"></i> My Certifications',
+            'filter_txt': 'Select a category to filter',
+            'btn_all': 'All',
+            'btn_ia': 'AI & Generative',
+            'btn_prod': 'Productivity',
+            'btn_mgmt': 'Management & Others'
+        }
+    };
+
+    function toggleLanguage() {
+        currentLang = currentLang === 'es' ? 'en' : 'es';
+        const t = translations[currentLang];
+        document.getElementById('txt-desc').innerHTML = t.desc;
+        document.getElementById('txt-quote').innerHTML = t.quote;
+        document.getElementById('btn-contact').innerHTML = t.contact;
+        document.getElementById('title-stack').innerHTML = t.stack;
+        document.getElementById('skill-excel').innerHTML = t.excel;
+        document.getElementById('title-cv').innerHTML = t.cv_title;
+        document.getElementById('btn-download').innerHTML = t.download;
+        document.getElementById('btn-full').innerHTML = t.full;
+        document.getElementById('title-cert').innerHTML = t.cert_title;
+        document.getElementById('txt-filter').innerHTML = t.filter_txt;
+        document.getElementById('btn-all').innerHTML = t.btn_all;
+        document.getElementById('btn-ia').innerHTML = t.btn_ia;
+        document.getElementById('btn-prod').innerHTML = t.btn_prod;
+        document.getElementById('btn-mgmt').innerHTML = t.btn_mgmt;
+
+        const titles = document.querySelectorAll('.cv-title');
+        titles.forEach(title => {
+            const englishText = title.getAttribute('data-en');
+            if (currentLang === 'en' && englishText) {
+                if (!title.getAttribute('data-es')) title.setAttribute('data-es', title.innerText);
+                title.innerText = englishText;
+            } else if (currentLang === 'es' && title.getAttribute('data-es')) {
+                title.innerText = title.getAttribute('data-es');
+            }
+        });
+        lucide.createIcons();
+    }
+
+    function toggleTheme() {
+        document.body.classList.toggle('dark-mode');
+        const icon = document.getElementById('theme-icon');
+        if (document.body.classList.contains('dark-mode')) {
+            icon.setAttribute('data-lucide', 'sun');
+        } else {
+            icon.setAttribute('data-lucide', 'moon');
+        }
+        lucide.createIcons();
+    }
+
+    function filterSelection(category, btnElement) {
+        var cards = document.getElementsByClassName("cv-card");
+        var btns = document.getElementsByClassName("filter-btn");
+        if (btns && btns.length > 0) {
+            for (var i = 0; i < btns.length; i++) {
+                btns[i].classList.remove("active");
+            }
+        }
+        if (btnElement) {
+            btnElement.classList.add("active");
+        }
+        if (category == "all") category = "";
+        for (var i = 0; i < cards.length; i++) {
+            var card = cards[i];
+            card.classList.remove("hide");
+            var cardCategory = card.getAttribute("data-category");
+            if (cardCategory) {
+                if (cardCategory.indexOf(category) == -1) {
+                    card.classList.add("hide");
+                }
+            }
+        }
+    }
+
+    try {
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    } catch (e) {
+        console.error("Error al iniciar iconos:", e);
+    }
+</script>
+
+</body>
+</html>
 
 
 
