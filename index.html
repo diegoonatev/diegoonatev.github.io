@@ -7,44 +7,45 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     
     <style>
-        /* --- VARIABLES DE COLORES --- */
+        /* --- 1. VARIABLES DE COLORES (THEMING) --- */
         :root {
-            /* Modo Claro */
-            --bg-body: #FFFFFF;
+            /* MODO CLARO (Default) */
+            --bg-body: #ffffff;
             --text-main: #1f2937;
             --text-secondary: #4b5563;
-            --bg-card: #FFFFFF;
+            --bg-card: #ffffff;
             --bg-section: #f9fafb;
             --border-color: #e5e7eb;
             --shadow-color: rgba(0, 0, 0, 0.05);
-            --primary-color: #059669;
+            --primary-color: #059669; /* Verde Emerald */
             --primary-hover: #047857;
             --accent-bg: #ecfdf5;
         }
 
-        /* Modo Oscuro */
+        /* MODO OSCURO */
         body.dark-mode {
-            --bg-body: #111827;
-            --text-main: #f9fafb;
-            --text-secondary: #9ca3af;
-            --bg-card: #1f2937;
-            --bg-section: #1f2937;
-            --border-color: #374151;
-            --shadow-color: rgba(0, 0, 0, 0.3);
-            --primary-color: #10b981;
-            --primary-hover: #34d399;
-            --accent-bg: #064e3b;
+            --bg-body: #111827;        /* Gris muy oscuro/Azulado */
+            --text-main: #f9fafb;      /* Blanco humo */
+            --text-secondary: #9ca3af; /* Gris claro */
+            --bg-card: #1f2937;        /* Gris panel */
+            --bg-section: #1f2937;     /* Igual al card para continuidad */
+            --border-color: #374151;   /* Bordes sutiles */
+            --shadow-color: rgba(0, 0, 0, 0.4);
+            --primary-color: #34d399;  /* Verde más brillante (neon) */
+            --primary-hover: #10b981;
+            --accent-bg: #064e3b;      /* Fondo iconos oscuro */
         }
 
-        /* --- ESTILOS GENERALES --- */
+        /* --- 2. BASE --- */
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg-body);
             color: var(--text-main);
             padding: 20px;
             margin: 0;
-            line-height: 1.5;
-            transition: background-color 0.3s, color 0.3s;
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            overflow-x: hidden; /* Evita scroll lateral por animaciones */
         }
 
         .main-wrapper {
@@ -54,40 +55,75 @@
             position: relative;
         }
 
-        /* --- BOTONES DE CONTROL --- */
+        /* --- 3. ANIMACIONES --- */
+        
+        /* Entrada en Cascada (Slide Up + Fade In) */
+        @keyframes slideUpFade {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Clase base para animar */
+        .animate-enter {
+            opacity: 0; /* Empieza invisible */
+            animation: slideUpFade 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+
+        /* Retrasos para el efecto cascada */
+        .delay-1 { animation-delay: 0.1s; } /* Hero */
+        .delay-2 { animation-delay: 0.3s; } /* Skills */
+        .delay-3 { animation-delay: 0.5s; } /* CV */
+        .delay-4 { animation-delay: 0.7s; } /* Certs */
+
+        /* Levitación de la foto */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* --- 4. CONTROLES (IDIOMA / TEMA) --- */
         .controls-container {
             position: absolute;
             top: 0;
             right: 0;
             display: flex;
-            gap: 10px;
+            gap: 12px;
+            z-index: 50;
         }
 
         .control-btn {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             color: var(--text-main);
-            padding: 10px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             cursor: pointer;
-            box-shadow: 0 2px 5px var(--shadow-color);
-            transition: all 0.2s;
+            box-shadow: 0 4px 6px var(--shadow-color);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
         .control-btn:hover {
-            transform: scale(1.1);
+            transform: scale(1.15) rotate(10deg);
             border-color: var(--primary-color);
             color: var(--primary-color);
         }
 
-        /* --- 1. HERO SECTION --- */
+        /* --- 5. HERO SECTION --- */
         .hero-section {
             text-align: center;
             margin-bottom: 60px;
-            padding: 40px 20px 40px 20px;
+            padding: 60px 20px 40px;
         }
 
         .profile-photo {
@@ -95,27 +131,30 @@
             height: 180px;
             border-radius: 50%;
             object-fit: cover;
-            object-position: top center; 
+            object-position: top center;
             margin-bottom: 25px;
-            box-shadow: 0 10px 15px -3px var(--shadow-color);
             border: 4px solid var(--bg-card);
             background-color: var(--bg-section);
+            box-shadow: 0 20px 25px -5px var(--shadow-color);
+            
+            /* Animación de levitación */
+            animation: float 6s ease-in-out infinite;
         }
 
         .hero-name {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             font-weight: 800;
             color: var(--text-main);
             margin: 0 0 15px 0;
-            letter-spacing: -0.02em;
+            letter-spacing: -0.03em;
+            line-height: 1.2;
         }
 
         .hero-description {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             color: var(--text-secondary);
-            max-width: 800px;
-            margin: 0 auto 20px auto;
-            line-height: 1.6;
+            max-width: 750px;
+            margin: 0 auto 25px auto;
         }
 
         .hero-quote {
@@ -123,30 +162,29 @@
             font-style: italic;
             color: var(--primary-color);
             font-weight: 600;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
+            font-size: 1.05rem;
         }
 
-        /* --- 2. SECCIÓN DE HABILIDADES --- */
-        .skills-wrapper {
-            margin-bottom: 70px;
-        }
+        /* --- 6. SKILLS SECTION --- */
+        .skills-wrapper { margin-bottom: 80px; }
 
         .section-title {
             font-size: 1.8rem;
             color: var(--text-main);
-            margin-bottom: 30px;
+            margin-bottom: 40px;
             font-weight: 800;
             text-align: center;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 12px;
         }
 
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 25px;
             max-width: 1000px;
             margin: 0 auto;
         }
@@ -154,79 +192,110 @@
         .skill-card {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 20px 10px;
+            border-radius: 16px;
+            padding: 25px 15px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            gap: 12px;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 4px var(--shadow-color);
+            gap: 15px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 4px 6px var(--shadow-color);
         }
 
         .skill-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px) scale(1.02);
             border-color: var(--primary-color);
-            box-shadow: 0 10px 15px -3px var(--shadow-color);
+            box-shadow: 0 20px 25px -5px var(--shadow-color);
         }
 
         .skill-icon-box {
-            padding: 12px;
+            padding: 15px;
             border-radius: 50%;
             background-color: var(--bg-section);
             color: var(--text-secondary);
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background 0.3s;
+            transition: all 0.4s ease;
         }
 
+        /* Efecto al pasar el mouse por la tarjeta: el icono gira */
         .skill-card:hover .skill-icon-box {
             background-color: var(--accent-bg);
             color: var(--primary-color);
+            transform: rotate(360deg);
         }
 
         .skill-name {
-            font-weight: 600;
+            font-weight: 700;
             color: var(--text-main);
-            font-size: 0.9rem;
+            font-size: 0.95rem;
         }
 
-        /* --- 3. SECCIÓN CV --- */
-        .cv-section { 
-            margin-bottom: 70px; 
-            padding: 40px; 
-            background: var(--bg-section); 
-            border-radius: 20px; 
-            text-align: center; 
+        /* --- 7. CV SECTION (BOTONES) --- */
+        .cv-section {
+            margin-bottom: 80px;
+            padding: 50px 20px;
+            background: var(--bg-section);
+            border-radius: 24px;
+            text-align: center;
             border: 1px solid var(--border-color);
+        }
+
+        .btn-container {
             display: flex;
-            flex-direction: column;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
             align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
         }
 
-        /* Botones */
-        .btn-container { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
-        
-        .btn { 
-            display: inline-flex; align-items: center; gap: 8px; 
-            padding: 12px 24px; border-radius: 8px; text-decoration: none; 
-            font-weight: 600; transition: all 0.2s; cursor: pointer;
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+            border: 1px solid var(--primary-color);
         }
-        
-        .btn-primary { background: var(--primary-color); color: white; border: 1px solid var(--primary-color); }
-        .btn-primary:hover { background: var(--primary-hover); transform: translateY(-2px); border-color: var(--primary-hover); }
 
-        .btn-secondary { background: var(--bg-card); color: var(--text-main); border: 1px solid var(--border-color); }
-        .btn-secondary:hover { background: var(--bg-section); transform: translateY(-2px); }
+        .btn-primary:hover {
+            background: var(--primary-hover);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.4); /* Sombra verde */
+        }
 
-        /* --- 4. CERTIFICACIONES --- */
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-section);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px var(--shadow-color);
+            border-color: var(--text-secondary);
+        }
+
+        /* --- 8. CERTIFICACIONES --- */
+        .cert-header { text-align: center; margin-bottom: 30px; }
+
         .filter-container {
             display: flex;
             justify-content: center;
-            gap: 10px;
-            margin-bottom: 40px;
+            gap: 12px;
+            margin-bottom: 50px;
             flex-wrap: wrap;
         }
 
@@ -234,82 +303,110 @@
             background-color: var(--bg-card);
             border: 1px solid var(--border-color);
             color: var(--text-secondary);
-            padding: 10px 24px;
-            border-radius: 50px;
+            padding: 12px 28px;
+            border-radius: 100px;
             cursor: pointer;
             font-weight: 600;
             font-size: 0.95rem;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
         }
 
-        .filter-btn:hover { background-color: var(--bg-section); transform: translateY(-2px); color: var(--text-main);}
-        
+        .filter-btn:hover {
+            background-color: var(--bg-section);
+            transform: translateY(-2px);
+            color: var(--text-main);
+        }
+
         .filter-btn.active {
-            background-color: var(--primary-color); color: white; border-color: var(--primary-color);
-            box-shadow: 0 4px 6px -1px rgba(5, 150, 105, 0.3);
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 20px; 
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
             width: 100%;
         }
 
         .cv-card {
             background: var(--bg-card);
             border-radius: 16px;
-            padding: 24px;
-            width: 100%;
-            box-sizing: border-box; 
-            display: flex;
-            flex-direction: column;
+            padding: 25px;
             border: 1px solid var(--border-color);
             box-shadow: 0 4px 6px -1px var(--shadow-color);
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            animation: fadeIn 0.5s ease;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            /* ANIMACIÓN DE ENTRADA SUAVE */
+            animation: fadeIn 0.5s ease forwards;
         }
-        
+
         .cv-card:hover {
-            transform: translateY(-8px); 
+            transform: translateY(-8px);
             box-shadow: 0 20px 25px -5px var(--shadow-color);
             border-color: var(--primary-color);
         }
 
-        .cv-header { display: flex; align-items: center; margin-bottom: 12px; }
+        .cv-header { display: flex; align-items: center; margin-bottom: 15px; }
 
         .icon-box {
-            background-color: var(--accent-bg); color: var(--primary-color); padding: 8px;
-            border-radius: 8px; display: flex; align-items: center; justify-content: center;
-            margin-right: 12px; flex-shrink: 0; 
+            background-color: var(--accent-bg);
+            color: var(--primary-color);
+            padding: 10px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
         }
 
-        .category { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-secondary); font-weight: 700; }
-        .cv-title { font-size: 1.1rem; font-weight: 700; color: var(--text-main); margin: 0 0 4px 0; line-height: 1.4; }
-        .cv-date { display: block; font-size: 0.8rem; color: var(--text-secondary); margin-top: auto; padding-top: 12px; font-style: italic; }
+        .category {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-secondary);
+            font-weight: 700;
+        }
+
+        .cv-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin: 0 0 8px 0;
+            line-height: 1.4;
+        }
+
+        .cv-date {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: auto;
+            padding-top: 15px;
+            font-style: italic;
+            display: block;
+        }
 
         .hide { display: none !important; }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
     </style>
 </head>
 <body>
 
 <div class="main-wrapper">
 
-    <div class="controls-container">
-        <button class="control-btn" onclick="toggleLanguage()" title="Cambiar Idioma">
+    <div class="controls-container animate-enter delay-1">
+        <button class="control-btn" onclick="toggleLanguage()" title="Español / English">
             <i data-lucide="languages"></i>
         </button>
-        <button class="control-btn" onclick="toggleTheme()" title="Modo Oscuro">
+        <button class="control-btn" onclick="toggleTheme()" title="Claro / Oscuro">
             <i data-lucide="moon" id="theme-icon"></i>
         </button>
     </div>
 
-    <div class="hero-section">
+    <div class="hero-section animate-enter delay-1">
         <img src="Foto de Perfil.jpg" alt="Diego Oñate" class="profile-photo">
 
         <h1 class="hero-name">Diego Alfonso Oñate Vallejos</h1>
@@ -331,7 +428,7 @@
     </div>
 
 
-    <div class="skills-wrapper">
+    <div class="skills-wrapper animate-enter delay-2">
         <h2 class="section-title" id="title-stack">
             <i data-lucide="cpu"></i> Stack Tecnológico
         </h2>
@@ -365,7 +462,7 @@
     </div>
 
 
-    <div class="cv-section">
+    <div class="cv-section animate-enter delay-3">
         <h2 class="section-title" id="title-cv"><i data-lucide="file-user"></i> Mi Curriculum Vitae</h2>
         
         <div class="btn-container">
@@ -383,142 +480,144 @@
     </div>
 
 
-    <div class="cert-header">
-        <h2 class="section-title" id="title-cert"><i data-lucide="award"></i> Mis Certificaciones</h2>
-        <p style="color: var(--text-secondary); margin-bottom: 20px;" id="txt-filter">Selecciona una categoría para filtrar</p>
-    </div>
-
-    <div class="filter-container">
-        <button class="filter-btn active" onclick="filterSelection('all', this)" id="btn-all">Todas</button>
-        <button class="filter-btn" onclick="filterSelection('ia', this)" id="btn-ia">IA & Generativa</button>
-        <button class="filter-btn" onclick="filterSelection('prod', this)" id="btn-prod">Productividad</button>
-        <button class="filter-btn" onclick="filterSelection('gestion', this)" id="btn-mgmt">Gestión & Otros</button>
-    </div>
-
-    <div class="grid-container">
-        
-        <div class="cv-card" data-category="ia">
-            <div class="cv-header">
-                <div class="icon-box"><i data-lucide="bar-chart-big"></i></div>
-                <span class="category">Santander Open Academy</span>
-            </div>
-            <h3 class="cv-title" data-en="Introduction to Data Science">Introducción a la Ciencia de Datos</h3>
-            <span class="cv-date">Dic. 11, 2025</span>
+    <div class="animate-enter delay-4">
+        <div class="cert-header">
+            <h2 class="section-title" id="title-cert"><i data-lucide="award"></i> Mis Certificaciones</h2>
+            <p style="color: var(--text-secondary);" id="txt-filter">Selecciona una categoría para filtrar</p>
         </div>
 
-        <div class="cv-card" data-category="ia">
-            <div class="cv-header">
-                <div class="icon-box"><i data-lucide="bot"></i></div>
-                <span class="category">Santander Open Academy</span>
-            </div>
-            <h3 class="cv-title" data-en="Google: AI and Productivity">Google: Inteligencia Artificial y productividad</h3>
-            <span class="cv-date">Sep. 25, 2025</span>
+        <div class="filter-container">
+            <button class="filter-btn active" onclick="filterSelection('all', this)" id="btn-all">Todas</button>
+            <button class="filter-btn" onclick="filterSelection('ia', this)" id="btn-ia">IA & Generativa</button>
+            <button class="filter-btn" onclick="filterSelection('prod', this)" id="btn-prod">Productividad</button>
+            <button class="filter-btn" onclick="filterSelection('gestion', this)" id="btn-mgmt">Gestión & Otros</button>
         </div>
 
-        <div class="cv-card" data-category="ia">
-            <div class="cv-header">
-                <div class="icon-box"><i data-lucide="briefcase"></i></div>
-                <span class="category">Coursera</span>
+        <div class="grid-container">
+            
+            <div class="cv-card" data-category="ia">
+                <div class="cv-header">
+                    <div class="icon-box"><i data-lucide="bar-chart-big"></i></div>
+                    <span class="category">Santander Open Academy</span>
+                </div>
+                <h3 class="cv-title" data-en="Introduction to Data Science">Introducción a la Ciencia de Datos</h3>
+                <span class="cv-date">Dic. 11, 2025</span>
             </div>
-            <h3 class="cv-title">Business Implications of AI: A Nano-course</h3>
-            <span class="cv-date">Sep. 20, 2025</span>
-        </div>
 
-        <div class="cv-card" data-category="ia">
-            <div class="cv-header">
-                <div class="icon-box"><i data-lucide="sparkles"></i></div>
-                <span class="category">Coursera</span>
+            <div class="cv-card" data-category="ia">
+                <div class="cv-header">
+                    <div class="icon-box"><i data-lucide="bot"></i></div>
+                    <span class="category">Santander Open Academy</span>
+                </div>
+                <h3 class="cv-title" data-en="Google: AI and Productivity">Google: Inteligencia Artificial y productividad</h3>
+                <span class="cv-date">Sep. 25, 2025</span>
             </div>
-            <h3 class="cv-title">Introduction to Generative AI</h3>
-            <span class="cv-date">Sep. 19, 2025</span>
-        </div>
 
-        <div class="cv-card" data-category="ia">
-            <div class="cv-header">
-                <div class="icon-box"><i data-lucide="message-square"></i></div>
-                <span class="category">LinkedIn Learning</span>
+            <div class="cv-card" data-category="ia">
+                <div class="cv-header">
+                    <div class="icon-box"><i data-lucide="briefcase"></i></div>
+                    <span class="category">Coursera</span>
+                </div>
+                <h3 class="cv-title">Business Implications of AI: A Nano-course</h3>
+                <span class="cv-date">Sep. 20, 2025</span>
             </div>
-            <h3 class="cv-title" data-en="Prompt Engineering: How to talk to GenAI">Prompt Engineering: Aprende a hablar con una IA generativa</h3>
-            <span class="cv-date">Mar. 22, 2025</span>
-        </div>
 
-        <div class="cv-card" data-category="prod">
-            <div class="cv-header">
-                <div class="icon-box"><i data-lucide="zap"></i></div>
-                <span class="category">LinkedIn Learning</span>
+            <div class="cv-card" data-category="ia">
+                <div class="cv-header">
+                    <div class="icon-box"><i data-lucide="sparkles"></i></div>
+                    <span class="category">Coursera</span>
+                </div>
+                <h3 class="cv-title">Introduction to Generative AI</h3>
+                <span class="cv-date">Sep. 19, 2025</span>
             </div>
-            <h3 class="cv-title" data-en="Develop proactivity skills with GenAI">Desarrolla tus habilidades de proactividad con IA generativa</h3>
-            <span class="cv-date">Abr. 18, 2025</span>
-        </div>
 
-        <div class="cv-card" data-category="prod">
-            <div class="cv-header">
-                <div class="icon-box"><i data-lucide="monitor-play"></i></div>
-                <span class="category">LinkedIn Learning</span>
+            <div class="cv-card" data-category="ia">
+                <div class="cv-header">
+                    <div class="icon-box"><i data-lucide="message-square"></i></div>
+                    <span class="category">LinkedIn Learning</span>
+                </div>
+                <h3 class="cv-title" data-en="Prompt Engineering: How to talk to GenAI">Prompt Engineering: Aprende a hablar con una IA generativa</h3>
+                <span class="cv-date">Mar. 22, 2025</span>
             </div>
-            <h3 class="cv-title" data-en="Copilot in PowerPoint: Create impactful presentations">Copilot en PowerPoint: crea presentaciones impactantes</h3>
-            <span class="cv-date">Abr. 18, 2025</span>
-        </div>
 
-        <div class="cv-card" data-category="prod">
-            <div class="cv-header">
-                <div class="icon-box"><i data-lucide="file-spreadsheet"></i></div>
-                <span class="category">LinkedIn Learning</span>
+            <div class="cv-card" data-category="prod">
+                <div class="cv-header">
+                    <div class="icon-box"><i data-lucide="zap"></i></div>
+                    <span class="category">LinkedIn Learning</span>
+                </div>
+                <h3 class="cv-title" data-en="Develop proactivity skills with GenAI">Desarrolla tus habilidades de proactividad con IA generativa</h3>
+                <span class="cv-date">Abr. 18, 2025</span>
             </div>
-            <h3 class="cv-title" data-en="Excel and Copilot: AI-Assisted Data Analysis">Excel y Copilot: Análisis de datos asistidos por IA</h3>
-            <span class="cv-date">Abr. 18, 2025</span>
-        </div>
 
-        <div class="cv-card" data-category="prod">
-            <div class="cv-header">
-                <div class="icon-box"><i data-lucide="rocket"></i></div>
-                <span class="category">LinkedIn Learning</span>
+            <div class="cv-card" data-category="prod">
+                <div class="cv-header">
+                    <div class="icon-box"><i data-lucide="monitor-play"></i></div>
+                    <span class="category">LinkedIn Learning</span>
+                </div>
+                <h3 class="cv-title" data-en="Copilot in PowerPoint: Create impactful presentations">Copilot en PowerPoint: crea presentaciones impactantes</h3>
+                <span class="cv-date">Abr. 18, 2025</span>
             </div>
-            <h3 class="cv-title" data-en="Productivity Hacks with AI">Trucos de productividad con IA para reimaginar tu jornada</h3>
-            <span class="cv-date">Mar. 22, 2025</span>
-        </div>
 
-        <div class="cv-card" data-category="gestion">
-            <div class="cv-header">
-                <div class="icon-box"><i data-lucide="users"></i></div>
-                <span class="category">Santander Open Academy</span>
+            <div class="cv-card" data-category="prod">
+                <div class="cv-header">
+                    <div class="icon-box"><i data-lucide="file-spreadsheet"></i></div>
+                    <span class="category">LinkedIn Learning</span>
+                </div>
+                <h3 class="cv-title" data-en="Excel and Copilot: AI-Assisted Data Analysis">Excel y Copilot: Análisis de datos asistidos por IA</h3>
+                <span class="cv-date">Abr. 18, 2025</span>
             </div>
-            <h3 class="cv-title" data-en="Effective Project and Team Management">Gestión Efectiva de proyectos y equipos</h3>
-            <span class="cv-date">Sep. 29, 2025</span>
-        </div>
 
-        <div class="cv-card" data-category="ia">
-            <div class="cv-header">
-                <div class="icon-box"><i data-lucide="palette"></i></div>
-                <span class="category">LinkedIn Learning</span>
+            <div class="cv-card" data-category="prod">
+                <div class="cv-header">
+                    <div class="icon-box"><i data-lucide="rocket"></i></div>
+                    <span class="category">LinkedIn Learning</span>
+                </div>
+                <h3 class="cv-title" data-en="Productivity Hacks with AI">Trucos de productividad con IA para reimaginar tu jornada</h3>
+                <span class="cv-date">Mar. 22, 2025</span>
             </div>
-            <h3 class="cv-title" data-en="GenAI for Creatives: Challenges & Ethics">IA generativa para profesionales creativos: Retos y ética</h3>
-            <span class="cv-date">Mar. 22, 2025</span>
-        </div>
 
-        <div class="cv-card" data-category="gestion">
-            <div class="cv-header">
-                <div class="icon-box"><i data-lucide="graduation-cap"></i></div>
-                <span class="category">Universidad de La Frontera</span>
+            <div class="cv-card" data-category="gestion">
+                <div class="cv-header">
+                    <div class="icon-box"><i data-lucide="users"></i></div>
+                    <span class="category">Santander Open Academy</span>
+                </div>
+                <h3 class="cv-title" data-en="Effective Project and Team Management">Gestión Efectiva de proyectos y equipos</h3>
+                <span class="cv-date">Sep. 29, 2025</span>
             </div>
-            <h3 class="cv-title" data-en="Prepare for your professional future">Prepárate para tu futuro profesional</h3>
-            <span class="cv-date">Dic. 2024</span>
-        </div>
 
-        <div class="cv-card" data-category="gestion">
-            <div class="cv-header">
-                <div class="icon-box"><i data-lucide="shield-check"></i></div>
-                <span class="category">SQM</span>
+            <div class="cv-card" data-category="ia">
+                <div class="cv-header">
+                    <div class="icon-box"><i data-lucide="palette"></i></div>
+                    <span class="category">LinkedIn Learning</span>
+                </div>
+                <h3 class="cv-title" data-en="GenAI for Creatives: Challenges & Ethics">IA generativa para profesionales creativos: Retos y ética</h3>
+                <span class="cv-date">Mar. 22, 2025</span>
             </div>
-            <h3 class="cv-title" data-en="Risk Management Induction 2023">Inducción en gestión de riesgos 2023</h3>
-            <span class="cv-date">Ene. 2023</span>
+
+            <div class="cv-card" data-category="gestion">
+                <div class="cv-header">
+                    <div class="icon-box"><i data-lucide="graduation-cap"></i></div>
+                    <span class="category">Universidad de La Frontera</span>
+                </div>
+                <h3 class="cv-title" data-en="Prepare for your professional future">Prepárate para tu futuro profesional</h3>
+                <span class="cv-date">Dic. 2024</span>
+            </div>
+
+            <div class="cv-card" data-category="gestion">
+                <div class="cv-header">
+                    <div class="icon-box"><i data-lucide="shield-check"></i></div>
+                    <span class="category">SQM</span>
+                </div>
+                <h3 class="cv-title" data-en="Risk Management Induction 2023">Inducción en gestión de riesgos 2023</h3>
+                <span class="cv-date">Ene. 2023</span>
+            </div>
         </div>
     </div>
 
 </div> 
 
 <script>
-    // --- TRADUCCIÓN ---
+    // --- 1. LÓGICA DE TRADUCCIÓN (Dictionary) ---
     let currentLang = 'es'; 
 
     const translations = {
@@ -560,6 +659,7 @@
         currentLang = currentLang === 'es' ? 'en' : 'es';
         const t = translations[currentLang];
 
+        // Textos estáticos
         document.getElementById('txt-desc').innerHTML = t.desc;
         document.getElementById('txt-quote').innerHTML = t.quote;
         document.getElementById('btn-contact').innerHTML = t.contact;
@@ -571,11 +671,13 @@
         document.getElementById('title-cert').innerHTML = t.cert_title;
         document.getElementById('txt-filter').innerHTML = t.filter_txt;
         
+        // Botones filtro
         document.getElementById('btn-all').innerHTML = t.btn_all;
         document.getElementById('btn-ia').innerHTML = t.btn_ia;
         document.getElementById('btn-prod').innerHTML = t.btn_prod;
         document.getElementById('btn-mgmt').innerHTML = t.btn_mgmt;
 
+        // Títulos de certificaciones
         const titles = document.querySelectorAll('.cv-title');
         titles.forEach(title => {
             const englishText = title.getAttribute('data-en');
@@ -586,10 +688,11 @@
                 title.innerText = title.getAttribute('data-es');
             }
         });
-        lucide.createIcons();
+        
+        lucide.createIcons(); // Recargar iconos
     }
 
-    // --- MODO OSCURO ---
+    // --- 2. LÓGICA DE MODO OSCURO ---
     function toggleTheme() {
         document.body.classList.toggle('dark-mode');
         const icon = document.getElementById('theme-icon');
@@ -602,25 +705,25 @@
         lucide.createIcons();
     }
 
-    // 1. FILTROS
+    // --- 3. LÓGICA DE FILTRADO ---
     function filterSelection(category, btnElement) {
         var cards = document.getElementsByClassName("cv-card");
         var btns = document.getElementsByClassName("filter-btn");
-        var i;
 
+        // Botones activos
         if (btns && btns.length > 0) {
-            for (i = 0; i < btns.length; i++) {
+            for (var i = 0; i < btns.length; i++) {
                 btns[i].classList.remove("active");
             }
         }
-        
         if (btnElement) {
             btnElement.classList.add("active");
         }
 
+        // Mostrar/Ocultar tarjetas
         if (category == "all") category = "";
 
-        for (i = 0; i < cards.length; i++) {
+        for (var i = 0; i < cards.length; i++) {
             var card = cards[i];
             card.classList.remove("hide");
             var cardCategory = card.getAttribute("data-category");
@@ -632,6 +735,7 @@
         }
     }
 
+    // --- 4. INICIALIZAR ICONOS ---
     try {
         if (typeof lucide !== 'undefined') {
             lucide.createIcons();
