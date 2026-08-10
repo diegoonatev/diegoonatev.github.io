@@ -207,7 +207,7 @@
         /* --- CERTIFICACIONES --- */
         .filter-container { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
         .filter-btn { background-color: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-secondary); padding: 8px 20px; border-radius: 100px; cursor: pointer; font-weight: 600; transition: all 0.3s; }
-        .filter-btn:hover { background-color: var(--bg-section); color: var(--text-main); }
+        .filter-btn:hover { background: var(--bg-section); color: var(--text-main); }
         .filter-btn.active { background-color: var(--primary-color); color: white; border-color: var(--primary-color); }
         
         .cv-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
@@ -316,13 +316,12 @@
     <div id="tab-projects" class="tab-content">
         <h2 class="section-header" id="title-projects"><i data-lucide="folder-kanban"></i> Proyectos y Vinculación</h2>
         
-        <h3 class="block-subtitle" id="subtitle-blockA">Casos de Impacto & Éxito Industrial</h3>
+        <h3 class="block-subtitle" id="subtitle-blockA">Experiencia Industrial</h3>
         <div class="grid-container" style="margin-bottom: 40px;">
             
             <div class="project-card">
                 <div class="project-header">
                     <div class="project-title-box"><div class="icon-box"><i data-lucide="hard-hat"></i></div><h3 class="project-title" id="p-t1">Digitalización Documental & Calidad en Terreno</h3></div>
-                    <span class="status-badge success" id="p-b1">Caso de Éxito</span>
                 </div>
                 <p class="project-meta">SQM – Vopexa Ltda. [Ene. 2023 - Feb. 2023]</p>
                 <p class="project-desc" id="p-d1">Migración y estructuración del sistema de protocolización técnica a la nube, centralizando la información de obra y optimizando la trazabilidad en tiempo real.</p>
@@ -332,7 +331,6 @@
             <div class="project-card">
                 <div class="project-header">
                     <div class="project-title-box"><div class="icon-box"><i data-lucide="cpu"></i></div><h3 class="project-title" id="p-t2">Control Operativo & Gestión de Información</h3></div>
-                    <span class="status-badge success" id="p-b2">Caso de Éxito</span>
                 </div>
                 <p class="project-meta">Besalco Montajes S.A. [Ene. 2026 - Mar. 2026]</p>
                 <p class="project-desc" id="p-d2">Segmentación 3D del proyecto en Navisworks. Eliminación de un rezago documental de 1 año en SAP (Prevención) y récord histórico en tramitación de reportes vía Aconex (Calidad).</p>
@@ -342,7 +340,6 @@
             <div class="project-card">
                 <div class="project-header">
                     <div class="project-title-box"><div class="icon-box"><i data-lucide="rocket"></i></div><h3 class="project-title" id="p-t3">Liderazgo Tecnológico & Vinculación</h3></div>
-                    <span class="status-badge success" id="p-b3">Caso de Éxito</span>
                 </div>
                 <p class="project-meta">Agrupación UFROMAKERS [Oct. 2025 - Actualidad]</p>
                 <p class="project-desc" id="p-d3">Co-liderazgo estratégico en la gestión de proyectos de prototipado rápido, innovación abierta y transferencia tecnológica hacia la comunidad regional.</p>
@@ -364,11 +361,11 @@
 
             <div class="project-card">
                 <div class="project-header">
-                    <div class="project-title-box"><div class="icon-box"><i data-lucide="landmark"></i></div><h3 class="project-title" id="p-t5">Capítulos Universitarios CondeFi</h3></div>
+                    <div class="project-title-box"><div class="icon-box"><i data-lucide="landmark"></i></div><h3 class="project-title" id="p-t5">Capítulos Universitarios de Vinculación Industrial</h3></div>
                     <span class="status-badge" id="p-b5">En Proceso</span>
                 </div>
-                <p class="project-desc" id="p-d5">Coordinación general de actividades académicas y gremiales en el contexto nacional de estudiantes de ingeniería.</p>
-                <div class="tags-container"><span class="tag">Liderazgo</span><span class="tag">Coordinación General</span><span class="tag">Gestión</span></div>
+                <p class="project-desc" id="p-d5">Dirección de iniciativas tecnológicas y transferencia de conocimiento. Actualmente co-organizando el congreso nacional CEGID para conectar estudiantes de ingeniería con la industria.</p>
+                <div class="tags-container"><span class="tag">Liderazgo</span><span class="tag">Innovación</span><span class="tag">Gestión</span></div>
             </div>
 
             <div class="project-card">
@@ -379,16 +376,7 @@
                 <p class="project-desc" id="p-d6">Análisis de datos para el evento "Reino Fungi". Procesamiento de encuestas y visualización de métricas clave para evaluar el impacto del festival.</p>
                 <div class="tags-container"><span class="tag">Python</span><span class="tag">Data Analysis</span><span class="tag">Ciencia de Datos</span></div>
             </div>
-
-            <div class="project-card">
-                <div class="project-header">
-                    <div class="project-title-box"><div class="icon-box"><i data-lucide="recycle"></i></div><h3 class="project-title" id="p-t7">Kawín</h3></div>
-                    <span class="status-badge" id="p-b7">En Proceso</span>
-                </div>
-                <p class="project-desc" id="p-d7">Plataforma de gestión de residuos y reciclaje que integra datos y participación ciudadana para fomentar la economía circular.</p>
-                <div class="tags-container"><span class="tag">Gestión de Residuos</span><span class="tag">App Móvil</span><span class="tag">Economía Circular</span></div>
             </div>
-        </div>
     </div>
 
     <div id="tab-certs" class="tab-content">
@@ -478,17 +466,15 @@
             'btn_download': '<i data-lucide="download"></i> Descargar PDF',
             'btn_full': '<i data-lucide="external-link"></i> Ver Online',
             'title_projects': '<i data-lucide="folder-kanban"></i> Proyectos y Vinculación',
-            'subtitle_blockA': 'Casos de Impacto & Éxito Industrial',
+            'subtitle_blockA': 'Experiencia Industrial',
             'subtitle_blockB': 'Proyectos de I+D & Análisis',
             'status_in_progress': 'En Proceso',
-            'status_success': 'Caso de Éxito',
             'p_t1': 'Digitalización Documental & Calidad en Terreno', 'p_d1': 'Migración y estructuración del sistema de protocolización técnica a la nube, centralizando la información de obra y optimizando la trazabilidad en tiempo real.',
             'p_t2': 'Control Operativo & Gestión de Información', 'p_d2': 'Segmentación 3D del proyecto en Navisworks. Eliminación de un rezago documental de 1 año en SAP (Prevención) y récord histórico en tramitación de reportes vía Aconex (Calidad).',
             'p_t3': 'Liderazgo Tecnológico & Vinculación', 'p_d3': 'Co-liderazgo estratégico en la gestión de proyectos de prototipado rápido, innovación abierta y transferencia tecnológica hacia la comunidad regional.',
             'p_t4': 'Optimización Ganadera', 'p_d4': 'Modelo de investigación de operaciones para maximizar la vida útil y productividad del ganado, enfocado en eficiencia de recursos.',
-            'p_t5': 'Capítulos Universitarios CondeFi', 'p_d5': 'Coordinación general de actividades académicas y gremiales en el contexto nacional de estudiantes de ingeniería.',
+            'p_t5': 'Capítulos Universitarios de Vinculación Industrial', 'p_d5': 'Dirección de iniciativas tecnológicas y transferencia de conocimiento. Actualmente co-organizando el congreso nacional CEGID para conectar estudiantes de ingeniería con la industria.',
             'p_t6': 'Análisis de Datos: Reino Fungi', 'p_d6': 'Análisis de datos para el evento "Reino Fungi". Procesamiento de encuestas y visualización de métricas clave para evaluar el impacto del festival.',
-            'p_t7': 'Kawín', 'p_d7': 'Plataforma de gestión de residuos y reciclaje que integra datos y participación ciudadana para fomentar la economía circular.',
             'title_cert': '<i data-lucide="award"></i> Mis Certificaciones',
             'btn_all': 'Todas', 'btn_ia': 'IA & Generativa', 'btn_prod': 'Productividad / Ciencia de Datos', 'btn_mgmt': 'Gestión'
         },
@@ -505,17 +491,15 @@
             'btn_download': '<i data-lucide="download"></i> Download PDF',
             'btn_full': '<i data-lucide="external-link"></i> View Online',
             'title_projects': '<i data-lucide="folder-kanban"></i> Projects & Outreach',
-            'subtitle_blockA': 'Impact & Industrial Success Cases',
+            'subtitle_blockA': 'Industrial Experience',
             'subtitle_blockB': 'R&D & Analysis Projects',
             'status_in_progress': 'In Progress',
-            'status_success': 'Success Case',
             'p_t1': 'Document Digitalization & Field Quality', 'p_d1': 'Migration and structuring of the technical protocol system to the cloud, centralizing site info and optimizing real-time traceability.',
             'p_t2': 'Operational Control & Information Management', 'p_d2': '3D project segmentation in Navisworks. Eliminated a 1-year document backlog in SAP (Prevention) and achieved a historic record in report processing via Aconex (Quality).',
             'p_t3': 'Technological Leadership & Outreach', 'p_d3': 'Strategic co-leadership in managing rapid prototyping, open innovation, and technology transfer projects to the regional community.',
             'p_t4': 'Livestock Optimization', 'p_d4': 'Operations research model to maximize livestock lifespan and productivity, focused on resource efficiency.',
-            'p_t5': 'CondeFi University Chapters', 'p_d5': 'General coordination of academic and student union activities in the national engineering student framework.',
+            'p_t5': 'Industrial Outreach University Chapters', 'p_d5': 'Directing technological initiatives and knowledge transfer. Currently co-organizing the national CEGID congress to connect engineering students with the industry.',
             'p_t6': 'Data Analysis: Fungi Kingdom', 'p_d6': 'Data analysis for the "Fungi Kingdom" event. Survey processing and key metrics visualization to evaluate the festival\'s impact.',
-            'p_t7': 'Kawín', 'p_d7': 'Waste management and recycling platform integrating data and civic participation to boost the circular economy.',
             'title_cert': '<i data-lucide="award"></i> My Certifications',
             'btn_all': 'All', 'btn_ia': 'AI & Generative', 'btn_prod': 'Productivity / Data Science', 'btn_mgmt': 'Management'
         }
@@ -546,15 +530,10 @@
         document.getElementById('p-t4').innerHTML = t.p_t4; document.getElementById('p-d4').innerHTML = t.p_d4;
         document.getElementById('p-t5').innerHTML = t.p_t5; document.getElementById('p-d5').innerHTML = t.p_d5;
         document.getElementById('p-t6').innerHTML = t.p_t6; document.getElementById('p-d6').innerHTML = t.p_d6;
-        document.getElementById('p-t7').innerHTML = t.p_t7; document.getElementById('p-d7').innerHTML = t.p_d7;
         
-        document.getElementById('p-b1').innerText = t.status_success;
-        document.getElementById('p-b2').innerText = t.status_success;
-        document.getElementById('p-b3').innerText = t.status_success;
         document.getElementById('p-b4').innerText = t.status_in_progress;
         document.getElementById('p-b5').innerText = t.status_in_progress;
         document.getElementById('p-b6').innerText = t.status_in_progress;
-        document.getElementById('p-b7').innerText = t.status_in_progress;
 
         document.getElementById('title-cert').innerHTML = t.title_cert;
         document.getElementById('btn-all').innerHTML = t.btn_all;
@@ -621,4 +600,3 @@
 
 </body>
 </html>
-
