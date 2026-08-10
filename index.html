@@ -154,8 +154,488 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: all 0.3s cubic-bezier(0.25, 0.8
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 20px -5px rgba(0, 0, 0, 0.08);
+            border-color: #a7f3d0;
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .project-meta {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .badge {
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 50px;
+        }
+
+        .badge-success { background-color: #d1fae5; color: #065f46; }
+        .badge-warning { background-color: #fef3c7; color: #92400e; }
+
+        .project-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #111827;
+            margin: 0 0 10px 0;
+        }
+
+        .project-desc {
+            font-size: 0.95rem;
+            color: #4b5563;
+            margin: 0 0 20px 0;
+            flex-grow: 1;
+        }
+
+        .tag-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            background-color: #f3f4f6;
+            color: #374151;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+
+        /* --- 4. SECCIÓN CV --- */
+        .cv-section { 
+            margin-bottom: 70px; 
+            padding: 40px; 
+            background: #f9fafb; 
+            border-radius: 20px; 
+            text-align: center; 
+            border: 1px solid #e5e7eb;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .cv-frame {
+            width: 100%;
+            max-width: 800px; 
+            height: 500px;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            background: white;
+            margin-bottom: 25px;
+        }
+
+        /* Botones */
+        .btn-container { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        
+        .btn { 
+            display: inline-flex; align-items: center; gap: 8px; 
+            padding: 12px 24px; border-radius: 8px; text-decoration: none; 
+            font-weight: 600; transition: all 0.2s; cursor: pointer;
+        }
+        
+        .btn-primary { background: #059669; color: white; border: 1px solid #059669; }
+        .btn-primary:hover { background: #047857; transform: translateY(-2px); }
+
+        .btn-secondary { background: white; color: #374151; border: 1px solid #d1d5db; }
+        .btn-secondary:hover { background: #f3f4f6; transform: translateY(-2px); }
+
+        /* --- 5. CERTIFICACIONES --- */
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background-color: white;
+            border: 1px solid #e5e7eb;
+            color: #4b5563;
+            padding: 10px 24px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn:hover { background-color: #f3f4f6; transform: translateY(-2px); }
+        
+        .filter-btn.active {
+            background-color: #059669; color: white; border-color: #059669;
+            box-shadow: 0 4px 6px -1px rgba(5, 150, 105, 0.3);
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 20px; 
+            width: 100%;
+        }
+
+        .cv-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            width: 100%;
+            box-sizing: border-box; 
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        
+        .cv-card:hover {
+            transform: translateY(-8px); 
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            border-color: #6ee7b7;
+        }
+
+        .cv-header { display: flex; align-items: center; margin-bottom: 12px; }
+
+        .icon-box {
+            background-color: #ecfdf5; color: #059669; padding: 8px;
+            border-radius: 8px; display: flex; align-items: center; justify-content: center;
+            margin-right: 12px; flex-shrink: 0; 
+        }
+
+        .category { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: #6b7280; font-weight: 700; }
+        .cv-title { font-size: 1.1rem; font-weight: 700; color: #111827; margin: 0 0 4px 0; line-height: 1.4; }
+        .cv-date { display: block; font-size: 0.8rem; color: #9ca3af; margin-top: auto; padding-top: 12px; font-style: italic; }
+
+        /* Cambio clave: eliminamos la regla que forzaba a ocultar elementos al inicio si fallaba el script */
+        .hide { display: none !important; }
+    </style>
+</head>
+<body>
+
+<div class="main-wrapper">
+
+    <div class="hero-section">
+        <h1 class="hero-name">Diego Alfonso Oñate Vallejos</h1>
+        
+        <p class="hero-description">
+            Estudiante de Ingeniería Civil Industrial (UFRO) especializado en optimización de operaciones y análisis de datos. Experiencia en terreno en grandes proyectos industriales para SQM y Besalco Montajes S.A. (Minera Los Pelambres). Apasionado por la transformación digital, el liderazgo de equipos y la vinculación tecnológica.
+        </p>
+        
+        <span class="hero-quote">"Sinergia entre eficiencia de procesos y liderazgo humano"</span>
+
+        <div class="btn-container">
+            <a href="https://www.linkedin.com/in/diego-oñate" target="_blank" class="btn btn-primary">
+                <i data-lucide="linkedin"></i> LinkedIn
+            </a>
+            <a href="mailto:d.onate06@ufromail.cl" class="btn btn-secondary">
+                <i data-lucide="mail"></i> Contactar
+            </a>
+        </div>
+    </div>
 
 
+    <div class="skills-wrapper">
+        <h2 class="section-title">
+            <i data-lucide="cpu"></i> Stack Tecnológico
+        </h2>
 
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon-box"><i data-lucide="terminal"></i></div> 
+                <span class="skill-name">Python</span>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-icon-box"><i data-lucide="database"></i></div> 
+                <span class="skill-name">SQL</span>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-icon-box"><i data-lucide="function-square"></i></div> 
+                <span class="skill-name">CPLEX</span>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-icon-box"><i data-lucide="workflow"></i></div> 
+                <span class="skill-name">Bizagi</span>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-icon-box"><i data-lucide="bar-chart-big"></i></div> 
+                <span class="skill-name">PowerBI</span>
+            </div>
+             
+             <div class="skill-card">
+                <div class="skill-icon-box"><i data-lucide="file-spreadsheet"></i></div> 
+                <span class="skill-name">Excel Avanzado</span>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="projects-wrapper">
+        <h2 class="section-title">
+            <i data-lucide="folder-git-2"></i> Proyectos y Vinculación
+        </h2>
+
+        <h3 class="block-subtitle">Casos de Impacto & Éxito Industrial</h3>
+        <div class="projects-grid">
+            
+            <div class="project-card">
+                <div class="project-header">
+                    <span class="project-meta">SQM – Vopexa Ltda.</span>
+                    <span class="badge badge-success">Caso de Éxito</span>
+                </div>
+                <h4 class="project-title">Digitalización Documental & Calidad en Terreno</h4>
+                <p class="project-desc">Migración y estructuración del sistema de protocolización técnica a la nube, centralizando la información de obra y optimizando la trazabilidad en tiempo real.</p>
+                <div class="tag-container">
+                    <span class="tag">Gestión de Procesos</span>
+                    <span class="tag">Trazabilidad</span>
+                    <span class="tag">Nube</span>
+                    <span class="tag">Calidad</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <span class="project-meta">Besalco Montajes S.A.</span>
+                    <span class="badge badge-success">Caso de Éxito</span>
+                </div>
+                <h4 class="project-title">Control Operativo & Gestión de Información</h4>
+                <p class="project-desc">Segmentación 3D del proyecto en Navisworks. Eliminación de un rezago documental de 1 año en SAP (Prevención) y récord histórico en tramitación de reportes vía Aconex (Calidad).</p>
+                <div class="tag-container">
+                    <span class="tag">Navisworks</span>
+                    <span class="tag">SAP</span>
+                    <span class="tag">Aconex</span>
+                    <span class="tag">Control de Obra</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <span class="project-meta">Agrupación UFROMAKERS</span>
+                    <span class="badge badge-success">Caso de Éxito</span>
+                </div>
+                <h4 class="project-title">Liderazgo Tecnológico & Vinculación</h4>
+                <p class="project-desc">Co-liderazgo estratégico en la gestión de proyectos de prototipado rápido, innovación abierta y transferencia tecnológica hacia la comunidad regional.</p>
+                <div class="tag-container">
+                    <span class="tag">Liderazgo</span>
+                    <span class="tag">Innovación</span>
+                    <span class="tag">Prototipado</span>
+                    <span class="tag">Gestión de Proyectos</span>
+                </div>
+            </div>
+
+        </div>
+
+        <h3 class="block-subtitle">Proyectos de I+D & Análisis</h3>
+        <div class="projects-grid">
+
+            <div class="project-card">
+                <div class="project-header">
+                    <span class="project-meta">Investigación Operativa</span>
+                    <span class="badge badge-warning">En Proceso</span>
+                </div>
+                <h4 class="project-title">Optimización Ganadera</h4>
+                <p class="project-desc">Desarrollo de modelos analíticos y algorítmicos aplicados a la toma de decisiones estratégicas en producción ganadera.</p>
+                <div class="tag-container">
+                    <span class="tag">Python</span>
+                    <span class="tag">CPLEX</span>
+                    <span class="tag">Optimización</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <span class="project-meta">Representación Académica</span>
+                    <span class="badge badge-warning">En Proceso</span>
+                </div>
+                <h4 class="project-title">Capítulos Universitarios CondeFi</h4>
+                <p class="project-desc">Coordinación general de comisiones estudiantiles para el desarrollo de competencias de ingeniería a nivel nacional.</p>
+                <div class="tag-container">
+                    <span class="tag">Liderazgo</span>
+                    <span class="tag">Coordinación General</span>
+                    <span class="tag">Gestión</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <span class="project-meta">Data Science</span>
+                    <span class="badge badge-warning">En Proceso</span>
+                </div>
+                <h4 class="project-title">Análisis de Datos: Reino Fungi</h4>
+                <p class="project-desc">Procesamiento y modelamiento estadístico de datos biológicos estructurados usando librerías analíticas especializadas.</p>
+                <div class="tag-container">
+                    <span class="tag">Python</span>
+                    <span class="tag">Data Analysis</span>
+                    <span class="tag">Ciencia de Datos</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <span class="project-meta">Economía Circular</span>
+                    <span class="badge badge-warning">En Proceso</span>
+                </div>
+                <h4 class="project-title">Kawín</h4>
+                <p class="project-desc">Codiseño operativo de una arquitectura de software móvil destinada a resolver cuellos de botella en la logística del reciclaje.</p>
+                <div class="tag-container">
+                    <span class="tag">Gestión de Residuos</span>
+                    <span class="tag">App Móvil</span>
+                    <span class="tag">Economía Circular</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="cv-section">
+        <h2 class="section-title"><i data-lucide="file-user"></i> Mi Curriculum Vitae</h2>
+        
+        <iframe 
+            src="https://docs.google.com/document/d/12oMtW12oNcIXESputu2PM4OSS2scAG0S/preview" 
+            class="cv-frame" 
+            title="Vista previa CV">
+        </iframe>
+
+        <div class="btn-container">
+            <a href="https://docs.google.com/document/d/12oMtW12oNcIXESputu2PM4OSS2scAG0S/export?format=pdf" 
+               class="btn btn-primary">
+                <i data-lucide="download"></i> Descargar PDF
+            </a>
+            
+            <a href="https://docs.google.com/document/d/12oMtW12oNcIXESputu2PM4OSS2scAG0S/preview" 
+               target="_blank" 
+               class="btn btn-secondary">
+                <i data-lucide="external-link"></i> Ver Pantalla Completa
+            </a>
+        </div>
+    </div>
+
+
+    <div class="cert-header">
+        <h2 class="section-title"><i data-lucide="award"></i> Mis Certificaciones</h2>
+        <p style="color: #6b7280; margin-bottom: 20px; text-align: center;">Selecciona una categoría para filtrar</p>
+    </div>
+
+    <div class="filter-container">
+        <button class="filter-btn active" onclick="filterSelection('all', this)">Todas</button>
+        <button class="filter-btn" onclick="filterSelection('ia', this)">IA & Generativa</button>
+        <button class="filter-btn" onclick="filterSelection('prod', this)">Productividad / Ciencia de Datos</button>
+        <button class="filter-btn" onclick="filterSelection('gestion', this)">Gestión & Otros</button>
+    </div>
+
+    <div class="grid-container">
+        
+        <div class="cv-card" data-category="gestion">
+            <div class="cv-header">
+                <div class="icon-box"><i data-lucide="users"></i></div>
+                <span class="category">Santander Open Academy</span>
+            </div>
+            <h3 class="cv-title">Gestión Efectiva de proyectos y equipos</h3>
+            <span class="cv-date">Sep. 29, 2025</span>
+        </div>
+
+        <div class="cv-card" data-category="gestion">
+            <div class="cv-header">
+                <div class="icon-box"><i data-lucide="shield-check"></i></div>
+                <span class="category">SQM</span>
+            </div>
+            <h3 class="cv-title">Inducción en gestión de riesgos 2023</h3>
+            <span class="cv-date">Ene. 2024</span>
+        </div>
+
+        <div class="cv-card" data-category="ia">
+            <div class="cv-header">
+                <div class="icon-box"><i data-lucide="sparkles"></i></div>
+                <span class="category">Coursera</span>
+            </div>
+            <h3 class="cv-title">Introduction to Generative AI</h3>
+            <span class="cv-date">Sep. 19, 2025</span>
+        </div>
+
+        <div class="cv-card" data-category="ia">
+            <div class="cv-header">
+                <div class="icon-box"><i data-lucide="bot"></i></div>
+                <span class="category">Santander Open Academy</span>
+            </div>
+            <h3 class="cv-title">Google: Inteligencia Artificial y productividad</h3>
+            <span class="cv-date">Sep. 25, 2025</span>
+        </div>
+
+        <div class="cv-card" data-category="prod">
+            <div class="cv-header">
+                <div class="icon-box"><i data-lucide="database"></i></div>
+                <span class="category">Santander Open Academy</span>
+            </div>
+            <h3 class="cv-title">Introducción a la Ciencia de Datos</h3>
+            <span class="cv-date">Dic. 11, 2025</span>
+        </div>
+
+    </div>
+
+</div> 
+
+<script>
+    // FILTROS
+    function filterSelection(category, btnElement) {
+        var cards = document.getElementsByClassName("cv-card");
+        var btns = document.getElementsByClassName("filter-btn");
+        var i;
+
+        if (btns && btns.length > 0) {
+            for (i = 0; i < btns.length; i++) {
+                btns[i].classList.remove("active");
+            }
+        }
+        
+        if (btnElement) {
+            btnElement.classList.add("active");
+        }
+
+        if (category == "all") category = "";
+
+        for (i = 0; i < cards.length; i++) {
+            var card = cards[i];
+            card.classList.remove("hide");
+            
+            var cardCategory = card.getAttribute("data-category");
+            if (cardCategory) {
+                if (cardCategory.indexOf(category) == -1) {
+                    card.classList.add("hide");
+                }
+            }
+        }
+    }
+
+    // ICONOS
+    try {
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    } catch (e) {
+        console.error("Error al iniciar iconos:", e);
+    }
+</script>
+
+</body>
+</html>
 
