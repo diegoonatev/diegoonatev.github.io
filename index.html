@@ -23,6 +23,8 @@
             --water-blob: #34d399; 
             --status-bg: #fef3c7;
             --status-text: #d97706;
+            --badge-success-bg: #d1fae5;
+            --badge-success-text: #065f46;
         }
 
         /* MODO OSCURO */
@@ -40,6 +42,8 @@
             --water-blob: #059669;
             --status-bg: #78350f;
             --status-text: #fcd34d;
+            --badge-success-bg: #064e3b;
+            --badge-success-text: #a7f3d0;
         }
 
         /* --- 2. BASE --- */
@@ -82,8 +86,8 @@
             100% { transform: translate(0, 0) scale(1); border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
         }
 
-        /* --- 4. COMPONENTES COMUNES --- */
-        .skill-card, .cv-card, .cv-section, .filter-btn, .carousel-caption, .control-btn, .project-card, .nav-btn {
+        /* --- 4. COMPONENTES BLUR --- */
+        .skill-card, .cv-card, .cv-section, .filter-btn, .control-btn, .project-card, .nav-btn {
             backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
         }
 
@@ -110,7 +114,7 @@
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
         .hero-name { font-size: 2.5rem; font-weight: 800; color: var(--text-main); margin: 0 0 10px 0; letter-spacing: -0.03em; line-height: 1.2; }
         .highlight-name { color: var(--primary-color); }
-        .hero-description { font-size: 1.1rem; color: var(--text-secondary); max-width: 750px; margin: 0 auto 20px auto; }
+        .hero-description { font-size: 1.1rem; color: var(--text-secondary); max-width: 800px; margin: 0 auto 20px auto; }
         .hero-quote { display: block; font-style: italic; color: var(--primary-color); font-weight: 600; margin-bottom: 10px; font-size: 1rem; }
         .btn-contact-hero {
             display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 20px;
@@ -143,7 +147,11 @@
         .tab-content.active { display: block; opacity: 1; animation: slideUpFade 0.6s ease forwards; }
         @keyframes slideUpFade { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- SKILLS --- */
+        /* --- SECCIONES INTERNAS Y BLOQUES --- */
+        .section-header { text-align: center; margin-bottom: 30px; font-size: 1.5rem; font-weight: 800; color: var(--text-main); display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .block-subtitle { font-size: 1.25rem; color: var(--text-main); margin: 35px 0 20px 0; font-weight: 700; border-left: 4px solid var(--primary-color); padding-left: 12px; text-align: left; }
+
+        /* --- SKILLS (ORDENADAS) --- */
         .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 20px; }
         .skill-card {
             background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px;
@@ -170,7 +178,7 @@
         }
         .project-card:hover { transform: translateY(-5px); border-color: var(--primary-color); box-shadow: 0 15px 30px -5px var(--shadow-color); }
         
-        .project-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 12px; }
+        .project-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 12px; gap: 10px; }
         .project-title-box { display: flex; align-items: center; gap: 10px; }
         .project-title { font-size: 1.1rem; font-weight: 700; color: var(--text-main); margin: 0; }
         
@@ -179,13 +187,16 @@
             padding: 4px 10px; border-radius: 20px; font-weight: 700; border: 1px solid rgba(0,0,0,0.05);
             white-space: nowrap;
         }
+        .status-badge.success {
+            background: var(--badge-success-bg); color: var(--badge-success-text);
+        }
 
         .project-desc { font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 15px; line-height: 1.5; }
-        .tags-container { margin-top: auto; display: flex; flex-wrap: wrap; gap: 8px; }
-        .tag { font-size: 0.75rem; background: var(--bg-section); color: var(--primary-color); padding: 4px 10px; border-radius: 20px; font-weight: 600; border: 1px solid var(--border-color); }
+        .tags-container { margin-top: auto; display: flex; flex-wrap: wrap; gap: 6px; }
+        .tag { font-size: 0.72rem; background: var(--bg-section); color: var(--primary-color); padding: 4px 10px; border-radius: 20px; font-weight: 600; border: 1px solid var(--border-color); }
 
-        /* --- CV --- */
-        .cv-section { padding: 40px; background: var(--bg-section); border-radius: 24px; text-align: center; border: 1px solid var(--border-color); margin-bottom: 40px; }
+        /* --- CV SECTION --- */
+        .cv-section { padding: 40px; background: var(--bg-section); border-radius: 24px; text-align: center; border: 1px solid var(--border-color); margin-top: 40px; }
         .btn-container { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
         .btn { display: inline-flex; align-items: center; gap: 10px; padding: 12px 24px; border-radius: 12px; text-decoration: none; font-weight: 600; transition: all 0.3s; }
         .btn-primary { background: var(--primary-color); color: white; border: 1px solid var(--primary-color); }
@@ -193,88 +204,46 @@
         .btn-secondary { background: var(--bg-card); color: var(--text-main); border: 1px solid var(--border-color); }
         .btn-secondary:hover { background: var(--bg-section); transform: translateY(-2px); border-color: var(--text-secondary); }
         
+        /* --- CERTIFICACIONES --- */
         .filter-container { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
         .filter-btn { background-color: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-secondary); padding: 8px 20px; border-radius: 100px; cursor: pointer; font-weight: 600; transition: all 0.3s; }
         .filter-btn:hover { background-color: var(--bg-section); color: var(--text-main); }
         .filter-btn.active { background-color: var(--primary-color); color: white; border-color: var(--primary-color); }
         
         .cv-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        
         .cv-card { 
             background: var(--bg-card); border-radius: 16px; padding: 20px; 
             border: 1px solid var(--border-color); box-shadow: 0 4px 6px -1px var(--shadow-color); 
             display: flex; flex-direction: column; transition: all 0.4s; 
-            cursor: pointer;
+            cursor: pointer; text-align: left;
         }
-        
         .cv-card:hover { transform: translateY(-5px); border-color: var(--primary-color); }
         .cv-header { display: flex; align-items: center; margin-bottom: 10px; }
         .icon-box { background-color: var(--accent-bg); color: var(--primary-color); padding: 8px; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-right: 12px; flex-shrink: 0; }
         .category { font-size: 0.7rem; text-transform: uppercase; font-weight: 700; color: var(--text-secondary); }
-        .cv-title { font-size: 1.1rem; font-weight: 700; color: var(--text-main); margin: 0 0 5px 0; }
+        .cv-title { font-size: 1.05rem; font-weight: 700; color: var(--text-main); margin: 0 0 5px 0; }
         .cv-date { font-size: 0.8rem; color: var(--text-secondary); margin-top: auto; font-style: italic; }
 
-        /* --- ESTILOS DEL MODAL (PDF SUPPORT) --- */
+        /* --- MODAL (PDF SUPPORT) --- */
         .modal {
-            display: none; 
-            position: fixed; 
-            z-index: 1000; 
-            padding-top: 20px;
-            left: 0;
-            top: 0;
-            width: 100%; 
-            height: 100%; 
-            overflow: auto; 
-            background-color: rgba(0,0,0,0.9); 
-            backdrop-filter: blur(5px);
+            display: none; position: fixed; z-index: 1000; padding-top: 20px;
+            left: 0; top: 0; width: 100%; height: 100%; overflow: auto; 
+            background-color: rgba(0,0,0,0.85); backdrop-filter: blur(5px);
         }
-        
         .modal-content-container {
-            margin: auto;
-            width: 90%;
-            max-width: 1000px;
-            height: 90vh;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 0 25px rgba(0,0,0,0.5);
-            animation: zoom 0.3s;
-            position: relative;
-            overflow: hidden;
+            margin: auto; width: 90%; max-width: 1000px; height: 85vh;
+            background: white; border-radius: 12px; box-shadow: 0 0 25px rgba(0,0,0,0.5);
+            animation: zoom 0.3s; position: relative; overflow: hidden;
         }
-
-        .modal-iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-        
-        @keyframes zoom {
-            from {transform:scale(0.9); opacity:0} 
-            to {transform:scale(1); opacity:1}
-        }
-        
+        .modal-iframe { width: 100%; height: 100%; border: none; }
+        @keyframes zoom { from {transform:scale(0.9); opacity:0} to {transform:scale(1); opacity:1} }
         .close {
-            position: absolute;
-            top: 15px;
-            right: 35px;
-            color: #f1f1f1;
-            font-size: 40px;
-            font-weight: bold;
-            transition: 0.3s;
-            cursor: pointer;
-            z-index: 1001;
+            position: absolute; top: 15px; right: 35px; color: #f1f1f1;
+            font-size: 40px; font-weight: bold; transition: 0.3s; cursor: pointer; z-index: 1001;
         }
-        
-        .close:hover,
-        .close:focus {
-            color: var(--primary-color);
-            text-decoration: none;
-            cursor: pointer;
-        }
+        .close:hover { color: var(--primary-color); }
 
         .hide { display: none !important; }
-        .section-header { text-align: center; margin-bottom: 30px; font-size: 1.5rem; font-weight: 800; color: var(--text-main); display: flex; align-items: center; justify-content: center; gap: 10px; }
-
     </style>
 </head>
 <body>
@@ -300,10 +269,10 @@
     </div>
 
     <div class="hero-section">
-        <img src="Foto de Perfil.jpg" alt="Diego Oñate" class="profile-photo">
-        <h1 class="hero-name">Hola, soy <span class="highlight-name">Diego</span></h1>
+        <img src="Foto Perfil.jpg" alt="Diego Oñate" class="profile-photo">
+        <h1 class="hero-name" id="txt-greeting">Hola, soy <span class="highlight-name">Diego Oñate</span></h1>
         <p class="hero-description" id="txt-desc">
-            Estudiante de Ingeniería Civil Industrial con experiencia en gestión de proyectos y pasión por conectar la capacidad técnica con el desarrollo de personas.
+            Estudiante de Ingeniería Civil Industrial (UFRO) especializado en optimización de operaciones y análisis de datos. Experiencia en terreno en grandes proyectos industriales para SQM y Besalco Montajes S.A. (Minera Los Pelambres). Apasionado por la transformación digital, el liderazgo de equipos y la vinculación tecnológica.
         </p>
         <span class="hero-quote" id="txt-quote">"Sinergia entre eficiencia de procesos y liderazgo humano"</span>
         <div style="display: flex; justify-content: center; gap: 10px;">
@@ -329,10 +298,10 @@
         <div class="skills-grid" style="margin-bottom: 50px;">
             <div class="skill-card"><div class="skill-icon-box"><i data-lucide="terminal"></i></div><span class="skill-name">Python</span></div>
             <div class="skill-card"><div class="skill-icon-box"><i data-lucide="database"></i></div><span class="skill-name">SQL</span></div>
+            <div class="skill-card"><div class="skill-icon-box"><i data-lucide="function-square"></i></div><span class="skill-name">CPLEX</span></div>
+            <div class="skill-card"><div class="skill-icon-box"><i data-lucide="workflow"></i></div><span class="skill-name">Bizagi</span></div>
             <div class="skill-card"><div class="skill-icon-box"><i data-lucide="bar-chart-big"></i></div><span class="skill-name">PowerBI</span></div>
             <div class="skill-card"><div class="skill-icon-box"><i data-lucide="file-spreadsheet"></i></div><span class="skill-name" id="skill-excel">Excel Avanzado</span></div>
-            <div class="skill-card"><div class="skill-icon-box"><i data-lucide="workflow"></i></div><span class="skill-name">Bizagi</span></div>
-            <div class="skill-card"><div class="skill-icon-box"><i data-lucide="function-square"></i></div><span class="skill-name">CPLEX</span></div>
         </div>
 
         <div class="cv-section">
@@ -345,42 +314,78 @@
     </div>
 
     <div id="tab-projects" class="tab-content">
-        <h2 class="section-header" id="title-projects"><i data-lucide="folder-kanban"></i> Proyectos en Desarrollo</h2>
+        <h2 class="section-header" id="title-projects"><i data-lucide="folder-kanban"></i> Proyectos y Vinculación</h2>
         
-        <div class="grid-container">
+        <h3 class="block-subtitle" id="subtitle-blockA">Casos de Impacto & Éxito Industrial</h3>
+        <div class="grid-container" style="margin-bottom: 40px;">
+            
             <div class="project-card">
                 <div class="project-header">
-                    <div class="project-title-box"><div class="icon-box"><i data-lucide="activity"></i></div><h3 class="project-title" id="proj-t1">Optimización Ganadera</h3></div>
-                    <span class="status-badge" id="status-1">En Proceso</span>
+                    <div class="project-title-box"><div class="icon-box"><i data-lucide="hard-hat"></i></div><h3 class="project-title" id="p-t1">Digitalización Documental & Calidad en Terreno</h3></div>
+                    <span class="status-badge success" id="p-b1">Caso de Éxito</span>
                 </div>
-                <p class="project-desc" id="proj-d1">Modelo de investigación de operaciones para maximizar la vida útil y productividad del ganado, enfocado en eficiencia de recursos.</p>
+                <p class="project-meta">SQM – Vopexa Ltda. [Ene. 2023 - Feb. 2023]</p>
+                <p class="project-desc" id="p-d1">Migración y estructuración del sistema de protocolización técnica a la nube, centralizando la información de obra y optimizando la trazabilidad en tiempo real.</p>
+                <div class="tags-container"><span class="tag">Gestión de Procesos</span><span class="tag">Trazabilidad</span><span class="tag">Nube</span><span class="tag">Calidad</span></div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title-box"><div class="icon-box"><i data-lucide="cpu"></i></div><h3 class="project-title" id="p-t2">Control Operativo & Gestión de Información</h3></div>
+                    <span class="status-badge success" id="p-b2">Caso de Éxito</span>
+                </div>
+                <p class="project-meta">Besalco Montajes S.A. [Ene. 2026 - Mar. 2026]</p>
+                <p class="project-desc" id="p-d2">Segmentación 3D del proyecto en Navisworks. Eliminación de un rezago documental de 1 año en SAP (Prevención) y récord histórico en tramitación de reportes vía Aconex (Calidad).</p>
+                <div class="tags-container"><span class="tag">Navisworks</span><span class="tag">SAP</span><span class="tag">Aconex</span><span class="tag">Control de Obra</span></div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title-box"><div class="icon-box"><i data-lucide="rocket"></i></div><h3 class="project-title" id="p-t3">Liderazgo Tecnológico & Vinculación</h3></div>
+                    <span class="status-badge success" id="p-b3">Caso de Éxito</span>
+                </div>
+                <p class="project-meta">Agrupación UFROMAKERS [Oct. 2025 - Actualidad]</p>
+                <p class="project-desc" id="p-d3">Co-liderazgo estratégico en la gestión de proyectos de prototipado rápido, innovación abierta y transferencia tecnológica hacia la comunidad regional.</p>
+                <div class="tags-container"><span class="tag">Liderazgo</span><span class="tag">Innovación</span><span class="tag">Prototipado</span><span class="tag">Gestión de Proyectos</span></div>
+            </div>
+        </div>
+
+        <h3 class="block-subtitle" id="subtitle-blockB">Proyectos de I+D & Análisis</h3>
+        <div class="grid-container">
+            
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title-box"><div class="icon-box"><i data-lucide="activity"></i></div><h3 class="project-title" id="p-t4">Optimización Ganadera</h3></div>
+                    <span class="status-badge" id="p-b4">En Proceso</span>
+                </div>
+                <p class="project-desc" id="p-d4">Modelo de investigación de operaciones para maximizar la vida útil y productividad del ganado, enfocado en eficiencia de recursos.</p>
                 <div class="tags-container"><span class="tag">Python</span><span class="tag">CPLEX</span><span class="tag">Optimización</span></div>
             </div>
 
             <div class="project-card">
                 <div class="project-header">
-                    <div class="project-title-box"><div class="icon-box"><i data-lucide="landmark"></i></div><h3 class="project-title" id="proj-t2">Capítulos Universitarios CondeFi</h3></div>
-                    <span class="status-badge" id="status-2">En Proceso</span>
+                    <div class="project-title-box"><div class="icon-box"><i data-lucide="landmark"></i></div><h3 class="project-title" id="p-t5">Capítulos Universitarios CondeFi</h3></div>
+                    <span class="status-badge" id="p-b5">En Proceso</span>
                 </div>
-                <p class="project-desc" id="proj-d2">Coordinación general de actividades académicas y gremiales en el contexto nacional de estudiantes de ingeniería.</p>
+                <p class="project-desc" id="p-d5">Coordinación general de actividades académicas y gremiales en el contexto nacional de estudiantes de ingeniería.</p>
                 <div class="tags-container"><span class="tag">Liderazgo</span><span class="tag">Coordinación General</span><span class="tag">Gestión</span></div>
             </div>
 
             <div class="project-card">
                 <div class="project-header">
-                    <div class="project-title-box"><div class="icon-box"><i data-lucide="sprout"></i></div><h3 class="project-title" id="proj-t3">Análisis de Datos: Reino Fungi</h3></div>
-                    <span class="status-badge" id="status-3">En Proceso</span>
+                    <div class="project-title-box"><div class="icon-box"><i data-lucide="sprout"></i></div><h3 class="project-title" id="p-t6">Análisis de Datos: Reino Fungi</h3></div>
+                    <span class="status-badge" id="p-b6">En Proceso</span>
                 </div>
-                <p class="project-desc" id="proj-d3">Análisis de datos para el evento "Reino Fungi". Procesamiento de encuestas y visualización de métricas clave para evaluar el impacto del festival y el perfil de los asistentes.</p>
+                <p class="project-desc" id="p-d6">Análisis de datos para el evento "Reino Fungi". Procesamiento de encuestas y visualización de métricas clave para evaluar el impacto del festival.</p>
                 <div class="tags-container"><span class="tag">Python</span><span class="tag">Data Analysis</span><span class="tag">Ciencia de Datos</span></div>
             </div>
 
             <div class="project-card">
                 <div class="project-header">
-                    <div class="project-title-box"><div class="icon-box" style="background-color: var(--primary-color); color: white;"><i data-lucide="recycle"></i></div><h3 class="project-title">Kawín</h3></div>
-                    <span class="status-badge" id="status-4">En Proceso</span>
+                    <div class="project-title-box"><div class="icon-box"><i data-lucide="recycle"></i></div><h3 class="project-title" id="p-t7">Kawín</h3></div>
+                    <span class="status-badge" id="p-b7">En Proceso</span>
                 </div>
-                <p class="project-desc" id="proj-d4">Plataforma de gestión de residuos y reciclaje que integra datos y participación ciudadana para fomentar la economía circular.</p>
+                <p class="project-desc" id="p-d7">Plataforma de gestión de residuos y reciclaje que integra datos y participación ciudadana para fomentar la economía circular.</p>
                 <div class="tags-container"><span class="tag">Gestión de Residuos</span><span class="tag">App Móvil</span><span class="tag">Economía Circular</span></div>
             </div>
         </div>
@@ -392,14 +397,24 @@
         <div class="filter-container">
             <button class="filter-btn active" onclick="filterSelection('all', this)" id="btn-all">Todas</button>
             <button class="filter-btn" onclick="filterSelection('ia', this)" id="btn-ia">IA & Generativa</button>
-            <button class="filter-btn" onclick="filterSelection('prod', this)" id="btn-prod">Productividad</button>
+            <button class="filter-btn" onclick="filterSelection('prod', this)" id="btn-prod">Productividad / Ciencia de Datos</button>
             <button class="filter-btn" onclick="filterSelection('gestion', this)" id="btn-mgmt">Gestión</button>
         </div>
 
         <div class="cv-grid">
-            <div class="cv-card" data-category="ia" onclick="openPdfModal('Certificaciones/109_d.onate06@ufromail.cl.pdf')">
-                <div class="cv-header"><div class="icon-box"><i data-lucide="bar-chart-big"></i></div><span class="category">Santander Open Academy</span></div>
-                <h3 class="cv-title" data-en="Introduction to Data Science">Introducción a la Ciencia de Datos</h3><span class="cv-date">Dic. 11, 2025</span>
+            <div class="cv-card" data-category="gestion" onclick="openPdfModal('Certificaciones/C7.pdf')">
+                <div class="cv-header"><div class="icon-box"><i data-lucide="users"></i></div><span class="category">Santander Open Academy</span></div>
+                <h3 class="cv-title" data-en="Effective Project and Team Management">Gestión Efectiva de proyectos y equipos</h3><span class="cv-date">Sep. 29, 2025</span>
+            </div>
+            
+            <div class="cv-card" data-category="gestion" onclick="alert('Certificado disponible a solicitud')">
+                <div class="cv-header"><div class="icon-box"><i data-lucide="shield-check"></i></div><span class="category">SQM</span></div>
+                <h3 class="cv-title" data-en="Risk Management Induction 2023">Inducción en gestión de riesgos 2023</h3><span class="cv-date">Ene. 2024</span>
+            </div>
+
+            <div class="cv-card" data-category="ia" onclick="openPdfModal('Certificaciones/Coursera K3NHSGW6TJZV.pdf')">
+                <div class="cv-header"><div class="icon-box"><i data-lucide="sparkles"></i></div><span class="category">Coursera</span></div>
+                <h3 class="cv-title">Introduction to Generative AI</h3><span class="cv-date">Sep. 19, 2025</span>
             </div>
             
             <div class="cv-card" data-category="ia" onclick="openPdfModal('Certificaciones/C8.pdf')">
@@ -407,64 +422,9 @@
                 <h3 class="cv-title" data-en="Google: AI and Productivity">Google: Inteligencia Artificial y productividad</h3><span class="cv-date">Sep. 25, 2025</span>
             </div>
             
-            <div class="cv-card" data-category="ia" onclick="openPdfModal('Certificaciones/Coursera 34NO1Y2LD7WR.pdf')">
-                <div class="cv-header"><div class="icon-box"><i data-lucide="briefcase"></i></div><span class="category">Coursera</span></div>
-                <h3 class="cv-title">Business Implications of AI: A Nano-course</h3><span class="cv-date">Sep. 20, 2025</span>
-            </div>
-            
-            <div class="cv-card" data-category="ia" onclick="openPdfModal('Certificaciones/Coursera K3NHSGW6TJZV.pdf')">
-                <div class="cv-header"><div class="icon-box"><i data-lucide="sparkles"></i></div><span class="category">Coursera</span></div>
-                <h3 class="cv-title">Introduction to Generative AI</h3><span class="cv-date">Sep. 19, 2025</span>
-            </div>
-            
-            <div class="cv-card" data-category="ia" onclick="openPdfModal('Certificaciones/C5.pdf')">
-                <div class="cv-header"><div class="icon-box"><i data-lucide="message-square"></i></div><span class="category">LinkedIn Learning</span></div>
-                <h3 class="cv-title" data-en="Prompt Engineering: How to talk to GenAI">Prompt Engineering: Aprende a hablar con una IA generativa</h3><span class="cv-date">Mar. 22, 2025</span>
-            </div>
-            
-            <div class="cv-card" data-category="ia" onclick="openPdfModal('Certificaciones/Diego Alfonso _diegoonatev@gmail.com.pdf')">
-                <div class="cv-header"><div class="icon-box"><i data-lucide="code"></i></div><span class="category">BIG School</span></div>
-                <h3 class="cv-title" data-en="AI Development Initiation Course">Curso de Iniciación al Desarrollo con IA</h3><span class="cv-date">Dic. 24, 2025</span>
-            </div>
-
-            <div class="cv-card" data-category="prod" onclick="openPdfModal('Certificaciones/C2.pdf')">
-                <div class="cv-header"><div class="icon-box"><i data-lucide="zap"></i></div><span class="category">LinkedIn Learning</span></div>
-                <h3 class="cv-title" data-en="Develop proactivity skills with GenAI">Desarrolla tus habilidades de proactividad con IA generativa</h3><span class="cv-date">Abr. 18, 2025</span>
-            </div>
-            
-            <div class="cv-card" data-category="prod" onclick="openPdfModal('Certificaciones/C1.pdf')">
-                <div class="cv-header"><div class="icon-box"><i data-lucide="monitor-play"></i></div><span class="category">LinkedIn Learning</span></div>
-                <h3 class="cv-title" data-en="Copilot in PowerPoint: Create impactful presentations">Copilot en PowerPoint: crea presentaciones impactantes</h3><span class="cv-date">Abr. 18, 2025</span>
-            </div>
-            
-            <div class="cv-card" data-category="prod" onclick="openPdfModal('Certificaciones/C3.pdf')">
-                <div class="cv-header"><div class="icon-box"><i data-lucide="file-spreadsheet"></i></div><span class="category">LinkedIn Learning</span></div>
-                <h3 class="cv-title" data-en="Excel and Copilot: AI-Assisted Data Analysis">Excel y Copilot: Análisis de datos asistidos por IA</h3><span class="cv-date">Abr. 18, 2025</span>
-            </div>
-            
-            <div class="cv-card" data-category="prod" onclick="openPdfModal('Certificaciones/C6.pdf')">
-                <div class="cv-header"><div class="icon-box"><i data-lucide="rocket"></i></div><span class="category">LinkedIn Learning</span></div>
-                <h3 class="cv-title" data-en="Productivity Hacks with AI">Trucos de productividad con IA para reimaginar tu jornada</h3><span class="cv-date">Mar. 22, 2025</span>
-            </div>
-            
-            <div class="cv-card" data-category="gestion" onclick="openPdfModal('Certificaciones/C7.pdf')">
-                <div class="cv-header"><div class="icon-box"><i data-lucide="users"></i></div><span class="category">Santander Open Academy</span></div>
-                <h3 class="cv-title" data-en="Effective Project and Team Management">Gestión Efectiva de proyectos y equipos</h3><span class="cv-date">Sep. 29, 2025</span>
-            </div>
-            
-            <div class="cv-card" data-category="ia" onclick="openPdfModal('Certificaciones/C4.pdf')">
-                <div class="cv-header"><div class="icon-box"><i data-lucide="palette"></i></div><span class="category">LinkedIn Learning</span></div>
-                <h3 class="cv-title" data-en="GenAI for Creatives: Challenges & Ethics">IA generativa para profesionales creativos: Retos y ética</h3><span class="cv-date">Mar. 22, 2025</span>
-            </div>
-            
-            <div class="cv-card" data-category="gestion" onclick="alert('Certificado en proceso de búsqueda...')">
-                <div class="cv-header"><div class="icon-box"><i data-lucide="graduation-cap"></i></div><span class="category">Universidad de La Frontera</span></div>
-                <h3 class="cv-title" data-en="Prepare for your professional future">Prepárate para tu futuro profesional</h3><span class="cv-date">Dic. 2024</span>
-            </div>
-            
-            <div class="cv-card" data-category="gestion" onclick="alert('Certificado en proceso de búsqueda...')">
-                <div class="cv-header"><div class="icon-box"><i data-lucide="shield-check"></i></div><span class="category">SQM</span></div>
-                <h3 class="cv-title" data-en="Risk Management Induction 2023">Inducción en gestión de riesgos 2023</h3><span class="cv-date">Ene. 2023</span>
+            <div class="cv-card" data-category="prod" onclick="openPdfModal('Certificaciones/109_d.onate06@ufromail.cl.pdf')">
+                <div class="cv-header"><div class="icon-box"><i data-lucide="bar-chart-big"></i></div><span class="category">Santander Open Academy</span></div>
+                <h3 class="cv-title" data-en="Introduction to Data Science">Introducción a la Ciencia de Datos</h3><span class="cv-date">Dic. 11, 2025</span>
             </div>
         </div>
     </div>
@@ -506,7 +466,8 @@
     let currentLang = 'es'; 
     const translations = {
         'es': {
-            'desc': 'Estudiante de Ingeniería Civil Industrial con experiencia en gestión de proyectos y pasión por conectar la capacidad técnica con el desarrollo de personas.',
+            'greeting': 'Hola, soy <span class="highlight-name">Diego Oñate</span>',
+            'desc': 'Estudiante de Ingeniería Civil Industrial (UFRO) especializado en optimización de operaciones y análisis de datos. Experiencia en terreno en grandes proyectos industriales para SQM y Besalco Montajes S.A. (Minera Los Pelambres). Apasionado por la transformación digital, el liderazgo de equipos y la vinculación tecnológica.',
             'quote': '"Sinergia entre eficiencia de procesos y liderazgo humano"',
             'nav_home': '<i data-lucide="user"></i> Perfil',
             'nav_projects': '<i data-lucide="folder-kanban"></i> Proyectos y Vinculación',
@@ -516,42 +477,54 @@
             'title_cv': '<i data-lucide="file-user"></i> Mi Curriculum Vitae',
             'btn_download': '<i data-lucide="download"></i> Descargar PDF',
             'btn_full': '<i data-lucide="external-link"></i> Ver Online',
-            'title_projects': '<i data-lucide="folder-kanban"></i> Proyectos en Desarrollo',
+            'title_projects': '<i data-lucide="folder-kanban"></i> Proyectos y Vinculación',
+            'subtitle_blockA': 'Casos de Impacto & Éxito Industrial',
+            'subtitle_blockB': 'Proyectos de I+D & Análisis',
             'status_in_progress': 'En Proceso',
-            'proj_t1': 'Optimización Ganadera', 'proj_d1': 'Modelo de investigación de operaciones para maximizar la vida útil y productividad del ganado, enfocado en eficiencia de recursos.',
-            'proj_t2': 'Capítulos Universitarios CondeFi', 'proj_d2': 'Coordinación general de actividades académicas y gremiales en el contexto nacional de estudiantes de ingeniería.',
-            'proj_t3': 'Análisis de Datos: Reino Fungi', 'proj_d3': 'Análisis de datos para el evento "Reino Fungi". Procesamiento de encuestas y visualización de métricas clave para evaluar el impacto del festival y el perfil de los asistentes.',
-            'proj_d4': 'Sistema de inteligencia territorial para la gestión de residuos. Integra monitoreo de infraestructura y participación ciudadana para resolver la falta de datos en el reciclaje urbano.',
+            'status_success': 'Caso de Éxito',
+            'p_t1': 'Digitalización Documental & Calidad en Terreno', 'p_d1': 'Migración y estructuración del sistema de protocolización técnica a la nube, centralizando la información de obra y optimizando la trazabilidad en tiempo real.',
+            'p_t2': 'Control Operativo & Gestión de Información', 'p_d2': 'Segmentación 3D del proyecto en Navisworks. Eliminación de un rezago documental de 1 año en SAP (Prevención) y récord histórico en tramitación de reportes vía Aconex (Calidad).',
+            'p_t3': 'Liderazgo Tecnológico & Vinculación', 'p_d3': 'Co-liderazgo estratégico en la gestión de proyectos de prototipado rápido, innovación abierta y transferencia tecnológica hacia la comunidad regional.',
+            'p_t4': 'Optimización Ganadera', 'p_d4': 'Modelo de investigación de operaciones para maximizar la vida útil y productividad del ganado, enfocado en eficiencia de recursos.',
+            'p_t5': 'Capítulos Universitarios CondeFi', 'p_d5': 'Coordinación general de actividades académicas y gremiales en el contexto nacional de estudiantes de ingeniería.',
+            'p_t6': 'Análisis de Datos: Reino Fungi', 'p_d6': 'Análisis de datos para el evento "Reino Fungi". Procesamiento de encuestas y visualización de métricas clave para evaluar el impacto del festival.',
+            'p_t7': 'Kawín', 'p_d7': 'Plataforma de gestión de residuos y reciclaje que integra datos y participación ciudadana para fomentar la economía circular.',
             'title_cert': '<i data-lucide="award"></i> Mis Certificaciones',
-            'filter_txt': 'Selecciona una categoría para filtrar',
-            'btn_all': 'Todas', 'btn_ia': 'IA & Generativa', 'btn_prod': 'Productividad', 'btn_mgmt': 'Gestión'
+            'btn_all': 'Todas', 'btn_ia': 'IA & Generativa', 'btn_prod': 'Productividad / Ciencia de Datos', 'btn_mgmt': 'Gestión'
         },
         'en': {
-            'desc': 'Industrial Civil Engineering student with experience in project management and a passion for connecting technical capability with people development.',
+            'greeting': 'Hi, I\'m <span class="highlight-name">Diego Oñate</span>',
+            'desc': 'Industrial Civil Engineering student (UFRO) specializing in operations optimization and data analysis. Field experience in major industrial projects for SQM and Besalco Montajes S.A. (Minera Los Pelambres). Passionate about digital transformation, team leadership, and technology outreach.',
             'quote': '"Synergy between process efficiency and human leadership"',
             'nav_home': '<i data-lucide="user"></i> Profile',
             'nav_projects': '<i data-lucide="folder-kanban"></i> Projects & Outreach',
-            'nav_certs': '<i data-lucide="award"></i> Certs',
+            'nav_certs': '<i data-lucide="award"></i> Certifications',
             'title_stack': '<i data-lucide="cpu"></i> Tech Stack',
             'skill_excel': 'Advanced Excel',
             'title_cv': '<i data-lucide="file-user"></i> My Curriculum Vitae',
             'btn_download': '<i data-lucide="download"></i> Download PDF',
             'btn_full': '<i data-lucide="external-link"></i> View Online',
-            'title_projects': '<i data-lucide="folder-kanban"></i> Projects in Progress',
+            'title_projects': '<i data-lucide="folder-kanban"></i> Projects & Outreach',
+            'subtitle_blockA': 'Impact & Industrial Success Cases',
+            'subtitle_blockB': 'R&D & Analysis Projects',
             'status_in_progress': 'In Progress',
-            'proj_t1': 'Livestock Optimization', 'proj_d1': 'Operations research model to maximize livestock lifespan and productivity, focused on resource efficiency.',
-            'proj_t2': 'CondeFi University Chapters', 'proj_d2': 'General coordination of academic and guild activities in the national context of engineering students.',
-            'proj_t3': 'Data Analysis: Fungi Kingdom', 'proj_d3': 'Data analysis for the "Fungi Kingdom" event. Survey processing and visualization of key metrics to evaluate the festival\'s impact and attendee profiles.',
-            'proj_d4': 'Territorial intelligence system for waste management. Integrates infrastructure monitoring and citizen participation to solve the data gap in urban recycling.',
+            'status_success': 'Success Case',
+            'p_t1': 'Document Digitalization & Field Quality', 'p_d1': 'Migration and structuring of the technical protocol system to the cloud, centralizing site info and optimizing real-time traceability.',
+            'p_t2': 'Operational Control & Information Management', 'p_d2': '3D project segmentation in Navisworks. Eliminated a 1-year document backlog in SAP (Prevention) and achieved a historic record in report processing via Aconex (Quality).',
+            'p_t3': 'Technological Leadership & Outreach', 'p_d3': 'Strategic co-leadership in managing rapid prototyping, open innovation, and technology transfer projects to the regional community.',
+            'p_t4': 'Livestock Optimization', 'p_d4': 'Operations research model to maximize livestock lifespan and productivity, focused on resource efficiency.',
+            'p_t5': 'CondeFi University Chapters', 'p_d5': 'General coordination of academic and student union activities in the national engineering student framework.',
+            'p_t6': 'Data Analysis: Fungi Kingdom', 'p_d6': 'Data analysis for the "Fungi Kingdom" event. Survey processing and key metrics visualization to evaluate the festival\'s impact.',
+            'p_t7': 'Kawín', 'p_d7': 'Waste management and recycling platform integrating data and civic participation to boost the circular economy.',
             'title_cert': '<i data-lucide="award"></i> My Certifications',
-            'filter_txt': 'Select a category to filter',
-            'btn_all': 'All', 'btn_ia': 'AI & Generative', 'btn_prod': 'Productivity', 'btn_mgmt': 'Management'
+            'btn_all': 'All', 'btn_ia': 'AI & Generative', 'btn_prod': 'Productivity / Data Science', 'btn_mgmt': 'Management'
         }
     };
 
     function toggleLanguage() {
         currentLang = currentLang === 'es' ? 'en' : 'es';
         const t = translations[currentLang];
+        document.getElementById('txt-greeting').innerHTML = t.greeting;
         document.getElementById('txt-desc').innerHTML = t.desc;
         document.getElementById('txt-quote').innerHTML = t.quote;
         document.getElementById('nav-home').innerHTML = t.nav_home;
@@ -562,17 +535,28 @@
         document.getElementById('title-cv').innerHTML = t.title_cv;
         document.getElementById('btn-download').innerHTML = t.btn_download;
         document.getElementById('btn-full').innerHTML = t.btn_full;
+        
         document.getElementById('title-projects').innerHTML = t.title_projects;
-        document.getElementById('proj-t1').innerHTML = t.proj_t1; document.getElementById('proj-d1').innerHTML = t.proj_d1;
-        document.getElementById('proj-t2').innerHTML = t.proj_t2; document.getElementById('proj-d2').innerHTML = t.proj_d2;
-        document.getElementById('proj-t3').innerHTML = t.proj_t3; document.getElementById('proj-d3').innerHTML = t.proj_d3;
-        document.getElementById('proj-d4').innerHTML = t.proj_d4;
-        document.getElementById('status-1').innerText = t.status_in_progress;
-        document.getElementById('status-2').innerText = t.status_in_progress;
-        document.getElementById('status-3').innerText = t.status_in_progress;
-        document.getElementById('status-4').innerText = t.status_in_progress;
+        document.getElementById('subtitle-blockA').innerHTML = t.subtitle_blockA;
+        document.getElementById('subtitle-blockB').innerHTML = t.subtitle_blockB;
+        
+        document.getElementById('p-t1').innerHTML = t.p_t1; document.getElementById('p-d1').innerHTML = t.p_d1;
+        document.getElementById('p-t2').innerHTML = t.p_t2; document.getElementById('p-d2').innerHTML = t.p_d2;
+        document.getElementById('p-t3').innerHTML = t.p_t3; document.getElementById('p-d3').innerHTML = t.p_d3;
+        document.getElementById('p-t4').innerHTML = t.p_t4; document.getElementById('p-d4').innerHTML = t.p_d4;
+        document.getElementById('p-t5').innerHTML = t.p_t5; document.getElementById('p-d5').innerHTML = t.p_d5;
+        document.getElementById('p-t6').innerHTML = t.p_t6; document.getElementById('p-d6').innerHTML = t.p_d6;
+        document.getElementById('p-t7').innerHTML = t.p_t7; document.getElementById('p-d7').innerHTML = t.p_d7;
+        
+        document.getElementById('p-b1').innerText = t.status_success;
+        document.getElementById('p-b2').innerText = t.status_success;
+        document.getElementById('p-b3').innerText = t.status_success;
+        document.getElementById('p-b4').innerText = t.status_in_progress;
+        document.getElementById('p-b5').innerText = t.status_in_progress;
+        document.getElementById('p-b6').innerText = t.status_in_progress;
+        document.getElementById('p-b7').innerText = t.status_in_progress;
+
         document.getElementById('title-cert').innerHTML = t.title_cert;
-        document.getElementById('txt-filter').innerHTML = t.filter_txt;
         document.getElementById('btn-all').innerHTML = t.btn_all;
         document.getElementById('btn-ia').innerHTML = t.btn_ia;
         document.getElementById('btn-prod').innerHTML = t.btn_prod;
@@ -637,5 +621,4 @@
 
 </body>
 </html>
-
 
