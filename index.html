@@ -1,4 +1,4 @@
-z<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -9,18 +9,21 @@ z<!DOCTYPE html>
     <style>
         /* --- 1. VARIABLES --- */
         :root {
-            /* MODO CLARO */
-            --bg-body: #ffffff;
+            /* MODO CLARO - Tonalidades UFRO (#003E7E) */
+            --bg-body: #f8fafc;
             --text-main: #1f2937;
             --text-secondary: #4b5563;
-            --bg-card: rgba(255, 255, 255, 0.85);
-            --bg-section: rgba(249, 250, 251, 0.7);
-            --border-color: rgba(229, 231, 235, 0.8);
+            --bg-card: rgba(255, 255, 255, 0.9);
+            --bg-section: rgba(241, 245, 249, 0.8);
+            --border-color: rgba(226, 232, 240, 0.9);
             --shadow-color: rgba(0, 0, 0, 0.08);
-            --primary-color: #059669;
-            --primary-hover: #047857;
-            --accent-bg: #ecfdf5;
-            --water-blob: #34d399; 
+            
+            /* Color principal UFRO */
+            --primary-color: #003E7E;
+            --primary-hover: #002D5C;
+            --accent-bg: #e0f2fe;
+            --water-blob: #3b82f6; 
+            
             --status-bg: #fef3c7;
             --status-text: #d97706;
             --badge-success-bg: #d1fae5;
@@ -29,17 +32,20 @@ z<!DOCTYPE html>
 
         /* MODO OSCURO */
         body.dark-mode {
-            --bg-body: #111827;
-            --text-main: #f9fafb;
-            --text-secondary: #d1d5db;
-            --bg-card: rgba(31, 41, 55, 0.85);
-            --bg-section: rgba(17, 24, 39, 0.7);
-            --border-color: rgba(55, 65, 81, 0.8);
+            --bg-body: #0f172a;
+            --text-main: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --bg-card: rgba(30, 41, 59, 0.85);
+            --bg-section: rgba(15, 23, 42, 0.7);
+            --border-color: rgba(51, 65, 85, 0.8);
             --shadow-color: rgba(0, 0, 0, 0.5);
-            --primary-color: #34d399;
-            --primary-hover: #10b981;
-            --accent-bg: #064e3b;
-            --water-blob: #059669;
+            
+            /* Ajuste del azul para contraste en modo oscuro */
+            --primary-color: #60a5fa;
+            --primary-hover: #3b82f6;
+            --accent-bg: #1e3a8a;
+            --water-blob: #1d4ed8;
+            
             --status-bg: #78350f;
             --status-text: #fcd34d;
             --badge-success-bg: #064e3b;
@@ -87,7 +93,7 @@ z<!DOCTYPE html>
         }
 
         /* --- 4. COMPONENTES BLUR --- */
-        .skill-card, .cv-card, .cv-section, .filter-btn, .control-btn, .project-card, .nav-btn {
+        .skill-card, .cv-card, .cv-section, .filter-btn, .control-btn, .project-card, .nav-btn, .timeline-content {
             backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
         }
 
@@ -139,7 +145,7 @@ z<!DOCTYPE html>
         .nav-btn:hover { background-color: var(--bg-section); transform: translateY(-2px); color: var(--text-main); }
         .nav-btn.active {
             background-color: var(--primary-color); color: white; border-color: var(--primary-color);
-            box-shadow: 0 8px 15px -3px rgba(5, 150, 105, 0.3); transform: translateY(-2px);
+            box-shadow: 0 8px 15px -3px rgba(0, 62, 126, 0.3); transform: translateY(-2px);
         }
 
         /* --- 8. TABS --- */
@@ -149,7 +155,7 @@ z<!DOCTYPE html>
 
         /* --- SECCIONES INTERNAS Y BLOQUES --- */
         .section-header { text-align: center; margin-bottom: 30px; font-size: 1.5rem; font-weight: 800; color: var(--text-main); display: flex; align-items: center; justify-content: center; gap: 10px; }
-        .block-subtitle { font-size: 1.25rem; color: var(--text-main); margin: 35px 0 20px 0; font-weight: 700; border-left: 4px solid var(--primary-color); padding-left: 12px; text-align: left; }
+        .block-subtitle { font-size: 1.25rem; color: var(--text-main); margin: 0 0 25px 0; font-weight: 700; border-left: 4px solid var(--primary-color); padding-left: 12px; text-align: left; }
 
         /* --- SKILLS (ORDENADAS) --- */
         .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 20px; }
@@ -167,40 +173,71 @@ z<!DOCTYPE html>
         .skill-card:hover .skill-icon-box { background-color: var(--accent-bg); color: var(--primary-color); transform: rotate(360deg); }
         .skill-name { font-weight: 700; color: var(--text-main); font-size: 0.9rem; }
 
-        /* --- PROYECTOS --- */
-        .grid-container {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; width: 100%;
+        /* --- PROYECTOS Y LINEA DE TIEMPO --- */
+        .tab-header-flex { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 30px; border-bottom: 2px solid var(--border-color); padding-bottom: 15px;}
+        .last-updated { font-size: 0.85rem; color: var(--text-secondary); font-style: italic; }
+
+        .content-grid { display: grid; grid-template-columns: 1fr; gap: 40px; }
+        @media (min-width: 900px) { .content-grid { grid-template-columns: 1.2fr 1fr; } }
+
+        /* TIMELINE */
+        .timeline-container { border-left: 2px solid var(--border-color); padding-left: 25px; margin-left: 12px; margin-bottom: 30px; }
+        .timeline-item { position: relative; margin-bottom: 35px; }
+        .timeline-item:last-child { margin-bottom: 0; }
+        .timeline-marker {
+            position: absolute; left: -35px; top: 6px; width: 18px; height: 18px;
+            background-color: var(--primary-color); border-radius: 50%;
+            border: 4px solid var(--bg-body); transition: all 0.3s;
         }
+        .timeline-content {
+            background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px;
+            padding: 22px; box-shadow: 0 4px 6px -1px var(--shadow-color); transition: all 0.3s;
+        }
+        .timeline-content:hover { border-color: var(--primary-color); transform: translateX(5px); }
+        .timeline-content:hover .timeline-marker { transform: scale(1.2); }
+        .timeline-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px; margin-bottom: 8px; }
+        .timeline-header h4 { margin: 0; font-size: 1.15rem; color: var(--text-main); }
+        .timeline-date {
+            font-size: 0.8rem; color: var(--text-secondary); background: var(--bg-section);
+            padding: 4px 10px; border-radius: 20px; border: 1px solid var(--border-color); white-space: nowrap; font-weight: 500;
+        }
+        .timeline-role { font-weight: 700; color: var(--primary-color); margin: 0 0 12px 0; font-size: 0.95rem; }
+        .timeline-content ul { margin: 0; padding-left: 18px; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.5; }
+        .timeline-content li { margin-bottom: 5px; }
+
+        /* PROJECT CARDS */
+        .projects-container { display: flex; flex-direction: column; gap: 25px; }
         .project-card {
             background: var(--bg-card); border-radius: 16px; padding: 25px;
             border: 1px solid var(--border-color); box-shadow: 0 4px 6px -1px var(--shadow-color);
             display: flex; flex-direction: column; transition: all 0.4s; text-align: left;
+            position: relative; overflow: hidden;
+        }
+        .project-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
+            background: var(--primary-color); opacity: 0; transition: opacity 0.3s;
         }
         .project-card:hover { transform: translateY(-5px); border-color: var(--primary-color); box-shadow: 0 15px 30px -5px var(--shadow-color); }
+        .project-card:hover::before { opacity: 1; }
         
+        .project-badge {
+            align-self: flex-start; background: var(--accent-bg); color: var(--primary-color);
+            font-size: 0.75rem; font-weight: 800; padding: 5px 12px; border-radius: 20px;
+            margin-bottom: 15px; border: 1px solid rgba(0,0,0,0.05); text-transform: uppercase; letter-spacing: 0.5px;
+        }
         .project-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 12px; gap: 10px; }
-        .project-title-box { display: flex; align-items: center; gap: 10px; }
-        .project-title { font-size: 1.1rem; font-weight: 700; color: var(--text-main); margin: 0; }
-        
-        .status-badge {
-            font-size: 0.7rem; background: var(--status-bg); color: var(--status-text);
-            padding: 4px 10px; border-radius: 20px; font-weight: 700; border: 1px solid rgba(0,0,0,0.05);
-            white-space: nowrap;
-        }
-        .status-badge.success {
-            background: var(--badge-success-bg); color: var(--badge-success-text);
-        }
-
-        .project-desc { font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 15px; line-height: 1.5; }
-        .tags-container { margin-top: auto; display: flex; flex-wrap: wrap; gap: 6px; }
-        .tag { font-size: 0.72rem; background: var(--bg-section); color: var(--primary-color); padding: 4px 10px; border-radius: 20px; font-weight: 600; border: 1px solid var(--border-color); }
+        .project-title-box { display: flex; align-items: center; gap: 12px; }
+        .project-title { font-size: 1.15rem; font-weight: 700; color: var(--text-main); margin: 0; }
+        .project-desc { font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 20px; line-height: 1.6; }
+        .tags-container { margin-top: auto; display: flex; flex-wrap: wrap; gap: 8px; }
+        .tag { font-size: 0.72rem; background: var(--bg-section); color: var(--text-secondary); padding: 5px 10px; border-radius: 20px; font-weight: 600; border: 1px solid var(--border-color); }
 
         /* --- CV SECTION --- */
         .cv-section { padding: 40px; background: var(--bg-section); border-radius: 24px; text-align: center; border: 1px solid var(--border-color); margin-top: 40px; }
         .btn-container { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
         .btn { display: inline-flex; align-items: center; gap: 10px; padding: 12px 24px; border-radius: 12px; text-decoration: none; font-weight: 600; transition: all 0.3s; }
         .btn-primary { background: var(--primary-color); color: white; border: 1px solid var(--primary-color); }
-        .btn-primary:hover { background: var(--primary-hover); transform: translateY(-2px); }
+        .btn-primary:hover { background: var(--primary-hover); transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0, 62, 126, 0.3); }
         .btn-secondary { background: var(--bg-card); color: var(--text-main); border: 1px solid var(--border-color); }
         .btn-secondary:hover { background: var(--bg-section); transform: translateY(-2px); border-color: var(--text-secondary); }
         
@@ -313,71 +350,124 @@ z<!DOCTYPE html>
         </div>
     </div>
 
+    <!-- REFORMA: PESTAÑA PROYECTOS Y VINCULACIÓN -->
     <div id="tab-projects" class="tab-content">
-        <h2 class="section-header" id="title-projects"><i data-lucide="folder-kanban"></i> Proyectos y Vinculación</h2>
+        <div class="tab-header-flex">
+            <h2 class="section-header" id="title-projects" style="margin-bottom: 0;"><i data-lucide="folder-kanban"></i> Proyectos y Vinculación</h2>
+            <span class="last-updated" id="txt-last-updated">Última actualización: Agosto 2026</span>
+        </div>
         
-        <h3 class="block-subtitle" id="subtitle-blockA">Experiencia Industrial</h3>
-        <div class="grid-container" style="margin-bottom: 40px;">
-            
-            <div class="project-card">
-                <div class="project-header">
-                    <div class="project-title-box"><div class="icon-box"><i data-lucide="hard-hat"></i></div><h3 class="project-title" id="p-t1">Digitalización Documental & Calidad en Terreno</h3></div>
+        <div class="content-grid">
+            <!-- Columna Izquierda: Línea de tiempo -->
+            <div>
+                <h3 class="block-subtitle" id="subtitle-timeline">Recorrido Profesional y Académico</h3>
+                
+                <div class="timeline-container">
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <h4 id="tl-title-1">müller co-ax gmbh. Alemania</h4>
+                                <span class="timeline-date" id="tl-date-1">Ago 2026 - Actual</span>
+                            </div>
+                            <p class="timeline-role" id="tl-role-1">Trabajo de Título</p>
+                            <ul id="tl-desc-1">
+                                <li>Desarrollo de proyecto final de grado para la titulación.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <h4 id="tl-title-2">Besalco Montajes S.A.</h4>
+                                <span class="timeline-date" id="tl-date-2">Ene 2026 - Abr 2026</span>
+                            </div>
+                            <p class="timeline-role" id="tl-role-2">Asistente de Oficina Técnica</p>
+                            <ul id="tl-desc-2">
+                                <li>Gestión del Proyecto PAO en Minera Los Pelambres.</li>
+                                <li>Administración de Aconex, segmentación 3D en Navisworks y optimización en SAP, eliminando 1 año de rezago documental en prevención.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <h4 id="tl-title-3">Universidad de La Frontera</h4>
+                                <span class="timeline-date" id="tl-date-3">Mar 2025 - Ago 2026</span>
+                            </div>
+                            <p class="timeline-role" id="tl-role-3">Ayudante Académico</p>
+                            <ul id="tl-desc-3">
+                                <li>Logística y Cadena de Suministros: Desarrollo de talleres y clases prácticas.</li>
+                                <li>Formulación y Evaluación de Proyectos: Apoyo docente y guías prácticas.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <h4 id="tl-title-4">Vopexa Ltda. (Proyecto SQM)</h4>
+                                <span class="timeline-date" id="tl-date-4">Ene 2023 - Feb 2023</span>
+                            </div>
+                            <p class="timeline-role" id="tl-role-4">Asistente de Protocolización</p>
+                            <ul id="tl-desc-4">
+                                <li>Planta Química de Litio Carmen: Migración a la nube del sistema documental técnico, optimizando la trazabilidad en tiempo real.</li>
+                            </ul>
+                        </div>
+                    </div>
+
                 </div>
-                <p class="project-meta">SQM – Vopexa Ltda. [Ene. 2023 - Feb. 2023]</p>
-                <p class="project-desc" id="p-d1">Migración y estructuración del sistema de protocolización técnica a la nube, centralizando la información de obra y optimizando la trazabilidad en tiempo real.</p>
-                <div class="tags-container"><span class="tag">Gestión de Procesos</span><span class="tag">Trazabilidad</span><span class="tag">Nube</span><span class="tag">Calidad</span></div>
             </div>
 
-            <div class="project-card">
-                <div class="project-header">
-                    <div class="project-title-box"><div class="icon-box"><i data-lucide="cpu"></i></div><h3 class="project-title" id="p-t2">Control Operativo & Gestión de Información</h3></div>
-                </div>
-                <p class="project-meta">Besalco Montajes S.A. [Ene. 2026 - Mar. 2026]</p>
-                <p class="project-desc" id="p-d2">Segmentación 3D del proyecto en Navisworks. Eliminación de un rezago documental de 1 año en SAP (Prevención) y récord histórico en tramitación de reportes vía Aconex (Calidad).</p>
-                <div class="tags-container"><span class="tag">Navisworks</span><span class="tag">SAP</span><span class="tag">Aconex</span><span class="tag">Control de Obra</span></div>
-            </div>
+            <!-- Columna Derecha: Proyectos Destacados (Innovación) -->
+            <div>
+                <h3 class="block-subtitle" id="subtitle-innovation">Logros de Innovación</h3>
+                
+                <div class="projects-container">
+                    
+                    <div class="project-card">
+                        <div class="project-badge" id="badge-innspira">Semifinalista INNSPIRA Araucanía</div>
+                        <div class="project-header">
+                            <div class="project-title-box">
+                                <div class="icon-box"><i data-lucide="shield-alert"></i></div>
+                                <h3 class="project-title">SafePerimeter IoT</h3>
+                            </div>
+                        </div>
+                        <p class="project-desc" id="p-d-safe">Sistema modular autónomo de alerta activa temprana operado mediante radiofrecuencia (sensores radar y acelerómetros). Diseñado para advertir a cuadrillas viales sobre invasiones de berma a alta velocidad en milisegundos, entregando tiempo vital de reacción.</p>
+                        <div class="tags-container">
+                            <span class="tag">Prevención B2B</span>
+                            <span class="tag">Hardware IoT</span>
+                            <span class="tag">Seguridad Vial</span>
+                        </div>
+                    </div>
 
-            <div class="project-card">
-                <div class="project-header">
-                    <div class="project-title-box"><div class="icon-box"><i data-lucide="rocket"></i></div><h3 class="project-title" id="p-t3">Liderazgo Tecnológico & Vinculación</h3></div>
+                    <div class="project-card">
+                        <div class="project-badge" id="badge-neuro">4to Lugar - Neurohack 2026</div>
+                        <div class="project-header">
+                            <div class="project-title-box">
+                                <div class="icon-box"><i data-lucide="brain-circuit"></i></div>
+                                <h3 class="project-title">FirstSignal (Bluba)</h3>
+                            </div>
+                        </div>
+                        <p class="project-desc" id="p-d-first">Sistema preventivo impulsado por IA para predecir crisis sensoriales en niños con TEA utilizando datos de rutina diaria (wearables/app). Integra un motor predictivo basado en cuatro modelos XGBoost especializados por perfil sensorial (modelo de Dunn).</p>
+                        <div class="tags-container">
+                            <span class="tag">Machine Learning</span>
+                            <span class="tag">XGBoost</span>
+                            <span class="tag">Salud Digital</span>
+                        </div>
+                    </div>
+
                 </div>
-                <p class="project-meta">Agrupación UFROMAKERS [Oct. 2025 - Actualidad]</p>
-                <p class="project-desc" id="p-d3">Co-liderazgo estratégico en la gestión de proyectos de prototipado rápido, innovación abierta y transferencia tecnológica hacia la comunidad regional.</p>
-                <div class="tags-container"><span class="tag">Liderazgo</span><span class="tag">Innovación</span><span class="tag">Prototipado</span><span class="tag">Gestión de Proyectos</span></div>
             </div>
         </div>
-
-        <h3 class="block-subtitle" id="subtitle-blockB">Proyectos de I+D & Análisis</h3>
-        <div class="grid-container">
-            
-            <div class="project-card">
-                <div class="project-header">
-                    <div class="project-title-box"><div class="icon-box"><i data-lucide="activity"></i></div><h3 class="project-title" id="p-t4">Optimización Ganadera</h3></div>
-                    <span class="status-badge" id="p-b4">En Proceso</span>
-                </div>
-                <p class="project-desc" id="p-d4">Modelo de investigación de operaciones para maximizar la vida útil y productividad del ganado, enfocado en eficiencia de recursos.</p>
-                <div class="tags-container"><span class="tag">Python</span><span class="tag">CPLEX</span><span class="tag">Optimización</span></div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-header">
-                    <div class="project-title-box"><div class="icon-box"><i data-lucide="landmark"></i></div><h3 class="project-title" id="p-t5">Capítulos Universitarios de Vinculación Industrial</h3></div>
-                    <span class="status-badge" id="p-b5">En Proceso</span>
-                </div>
-                <p class="project-desc" id="p-d5">Dirección de iniciativas tecnológicas y transferencia de conocimiento. Actualmente co-organizando el congreso nacional CEGID para conectar estudiantes de ingeniería con la industria.</p>
-                <div class="tags-container"><span class="tag">Liderazgo</span><span class="tag">Innovación</span><span class="tag">Gestión</span></div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-header">
-                    <div class="project-title-box"><div class="icon-box"><i data-lucide="sprout"></i></div><h3 class="project-title" id="p-t6">Análisis de Datos: Reino Fungi</h3></div>
-                    <span class="status-badge" id="p-b6">En Proceso</span>
-                </div>
-                <p class="project-desc" id="p-d6">Análisis de datos para el evento "Reino Fungi". Procesamiento de encuestas y visualización de métricas clave para evaluar el impacto del festival.</p>
-                <div class="tags-container"><span class="tag">Python</span><span class="tag">Data Analysis</span><span class="tag">Ciencia de Datos</span></div>
-            </div>
-            </div>
     </div>
+    <!-- FIN REFORMA -->
 
     <div id="tab-certs" class="tab-content">
         <h2 class="section-header" id="title-cert"><i data-lucide="award"></i> Mis Certificaciones</h2>
@@ -455,7 +545,7 @@ z<!DOCTYPE html>
     const translations = {
         'es': {
             'greeting': 'Hola, soy <span class="highlight-name">Diego Oñate</span>',
-            'desc': 'Estudiante de Ingeniería Civil Industrial (UFRO) especializado en optimización de operaciones y análisis de datos. Experiencia en terreno en grandes proyectos industriales para SQM y Besalco Montajes S.A. (Minera Los Pelambres). Apasionado por la transformación digital, el liderazgo de equipos y la vinculación tecnológica.',
+            'desc': 'Estudiante de último año de Ingeniería Civil Industrial con experiencia en terreno en control de proyectos y gestión de calidad para el sector minero/químico. Capacidad demostrada en optimización de procesos mediante análisis de datos (Python, SQL, PowerBI) y liderazgo de equipos multidisciplinarios en entornos universitarios e industriales. Busco aplicar mis competencias analíticas en áreas de operaciones, control de proyectos o gestión de procesos.',
             'quote': '"Sinergia entre eficiencia de procesos y liderazgo humano"',
             'nav_home': '<i data-lucide="user"></i> Perfil',
             'nav_projects': '<i data-lucide="folder-kanban"></i> Proyectos y Vinculación',
@@ -465,22 +555,28 @@ z<!DOCTYPE html>
             'title_cv': '<i data-lucide="file-user"></i> Mi Curriculum Vitae',
             'btn_download': '<i data-lucide="download"></i> Descargar PDF',
             'btn_full': '<i data-lucide="external-link"></i> Ver Online',
+            
+            /* Nuevos textos de Timeline y Proyectos */
             'title_projects': '<i data-lucide="folder-kanban"></i> Proyectos y Vinculación',
-            'subtitle_blockA': 'Experiencia Industrial',
-            'subtitle_blockB': 'Proyectos de I+D & Análisis',
-            'status_in_progress': 'En Proceso',
-            'p_t1': 'Digitalización Documental & Calidad en Terreno', 'p_d1': 'Migración y estructuración del sistema de protocolización técnica a la nube, centralizando la información de obra y optimizando la trazabilidad en tiempo real.',
-            'p_t2': 'Control Operativo & Gestión de Información', 'p_d2': 'Segmentación 3D del proyecto en Navisworks. Eliminación de un rezago documental de 1 año en SAP (Prevención) y récord histórico en tramitación de reportes vía Aconex (Calidad).',
-            'p_t3': 'Liderazgo Tecnológico & Vinculación', 'p_d3': 'Co-liderazgo estratégico en la gestión de proyectos de prototipado rápido, innovación abierta y transferencia tecnológica hacia la comunidad regional.',
-            'p_t4': 'Optimización Ganadera', 'p_d4': 'Modelo de investigación de operaciones para maximizar la vida útil y productividad del ganado, enfocado en eficiencia de recursos.',
-            'p_t5': 'Capítulos Universitarios de Vinculación Industrial', 'p_d5': 'Dirección de iniciativas tecnológicas y transferencia de conocimiento. Actualmente co-organizando el congreso nacional CEGID para conectar estudiantes de ingeniería con la industria.',
-            'p_t6': 'Análisis de Datos: Reino Fungi', 'p_d6': 'Análisis de datos para el evento "Reino Fungi". Procesamiento de encuestas y visualización de métricas clave para evaluar el impacto del festival.',
+            'txt_last_updated': 'Última actualización: Agosto 2026',
+            'subtitle_timeline': 'Recorrido Profesional y Académico',
+            'tl_role_1': 'Trabajo de Título', 'tl_desc_1': '<li>Desarrollo de proyecto final de grado para la titulación.</li>',
+            'tl_role_2': 'Asistente de Oficina Técnica', 'tl_desc_2': '<li>Gestión del Proyecto PAO en Minera Los Pelambres.</li><li>Administración de Aconex, segmentación 3D en Navisworks y optimización en SAP, eliminando 1 año de rezago documental en prevención.</li>',
+            'tl_role_3': 'Ayudante Académico', 'tl_desc_3': '<li>Logística y Cadena de Suministros: Desarrollo de talleres y clases prácticas.</li><li>Formulación y Evaluación de Proyectos: Apoyo docente y guías prácticas.</li>',
+            'tl_role_4': 'Asistente de Protocolización', 'tl_desc_4': '<li>Planta Química de Litio Carmen: Migración a la nube del sistema documental técnico, optimizando la trazabilidad en tiempo real.</li>',
+            
+            'subtitle_innovation': 'Logros de Innovación',
+            'badge_innspira': 'Semifinalista INNSPIRA Araucanía',
+            'p_d_safe': 'Sistema modular autónomo de alerta activa temprana operado mediante radiofrecuencia (sensores radar y acelerómetros). Diseñado para advertir a cuadrillas viales sobre invasiones de berma a alta velocidad en milisegundos, entregando tiempo vital de reacción.',
+            'badge_neuro': '4to Lugar - Neurohack 2026',
+            'p_d_first': 'Sistema preventivo impulsado por IA para predecir crisis sensoriales en niños con TEA utilizando datos de rutina diaria (wearables/app). Integra un motor predictivo basado en cuatro modelos XGBoost especializados por perfil sensorial (modelo de Dunn).',
+
             'title_cert': '<i data-lucide="award"></i> Mis Certificaciones',
             'btn_all': 'Todas', 'btn_ia': 'IA & Generativa', 'btn_prod': 'Productividad / Ciencia de Datos', 'btn_mgmt': 'Gestión'
         },
         'en': {
             'greeting': 'Hi, I\'m <span class="highlight-name">Diego Oñate</span>',
-            'desc': 'Industrial Civil Engineering student (UFRO) specializing in operations optimization and data analysis. Field experience in major industrial projects for SQM and Besalco Montajes S.A. (Minera Los Pelambres). Passionate about digital transformation, team leadership, and technology outreach.',
+            'desc': 'Senior Industrial Civil Engineering student with field experience in project control and quality management for the mining/chemical sector. Proven ability to optimize processes through data analysis (Python, SQL, PowerBI) and lead multidisciplinary teams in academic and industrial environments. Looking to apply my analytical skills in operations, project control, or process management.',
             'quote': '"Synergy between process efficiency and human leadership"',
             'nav_home': '<i data-lucide="user"></i> Profile',
             'nav_projects': '<i data-lucide="folder-kanban"></i> Projects & Outreach',
@@ -490,16 +586,22 @@ z<!DOCTYPE html>
             'title_cv': '<i data-lucide="file-user"></i> My Curriculum Vitae',
             'btn_download': '<i data-lucide="download"></i> Download PDF',
             'btn_full': '<i data-lucide="external-link"></i> View Online',
+            
+            /* Nuevos textos de Timeline y Proyectos (EN) */
             'title_projects': '<i data-lucide="folder-kanban"></i> Projects & Outreach',
-            'subtitle_blockA': 'Industrial Experience',
-            'subtitle_blockB': 'R&D & Analysis Projects',
-            'status_in_progress': 'In Progress',
-            'p_t1': 'Document Digitalization & Field Quality', 'p_d1': 'Migration and structuring of the technical protocol system to the cloud, centralizing site info and optimizing real-time traceability.',
-            'p_t2': 'Operational Control & Information Management', 'p_d2': '3D project segmentation in Navisworks. Eliminated a 1-year document backlog in SAP (Prevention) and achieved a historic record in report processing via Aconex (Quality).',
-            'p_t3': 'Technological Leadership & Outreach', 'p_d3': 'Strategic co-leadership in managing rapid prototyping, open innovation, and technology transfer projects to the regional community.',
-            'p_t4': 'Livestock Optimization', 'p_d4': 'Operations research model to maximize livestock lifespan and productivity, focused on resource efficiency.',
-            'p_t5': 'Industrial Outreach University Chapters', 'p_d5': 'Directing technological initiatives and knowledge transfer. Currently co-organizing the national CEGID congress to connect engineering students with the industry.',
-            'p_t6': 'Data Analysis: Fungi Kingdom', 'p_d6': 'Data analysis for the "Fungi Kingdom" event. Survey processing and key metrics visualization to evaluate the festival\'s impact.',
+            'txt_last_updated': 'Last updated: August 2026',
+            'subtitle_timeline': 'Professional & Academic Journey',
+            'tl_role_1': 'Degree Project', 'tl_desc_1': '<li>Development of the final degree project for graduation.</li>',
+            'tl_role_2': 'Technical Office Assistant', 'tl_desc_2': '<li>Management of the PAO Project at Minera Los Pelambres.</li><li>Administration of Aconex, 3D segmentation in Navisworks, and optimization in SAP, eliminating a 1-year document backlog in prevention.</li>',
+            'tl_role_3': 'Academic Assistant', 'tl_desc_3': '<li>Logistics & Supply Chain: Development of workshops and practical classes.</li><li>Project Formulation and Evaluation: Teaching support and practical guides.</li>',
+            'tl_role_4': 'Protocolization Assistant', 'tl_desc_4': '<li>Lithium Chemical Plant Carmen: Cloud migration of the technical documentary system, optimizing real-time traceability.</li>',
+            
+            'subtitle_innovation': 'Innovation Achievements',
+            'badge_innspira': 'Semifinalist INNSPIRA Araucanía',
+            'p_d_safe': 'Autonomous modular early active warning system operated via radio frequency (radar sensors and accelerometers). Designed to warn road crews about high-speed shoulder invasions in milliseconds, providing vital reaction time.',
+            'badge_neuro': '4th Place - Neurohack 2026',
+            'p_d_first': 'AI-driven preventive system to predict sensory crises in children with ASD using daily routine data (wearables/app). Integrates a predictive engine based on four XGBoost models specialized by sensory profile (Dunn model).',
+
             'title_cert': '<i data-lucide="award"></i> My Certifications',
             'btn_all': 'All', 'btn_ia': 'AI & Generative', 'btn_prod': 'Productivity / Data Science', 'btn_mgmt': 'Management'
         }
@@ -520,21 +622,22 @@ z<!DOCTYPE html>
         document.getElementById('btn-download').innerHTML = t.btn_download;
         document.getElementById('btn-full').innerHTML = t.btn_full;
         
+        // Pestaña Proyectos
         document.getElementById('title-projects').innerHTML = t.title_projects;
-        document.getElementById('subtitle-blockA').innerHTML = t.subtitle_blockA;
-        document.getElementById('subtitle-blockB').innerHTML = t.subtitle_blockB;
+        document.getElementById('txt-last-updated').innerHTML = t.txt_last_updated;
+        document.getElementById('subtitle-timeline').innerHTML = t.subtitle_timeline;
+        document.getElementById('tl-role-1').innerHTML = t.tl_role_1; document.getElementById('tl-desc-1').innerHTML = t.tl_desc_1;
+        document.getElementById('tl-role-2').innerHTML = t.tl_role_2; document.getElementById('tl-desc-2').innerHTML = t.tl_desc_2;
+        document.getElementById('tl-role-3').innerHTML = t.tl_role_3; document.getElementById('tl-desc-3').innerHTML = t.tl_desc_3;
+        document.getElementById('tl-role-4').innerHTML = t.tl_role_4; document.getElementById('tl-desc-4').innerHTML = t.tl_desc_4;
         
-        document.getElementById('p-t1').innerHTML = t.p_t1; document.getElementById('p-d1').innerHTML = t.p_d1;
-        document.getElementById('p-t2').innerHTML = t.p_t2; document.getElementById('p-d2').innerHTML = t.p_d2;
-        document.getElementById('p-t3').innerHTML = t.p_t3; document.getElementById('p-d3').innerHTML = t.p_d3;
-        document.getElementById('p-t4').innerHTML = t.p_t4; document.getElementById('p-d4').innerHTML = t.p_d4;
-        document.getElementById('p-t5').innerHTML = t.p_t5; document.getElementById('p-d5').innerHTML = t.p_d5;
-        document.getElementById('p-t6').innerHTML = t.p_t6; document.getElementById('p-d6').innerHTML = t.p_d6;
-        
-        document.getElementById('p-b4').innerText = t.status_in_progress;
-        document.getElementById('p-b5').innerText = t.status_in_progress;
-        document.getElementById('p-b6').innerText = t.status_in_progress;
+        document.getElementById('subtitle-innovation').innerHTML = t.subtitle_innovation;
+        document.getElementById('badge-innspira').innerHTML = t.badge_innspira;
+        document.getElementById('p-d-safe').innerHTML = t.p_d_safe;
+        document.getElementById('badge-neuro').innerHTML = t.badge_neuro;
+        document.getElementById('p-d-first').innerHTML = t.p_d_first;
 
+        // Certificaciones
         document.getElementById('title-cert').innerHTML = t.title_cert;
         document.getElementById('btn-all').innerHTML = t.btn_all;
         document.getElementById('btn-ia').innerHTML = t.btn_ia;
@@ -597,6 +700,5 @@ z<!DOCTYPE html>
         console.error("Error al iniciar iconos:", e);
     }
 </script>
-
 </body>
 </html>
