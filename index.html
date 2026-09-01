@@ -93,7 +93,7 @@
         }
 
         /* --- 4. COMPONENTES BLUR --- */
-        .skill-card, .cv-card, .cv-section, .filter-btn, .control-btn, .project-card, .nav-btn, .timeline-content {
+        .skill-card, .cv-card, .cv-section, .filter-btn, .control-btn, .project-card, .nav-btn, .timeline-content, .modal-info-content {
             backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
         }
 
@@ -157,7 +157,7 @@
         .section-header { text-align: center; margin-bottom: 30px; font-size: 1.5rem; font-weight: 800; color: var(--text-main); display: flex; align-items: center; justify-content: center; gap: 10px; }
         .block-subtitle { font-size: 1.25rem; color: var(--text-main); margin: 0 0 25px 0; font-weight: 700; border-left: 4px solid var(--primary-color); padding-left: 12px; text-align: left; }
 
-        /* --- SKILLS (ORDENADAS) --- */
+        /* --- SKILLS --- */
         .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 20px; }
         .skill-card {
             background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px;
@@ -206,14 +206,13 @@
         .timeline-content li { margin-bottom: 5px; }
         .timeline-content p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.5; margin: 0; }
 
-
         /* PROJECT CARDS */
         .projects-container { display: flex; flex-direction: column; gap: 25px; }
         .project-card {
             background: var(--bg-card); border-radius: 16px; padding: 25px;
             border: 1px solid var(--border-color); box-shadow: 0 4px 6px -1px var(--shadow-color);
             display: flex; flex-direction: column; transition: all 0.4s; text-align: left;
-            position: relative; overflow: hidden;
+            position: relative; overflow: hidden; cursor: pointer;
         }
         .project-card::before {
             content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
@@ -233,6 +232,8 @@
         .project-desc { font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 20px; line-height: 1.6; }
         .tags-container { margin-top: auto; display: flex; flex-wrap: wrap; gap: 8px; }
         .tag { font-size: 0.72rem; background: var(--bg-section); color: var(--text-secondary); padding: 5px 10px; border-radius: 20px; font-weight: 600; border: 1px solid var(--border-color); }
+        
+        .click-hint { font-size: 0.75rem; color: var(--primary-color); font-weight: 600; margin-top: 15px; display: flex; align-items: center; gap: 5px;}
 
         /* --- CV SECTION --- */
         .cv-section { padding: 40px; background: var(--bg-section); border-radius: 24px; text-align: center; border: 1px solid var(--border-color); margin-top: 40px; }
@@ -263,22 +264,40 @@
         .cv-title { font-size: 1.05rem; font-weight: 700; color: var(--text-main); margin: 0 0 5px 0; }
         .cv-date { font-size: 0.8rem; color: var(--text-secondary); margin-top: auto; font-style: italic; }
 
-        /* --- MODAL (PDF SUPPORT) --- */
+        /* --- MODALES --- */
         .modal {
-            display: none; position: fixed; z-index: 1000; padding-top: 20px;
+            display: none; position: fixed; z-index: 1000; padding-top: 20px; padding-bottom: 20px;
             left: 0; top: 0; width: 100%; height: 100%; overflow: auto; 
             background-color: rgba(0,0,0,0.85); backdrop-filter: blur(5px);
         }
         .modal-content-container {
             margin: auto; width: 90%; max-width: 1000px; height: 85vh;
-            background: white; border-radius: 12px; box-shadow: 0 0 25px rgba(0,0,0,0.5);
+            background: var(--bg-body); border-radius: 12px; box-shadow: 0 0 25px rgba(0,0,0,0.5);
             animation: zoom 0.3s; position: relative; overflow: hidden;
         }
+        
+        /* Modal Info Especifico (Proyectos) */
+        .modal-info-container {
+            margin: auto; width: 90%; max-width: 800px; max-height: 90vh;
+            background: transparent; border-radius: 16px; 
+            animation: zoom 0.3s; position: relative; display: flex; flex-direction: column;
+        }
+        .modal-info-content {
+            background: var(--bg-card); border: 1px solid var(--border-color);
+            border-radius: 16px; padding: 35px; overflow-y: auto; color: var(--text-main);
+        }
+        .modal-info-content h2 { color: var(--primary-color); margin-top: 0; margin-bottom: 5px;}
+        .modal-info-content .badge { display: inline-block; background: var(--accent-bg); color: var(--primary-color); font-size: 0.75rem; font-weight: 800; padding: 5px 12px; border-radius: 20px; margin-bottom: 25px; border: 1px solid rgba(0,0,0,0.05); }
+        
+        .qa-block { margin-bottom: 25px; }
+        .qa-block h4 { color: var(--text-main); font-size: 1.1rem; margin: 0 0 8px 0; display: flex; align-items: center; gap: 8px;}
+        .qa-block p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin: 0; }
+        
         .modal-iframe { width: 100%; height: 100%; border: none; }
         @keyframes zoom { from {transform:scale(0.9); opacity:0} to {transform:scale(1); opacity:1} }
         .close {
-            position: absolute; top: 15px; right: 35px; color: #f1f1f1;
-            font-size: 40px; font-weight: bold; transition: 0.3s; cursor: pointer; z-index: 1001;
+            position: absolute; top: 15px; right: 25px; color: #a0aec0;
+            font-size: 35px; font-weight: bold; transition: 0.3s; cursor: pointer; z-index: 1001;
         }
         .close:hover { color: var(--primary-color); }
 
@@ -287,11 +306,22 @@
 </head>
 <body>
 
-<div id="pdfModal" class="modal" onclick="closeModal()">
-  <span class="close" onclick="closeModal()">&times;</span>
+<!-- Modal para PDFs -->
+<div id="pdfModal" class="modal" onclick="closeModal('pdfModal')">
   <div class="modal-content-container" onclick="event.stopPropagation()">
+      <span class="close" onclick="closeModal('pdfModal')">&times;</span>
       <iframe class="modal-iframe" id="modalPdf" src=""></iframe>
   </div>
+</div>
+
+<!-- Modal para Info de Proyectos -->
+<div id="infoModal" class="modal" onclick="closeModal('infoModal')">
+    <div class="modal-info-container" onclick="event.stopPropagation()">
+        <div class="modal-info-content" id="infoModalContent">
+            <span class="close" onclick="closeModal('infoModal')" style="top: 20px; right: 30px;">&times;</span>
+            <!-- Contenido inyectado por JS -->
+        </div>
+    </div>
 </div>
 
 <div class="water-background">
@@ -355,7 +385,7 @@
     <!-- PESTAÑA PROYECTOS Y VINCULACIÓN -->
     <div id="tab-projects" class="tab-content">
         <div class="tab-header-flex">
-            <h2 class="section-header" id="title-projects" style="margin-bottom: 0;"><i data-lucide="folder-kanban"></i> Proyectos y Vinculación</h2>
+            <h2 class="section-header" id="title-projects" style="margin-bottom: 0;"><i data-lucide="folder-kanban"></i> Trayectoria y Proyectos</h2>
             <span class="last-updated" id="txt-last-updated">Última actualización: Agosto 2026</span>
         </div>
         
@@ -485,7 +515,7 @@
                 
                 <div class="projects-container">
                     
-                    <div class="project-card">
+                    <div class="project-card" onclick="openProjectInfo('safeperimeter')">
                         <div class="project-badge" id="badge-innspira">Semifinalista INNSPIRA Araucanía</div>
                         <div class="project-header">
                             <div class="project-title-box">
@@ -499,9 +529,10 @@
                             <span class="tag">Hardware IoT</span>
                             <span class="tag">Seguridad Vial</span>
                         </div>
+                        <span class="click-hint" id="hint-safe"><i data-lucide="mouse-pointer-click" style="width: 14px; height: 14px;"></i> Ver análisis del proyecto</span>
                     </div>
 
-                    <div class="project-card">
+                    <div class="project-card" onclick="openProjectInfo('firstsignal')">
                         <div class="project-badge" id="badge-neuro">4to Lugar - Neurohack 2026</div>
                         <div class="project-header">
                             <div class="project-title-box">
@@ -515,6 +546,7 @@
                             <span class="tag">XGBoost</span>
                             <span class="tag">Salud Digital</span>
                         </div>
+                        <span class="click-hint" id="hint-first"><i data-lucide="mouse-pointer-click" style="width: 14px; height: 14px;"></i> Ver análisis del proyecto</span>
                     </div>
 
                 </div>
@@ -564,6 +596,59 @@
 </div> 
 
 <script>
+    // --- DATOS PARA MODALES DE PROYECTOS ---
+    const projectDetails = {
+        'safeperimeter': {
+            'es': {
+                title: 'SafePerimeter IoT',
+                badge: 'Semifinalista INNSPIRA Araucanía',
+                q1: '¿Cuál es el problema real?',
+                a1: 'Más del 70% de las muertes laborales en Chile están vinculadas a siniestros viales. Las cuadrillas trabajan muchas veces de espaldas al tráfico, ensordecidos por maquinaria pesada. Actualmente dependen de señalética pasiva (conos de plástico) que solo advierten del peligro cuando el impacto es inminente.',
+                q2: '¿Cómo lo solucionamos?',
+                a2: 'Transformamos la señalización pasiva en una red inteligente. Creamos un sistema modular de alerta activa temprana que utiliza sensores de radar y acelerómetros montados en los conos. Al detectar una invasión a la berma a alta velocidad, envía una alerta háptica y sonora a un wearable que lleva el operario en menos de 50 milisegundos, otorgándole entre 3 y 5 segundos vitales para reaccionar.',
+                q3: '¿Cuál es nuestro valor diferencial?',
+                a3: 'Operamos de forma autónoma y 100% fuera de línea mediante radiofrecuencia, sin depender de inestables redes celulares en zonas rurales. Además, el sistema cuesta una fracción (aprox. $1.2M CLP) en comparación con los costosos camiones atenuadores (>$4.5M CLP) que muchas veces no caben en bermas estrechas del sur de Chile.',
+                tags: ['Ingeniería de Seguridad', 'Comunicaciones RF', 'Modelos de Negocio B2B', 'Microcontroladores']
+            },
+            'en': {
+                title: 'SafePerimeter IoT',
+                badge: 'Semifinalist INNSPIRA Araucanía',
+                q1: 'What is the real problem?',
+                a1: 'Over 70% of occupational deaths in Chile are linked to traffic accidents. Road crews often work with their backs to traffic, deafened by heavy machinery. Currently, they rely on passive signage (plastic cones) that only warn of danger when impact is imminent and already occurring.',
+                q2: 'How do we solve it?',
+                a2: 'We transformed passive signage into an active, smart network. We created a modular early warning system using radar sensors and accelerometers mounted on cones. When detecting a high-speed shoulder invasion, it sends a haptic and auditory alert to a worker\'s wearable in under 50 milliseconds, giving them 3 to 5 vital seconds to react.',
+                q3: 'What is our differentiating value?',
+                a3: 'We operate autonomously and 100% offline via radio frequency, without relying on unstable cellular networks in rural areas. Furthermore, the system costs a fraction (approx. $1.2M CLP) compared to expensive crash cushion trucks (>$4.5M CLP) that often don\'t even fit on the narrow shoulders of southern Chile.',
+                tags: ['Safety Engineering', 'RF Communications', 'B2B Business Models', 'Microcontrollers']
+            }
+        },
+        'firstsignal': {
+            'es': {
+                title: 'FirstSignal (Integración Bluba)',
+                badge: '4to Lugar - Neurohack 2026',
+                q1: '¿Cuál es el problema real?',
+                a1: 'Hoy, el seguimiento del neurodesarrollo en niños con TEA es meramente pasivo (diario de síntomas). Las familias viven en la incertidumbre de no saber qué factor de la rutina detonará una crisis sensorial, y los terapeutas reciben la información cuando ya es tarde para prevenirla, generando desgaste e interrumpiendo el desarrollo.',
+                q2: '¿Cómo lo solucionamos?',
+                a2: 'Transformamos una app pasiva en un ecosistema clínico proactivo. Utilizando datos de rutina diaria (sueño, exposición a pantallas, interrupciones, estado gastrointestinal) capturados por wearables y cuidadores, el sistema calcula en tiempo real la probabilidad de desregulación y emite alertas tempranas accionables para intervenir antes de la crisis.',
+                q3: '¿Cuál es nuestro valor diferencial?',
+                a3: 'La personalización clínica profunda. No usamos una regla genérica o un modelo único "talla única". Construimos un motor predictivo fragmentado compuesto por 4 modelos XGBoost independientes, especializados por cada perfil sensorial del niño (Hiporreactivo, Hipersensible, Evitador, Buscador), basándonos estrictamente en el modelo clínico de Dunn.',
+                tags: ['Machine Learning (XGBoost)', 'Ingeniería de Datos Sintéticos', 'Diseño de Arquitectura API', 'Integración Clínica']
+            },
+            'en': {
+                title: 'FirstSignal (Bluba Integration)',
+                badge: '4th Place - Neurohack 2026',
+                q1: 'What is the real problem?',
+                a1: 'Today, tracking neurodevelopment in children with ASD is merely passive (symptom logging). Families live in uncertainty, not knowing what routine factor will trigger a sensory crisis, and therapists receive information too late to prevent it, causing burnout and disrupting development.',
+                q2: 'How do we solve it?',
+                a2: 'We transformed a passive app into a proactive clinical ecosystem. Using daily routine data (sleep, screen time, interruptions, gastrointestinal state) captured by wearables and caregivers, the system calculates the real-time probability of dysregulation and issues actionable early warnings to intervene before a crisis.',
+                q3: 'What is our differentiating value?',
+                a3: 'Deep clinical personalization. We do not use a generic rule or a "one-size-fits-all" model. We built a fragmented predictive engine composed of 4 independent XGBoost models, specialized for each sensory profile of the child (Hyporeactive, Hypersensitive, Avoider, Seeker), strictly based on Dunn\'s clinical model.',
+                tags: ['Machine Learning (XGBoost)', 'Synthetic Data Engineering', 'API Architecture Design', 'Clinical Integration']
+            }
+        }
+    };
+
+    // --- FUNCIONES DE MODALES ---
     function openPdfModal(pdfSrc) {
         const modal = document.getElementById("pdfModal");
         const iframe = document.getElementById("modalPdf");
@@ -571,13 +656,58 @@
         modal.style.display = "block";
     }
 
-    function closeModal() {
-        const modal = document.getElementById("pdfModal");
-        const iframe = document.getElementById("modalPdf");
-        modal.style.display = "none";
-        iframe.src = "";
+    function openProjectInfo(projectId) {
+        const modal = document.getElementById("infoModal");
+        const contentDiv = document.getElementById("infoModalContent");
+        
+        const data = projectDetails[projectId][currentLang];
+        
+        // Generar etiquetas HTML
+        let tagsHtml = data.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
+        
+        // Preguntas e iconos
+        const iconQ1 = `<i data-lucide="target" style="color: var(--primary-color);"></i>`;
+        const iconQ2 = `<i data-lucide="lightbulb" style="color: var(--primary-color);"></i>`;
+        const iconQ3 = `<i data-lucide="rocket" style="color: var(--primary-color);"></i>`;
+
+        contentDiv.innerHTML = `
+            <h2>${data.title}</h2>
+            <div class="badge">${data.badge}</div>
+            
+            <div class="qa-block">
+                <h4>${iconQ1} ${data.q1}</h4>
+                <p>${data.a1}</p>
+            </div>
+            
+            <div class="qa-block">
+                <h4>${iconQ2} ${data.q2}</h4>
+                <p>${data.a2}</p>
+            </div>
+            
+            <div class="qa-block">
+                <h4>${iconQ3} ${data.q3}</h4>
+                <p>${data.a3}</p>
+            </div>
+            
+            <div style="margin-top: 30px;">
+                <h4 style="margin-bottom: 10px; color: var(--text-main); font-size: 1rem;">${currentLang === 'es' ? 'Competencias aplicadas:' : 'Applied Competencies:'}</h4>
+                <div class="tags-container">${tagsHtml}</div>
+            </div>
+        `;
+        
+        modal.style.display = "block";
+        lucide.createIcons();
     }
 
+    function closeModal(modalId) {
+        const modal = document.getElementById(modalId);
+        modal.style.display = "none";
+        if(modalId === 'pdfModal') {
+            document.getElementById("modalPdf").src = "";
+        }
+    }
+
+    // --- NAVEGACIÓN DE TABS ---
     function openTab(tabName) {
         var tabs = document.getElementsByClassName("tab-content");
         for (var i = 0; i < tabs.length; i++) {
@@ -595,6 +725,7 @@
         lucide.createIcons();
     }
 
+    // --- TRADUCCIÓN ---
     let currentLang = 'es'; 
     const translations = {
         'es': {
@@ -610,8 +741,8 @@
             'btn_download': '<i data-lucide="download"></i> Descargar PDF',
             'btn_full': '<i data-lucide="external-link"></i> Ver Online',
             
-            /* Nuevos textos de Timeline y Proyectos */
-            'title_projects': '<i data-lucide="folder-kanban"></i> Proyectos y Vinculación',
+            /* Textos de Timeline y Proyectos */
+            'title_projects': '<i data-lucide="folder-kanban"></i> Trayectoria y Proyectos',
             'txt_last_updated': 'Última actualización: Agosto 2026',
             
             'subtitle_timeline': 'Recorrido Profesional y Académico',
@@ -631,6 +762,8 @@
             'p_d_safe': 'Sistema modular de alerta activa temprana que opera de forma autónoma y fuera de línea mediante radiofrecuencia (sensores radar y acelerómetros). Diseñado para advertir a cuadrillas viales sobre invasiones de berma a alta velocidad en milisegundos.',
             'badge_neuro': '4to Lugar - Neurohack 2026',
             'p_d_first': 'Sistema preventivo impulsado por IA para predecir crisis sensoriales en niños con TEA utilizando datos de rutina diaria. Integra un motor predictivo basado en cuatro modelos XGBoost especializados por perfil sensorial (modelo de Dunn).',
+            'hint_safe': '<i data-lucide="mouse-pointer-click" style="width: 14px; height: 14px;"></i> Ver análisis del proyecto',
+            'hint_first': '<i data-lucide="mouse-pointer-click" style="width: 14px; height: 14px;"></i> Ver análisis del proyecto',
 
             'title_cert': '<i data-lucide="award"></i> Mis Certificaciones',
             'btn_all': 'Todas', 'btn_ia': 'IA & Generativa', 'btn_prod': 'Productividad / Ciencia de Datos', 'btn_mgmt': 'Gestión'
@@ -648,8 +781,8 @@
             'btn_download': '<i data-lucide="download"></i> Download PDF',
             'btn_full': '<i data-lucide="external-link"></i> View Online',
             
-            /* Nuevos textos de Timeline y Proyectos (EN) */
-            'title_projects': '<i data-lucide="folder-kanban"></i> Projects & Outreach',
+            /* Textos de Timeline y Proyectos (EN) */
+            'title_projects': '<i data-lucide="folder-kanban"></i> Trajectory & Projects',
             'txt_last_updated': 'Last updated: August 2026',
             
             'subtitle_timeline': 'Professional & Academic Journey',
@@ -669,6 +802,8 @@
             'p_d_safe': 'Autonomous and offline modular early active warning system operated via radio frequency (radar sensors and accelerometers). Designed to warn road crews about high-speed shoulder invasions in milliseconds.',
             'badge_neuro': '4th Place - Neurohack 2026',
             'p_d_first': 'AI-driven preventive system to predict sensory crises in children with ASD using daily routine data. Integrates a predictive engine based on four XGBoost models specialized by sensory profile (Dunn model).',
+            'hint_safe': '<i data-lucide="mouse-pointer-click" style="width: 14px; height: 14px;"></i> View project analysis',
+            'hint_first': '<i data-lucide="mouse-pointer-click" style="width: 14px; height: 14px;"></i> View project analysis',
 
             'title_cert': '<i data-lucide="award"></i> My Certifications',
             'btn_all': 'All', 'btn_ia': 'AI & Generative', 'btn_prod': 'Productivity / Data Science', 'btn_mgmt': 'Management'
@@ -711,6 +846,8 @@
         document.getElementById('p-d-safe').innerHTML = t.p_d_safe;
         document.getElementById('badge-neuro').innerHTML = t.badge_neuro;
         document.getElementById('p-d-first').innerHTML = t.p_d_first;
+        document.getElementById('hint-safe').innerHTML = t.hint_safe;
+        document.getElementById('hint-first').innerHTML = t.hint_first;
 
         // Certificaciones
         document.getElementById('title-cert').innerHTML = t.title_cert;
@@ -729,6 +866,13 @@
                 title.innerText = title.getAttribute('data-es');
             }
         });
+        
+        // Refrescar modal de información si está abierto
+        const infoModal = document.getElementById('infoModal');
+        if (infoModal.style.display === 'block') {
+           // Aquí se podría implementar lógica para re-renderizar el modal activo, pero al cerrar y abrir tomará el idioma
+        }
+
         lucide.createIcons();
     }
 
