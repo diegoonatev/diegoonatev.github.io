@@ -204,6 +204,8 @@
         .timeline-role { font-weight: 700; color: var(--primary-color); margin: 0 0 12px 0; font-size: 0.95rem; }
         .timeline-content ul { margin: 0; padding-left: 18px; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.5; }
         .timeline-content li { margin-bottom: 5px; }
+        .timeline-content p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.5; margin: 0; }
+
 
         /* PROJECT CARDS */
         .projects-container { display: flex; flex-direction: column; gap: 25px; }
@@ -309,7 +311,7 @@
         <img src="Foto de Perfil.jpg" alt="Diego Oñate" class="profile-photo">
         <h1 class="hero-name" id="txt-greeting">Hola, soy <span class="highlight-name">Diego Oñate</span></h1>
         <p class="hero-description" id="txt-desc">
-            Estudiante de Ingeniería Civil Industrial (UFRO) especializado en optimización de operaciones y análisis de datos. Experiencia en terreno en grandes proyectos industriales para SQM y Besalco Montajes S.A. (Minera Los Pelambres). Apasionado por la transformación digital, el liderazgo de equipos y la vinculación tecnológica.
+            Estudiante de último año de Ingeniería Civil Industrial (UFRO) especializado en optimización de operaciones y análisis de datos. Experiencia en terreno en grandes proyectos industriales para SQM y Besalco Montajes S.A. (Minera Los Pelambres). Apasionado por la transformación digital, el liderazgo de equipos y la vinculación tecnológica.
         </p>
         <span class="hero-quote" id="txt-quote">"Sinergia entre eficiencia de procesos y liderazgo humano"</span>
         <div style="display: flex; justify-content: center; gap: 10px;">
@@ -350,7 +352,7 @@
         </div>
     </div>
 
-    <!-- NUEVA PESTAÑA PROYECTOS Y VINCULACIÓN -->
+    <!-- PESTAÑA PROYECTOS Y VINCULACIÓN -->
     <div id="tab-projects" class="tab-content">
         <div class="tab-header-flex">
             <h2 class="section-header" id="title-projects" style="margin-bottom: 0;"><i data-lucide="folder-kanban"></i> Proyectos y Vinculación</h2>
@@ -388,7 +390,7 @@
                             </div>
                             <p class="timeline-role" id="tl-role-2">Tutor Académico en Matemáticas (PAAU-PACE)</p>
                             <ul id="tl-desc-2">
-                                <li>Planifico y ejecuto cátedras y talleres de nivelación en Cálculo Diferencial, Precálculo e Introducción al Álgebra para estudiantes de la Facultad de Ingeniería y Ciencias.</li>
+                                <li>Planifiqué y ejecuté cátedras y talleres de nivelación en Cálculo Diferencial, Precálculo e Introducción al Álgebra para estudiantes de la Facultad de Ingeniería y Ciencias.</li>
                             </ul>
                         </div>
                     </div>
@@ -422,6 +424,59 @@
                     </div>
 
                 </div>
+
+                <h3 class="block-subtitle" id="subtitle-extracurricular" style="margin-top: 40px;">Actividades Extra Académicas</h3>
+
+                <div class="timeline-container">
+                     <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <h4 id="tl-title-ex1">Capítulos Universitarios de Vinculación Industrial</h4>
+                                <span class="timeline-date" id="tl-date-ex1">Mar 2025 - Actualidad</span>
+                            </div>
+                            <p class="timeline-role" id="tl-role-ex1">Coordinador de Innovación y Tecnología</p>
+                            <p id="tl-desc-ex1">Dirijo las iniciativas tecnológicas del proyecto, articulando alianzas y diseñando estrategias para potenciar la transferencia de conocimiento entre el entorno productivo regional y los estudiantes de ingeniería.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <h4 id="tl-title-ex2">Agrupación estudiantil UFROMAKERS</h4>
+                                <span class="timeline-date" id="tl-date-ex2">Oct 2025 - Actualidad</span>
+                            </div>
+                            <p class="timeline-role" id="tl-role-ex2">Co-liderazgo estratégico</p>
+                            <p id="tl-desc-ex2">Co-lidero la gestión de la organización, coordinando proyectos para difundir la cultura maker, la innovación tecnológica y el prototipado rápido en la comunidad.</p>
+                        </div>
+                    </div>
+
+                     <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <h4 id="tl-title-ex3">Fundación Mustakis</h4>
+                                <span class="timeline-date" id="tl-date-ex3">Abr 2025 - Actualidad</span>
+                            </div>
+                            <p class="timeline-role" id="tl-role-ex3">Mediador - Programa Ciencia y Tecnología</p>
+                            <p id="tl-desc-ex3">Facilito el diseño y ejecución de experiencias interactivas de aprendizaje en robótica, ciencia y tecnología para incentivar el pensamiento crítico.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <h4 id="tl-title-ex4">Centro de Estudiantes Ingeniería Civil Industrial</h4>
+                                <span class="timeline-date" id="tl-date-ex4">May 2025 - Actualidad</span>
+                            </div>
+                            <p class="timeline-role" id="tl-role-ex4">Delegado de Deportes y Recreación</p>
+                            <p id="tl-desc-ex4">Lidero la planificación, gestión presupuestaria y ejecución de actividades deportivas para fomentar la integración en la comunidad universitaria.</p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
             <!-- Columna Derecha: Proyectos Destacados (Innovación) -->
@@ -544,7 +599,7 @@
     const translations = {
         'es': {
             'greeting': 'Hola, soy <span class="highlight-name">Diego Oñate</span>',
-            'desc': 'Estudiante de Ingeniería Civil Industrial (UFRO) especializado en optimización de operaciones y análisis de datos. Experiencia en terreno en grandes proyectos industriales para SQM y Besalco Montajes S.A. (Minera Los Pelambres). Apasionado por la transformación digital, el liderazgo de equipos y la vinculación tecnológica.',
+            'desc': 'Estudiante de último año de Ingeniería Civil Industrial (UFRO) especializado en optimización de operaciones y análisis de datos. Experiencia en terreno en grandes proyectos industriales para SQM y Besalco Montajes S.A. (Minera Los Pelambres). Apasionado por la transformación digital, el liderazgo de equipos y la vinculación tecnológica.',
             'quote': '"Sinergia entre eficiencia de procesos y liderazgo humano"',
             'nav_home': '<i data-lucide="user"></i> Perfil',
             'nav_projects': '<i data-lucide="folder-kanban"></i> Proyectos y Vinculación',
@@ -561,10 +616,16 @@
             
             'subtitle_timeline': 'Recorrido Profesional y Académico',
             'tl_title_1': 'Besalco Montajes S.A.', 'tl_date_1': 'Ene 2026 - Mar 2026', 'tl_role_1': 'Asistente de Oficina Técnica', 'tl_desc_1': '<li>Apoyé la planificación y el control diario de avance de obra (Proyecto de Adaptación Operacional en Minera Los Pelambres).</li><li>Administración de Aconex, segmentación 3D en Navisworks y optimización en SAP, eliminando 1 año de rezago documental en prevención.</li>',
-            'tl_title_2': 'Universidad de La Frontera', 'tl_date_2': 'Abr 2025 - Actualidad', 'tl_role_2': 'Tutor Académico en Matemáticas (PAAU-PACE)', 'tl_desc_2': '<li>Planifico y ejecuto cátedras y talleres de nivelación en Cálculo Diferencial, Precálculo e Introducción al Álgebra para estudiantes de la Facultad de Ingeniería y Ciencias.</li>',
+            'tl_title_2': 'Universidad de La Frontera', 'tl_date_2': 'Abr 2025 - Ago 2026', 'tl_role_2': 'Tutor Académico en Matemáticas (PAAU-PACE)', 'tl_desc_2': '<li>Planifiqué y ejecuté cátedras y talleres de nivelación en Cálculo Diferencial, Precálculo e Introducción al Álgebra para estudiantes de la Facultad de Ingeniería y Ciencias.</li>',
             'tl_title_3': 'Universidad de La Frontera', 'tl_date_3': 'En curso', 'tl_role_3': 'Minor en Análisis de Datos', 'tl_desc_3': '<li>Especialización académica orientada a la extracción, procesamiento y visualización de datos para la toma de decisiones estratégicas.</li>',
             'tl_title_4': 'Vopexa Ltda. (Proyecto SQM)', 'tl_date_4': 'Ene 2023 - Feb 2023', 'tl_role_4': 'Secretario Técnico - Especialidad Mecánica-Piping', 'tl_desc_4': '<li>Planta Química de Litio Carmen: Modernicé y estructuré el sistema de protocolización y control documental del proyecto migrándolo a la nube, optimizando la trazabilidad en tiempo real.</li>',
             
+            'subtitle_extracurricular': 'Actividades Extra Académicas',
+            'tl_title_ex1': 'Capítulos Universitarios de Vinculación Industrial', 'tl_date_ex1': 'Mar 2025 - Actualidad', 'tl_role_ex1': 'Coordinador de Innovación y Tecnología', 'tl_desc_ex1': 'Dirijo las iniciativas tecnológicas del proyecto, articulando alianzas y diseñando estrategias para potenciar la transferencia de conocimiento entre el entorno productivo regional y los estudiantes de ingeniería.',
+            'tl_title_ex2': 'Agrupación estudiantil UFROMAKERS', 'tl_date_ex2': 'Oct 2025 - Actualidad', 'tl_role_ex2': 'Co-liderazgo estratégico', 'tl_desc_ex2': 'Co-lidero la gestión de la organización, coordinando proyectos para difundir la cultura maker, la innovación tecnológica y el prototipado rápido en la comunidad.',
+            'tl_title_ex3': 'Fundación Mustakis', 'tl_date_ex3': 'Abr 2025 - Actualidad', 'tl_role_ex3': 'Mediador - Programa Ciencia y Tecnología', 'tl_desc_ex3': 'Facilito el diseño y ejecución de experiencias interactivas de aprendizaje en robótica, ciencia y tecnología para incentivar el pensamiento crítico.',
+            'tl_title_ex4': 'Centro de Estudiantes Ingeniería Civil Industrial', 'tl_date_ex4': 'May 2025 - Actualidad', 'tl_role_ex4': 'Delegado de Deportes y Recreación', 'tl_desc_ex4': 'Lidero la planificación, gestión presupuestaria y ejecución de actividades deportivas para fomentar la integración en la comunidad universitaria.',
+
             'subtitle_innovation': 'Logros de Innovación',
             'badge_innspira': 'Semifinalista INNSPIRA Araucanía',
             'p_d_safe': 'Sistema modular de alerta activa temprana que opera de forma autónoma y fuera de línea mediante radiofrecuencia (sensores radar y acelerómetros). Diseñado para advertir a cuadrillas viales sobre invasiones de berma a alta velocidad en milisegundos.',
@@ -593,10 +654,16 @@
             
             'subtitle_timeline': 'Professional & Academic Journey',
             'tl_title_1': 'Besalco Montajes S.A.', 'tl_date_1': 'Jan 2026 - Mar 2026', 'tl_role_1': 'Technical Office Assistant', 'tl_desc_1': '<li>Supported planning and daily control of site progress (Operational Adaptation Project at Minera Los Pelambres).</li><li>Administration of Aconex, 3D segmentation in Navisworks, and optimization in SAP, eliminating a 1-year document backlog in prevention.</li>',
-            'tl_title_2': 'Universidad de La Frontera', 'tl_date_2': 'Apr 2025 - Present', 'tl_role_2': 'Academic Math Tutor (PAAU-PACE)', 'tl_desc_2': '<li>Plan and execute lectures and leveling workshops in Differential Calculus, Precalculus, and Introduction to Algebra for students of the Faculty of Engineering and Sciences.</li>',
+            'tl_title_2': 'Universidad de La Frontera', 'tl_date_2': 'Apr 2025 - Aug 2026', 'tl_role_2': 'Academic Math Tutor (PAAU-PACE)', 'tl_desc_2': '<li>Planned and executed lectures and leveling workshops in Differential Calculus, Precalculus, and Introduction to Algebra for students of the Faculty of Engineering and Sciences.</li>',
             'tl_title_3': 'Universidad de La Frontera', 'tl_date_3': 'Ongoing', 'tl_role_3': 'Data Analysis Minor', 'tl_desc_3': '<li>Academic specialization focused on data extraction, processing, and visualization for strategic decision-making.</li>',
             'tl_title_4': 'Vopexa Ltda. (SQM Project)', 'tl_date_4': 'Jan 2023 - Feb 2023', 'tl_role_4': 'Technical Secretary - Mechanics/Piping Specialty', 'tl_desc_4': '<li>Carmen Lithium Chemical Plant: Modernized and structured the project\'s document control and protocolization system by migrating it to the cloud, optimizing real-time traceability.</li>',
             
+            'subtitle_extracurricular': 'Extracurricular Activities',
+            'tl_title_ex1': 'Industrial Outreach University Chapters', 'tl_date_ex1': 'Mar 2025 - Present', 'tl_role_ex1': 'Innovation and Technology Coordinator', 'tl_desc_ex1': 'Direct technological initiatives, forming alliances and designing strategies to enhance knowledge transfer between the regional productive sector and engineering students.',
+            'tl_title_ex2': 'UFROMAKERS Student Group', 'tl_date_ex2': 'Oct 2025 - Present', 'tl_role_ex2': 'Strategic Co-leadership', 'tl_desc_ex2': 'Co-lead organizational management, coordinating projects to spread maker culture, technological innovation, and rapid prototyping within the community.',
+            'tl_title_ex3': 'Mustakis Foundation', 'tl_date_ex3': 'Apr 2025 - Present', 'tl_role_ex3': 'Mediator - Science and Technology Program', 'tl_desc_ex3': 'Facilitate the design and execution of interactive learning experiences in robotics, science, and technology to encourage critical thinking.',
+            'tl_title_ex4': 'Industrial Civil Engineering Student Center', 'tl_date_ex4': 'May 2025 - Present', 'tl_role_ex4': 'Sports and Recreation Delegate', 'tl_desc_ex4': 'Lead planning, budget management, and execution of sports activities to foster integration within the university community.',
+
             'subtitle_innovation': 'Innovation Achievements',
             'badge_innspira': 'Semifinalist INNSPIRA Araucanía',
             'p_d_safe': 'Autonomous and offline modular early active warning system operated via radio frequency (radar sensors and accelerometers). Designed to warn road crews about high-speed shoulder invasions in milliseconds.',
@@ -633,6 +700,12 @@
         document.getElementById('tl-title-3').innerHTML = t.tl_title_3; document.getElementById('tl-date-3').innerHTML = t.tl_date_3; document.getElementById('tl-role-3').innerHTML = t.tl_role_3; document.getElementById('tl-desc-3').innerHTML = t.tl_desc_3;
         document.getElementById('tl-title-4').innerHTML = t.tl_title_4; document.getElementById('tl-date-4').innerHTML = t.tl_date_4; document.getElementById('tl-role-4').innerHTML = t.tl_role_4; document.getElementById('tl-desc-4').innerHTML = t.tl_desc_4;
         
+        document.getElementById('subtitle-extracurricular').innerHTML = t.subtitle_extracurricular;
+        document.getElementById('tl-title-ex1').innerHTML = t.tl_title_ex1; document.getElementById('tl-date-ex1').innerHTML = t.tl_date_ex1; document.getElementById('tl-role-ex1').innerHTML = t.tl_role_ex1; document.getElementById('tl-desc-ex1').innerHTML = t.tl_desc_ex1;
+        document.getElementById('tl-title-ex2').innerHTML = t.tl_title_ex2; document.getElementById('tl-date-ex2').innerHTML = t.tl_date_ex2; document.getElementById('tl-role-ex2').innerHTML = t.tl_role_ex2; document.getElementById('tl-desc-ex2').innerHTML = t.tl_desc_ex2;
+        document.getElementById('tl-title-ex3').innerHTML = t.tl_title_ex3; document.getElementById('tl-date-ex3').innerHTML = t.tl_date_ex3; document.getElementById('tl-role-ex3').innerHTML = t.tl_role_ex3; document.getElementById('tl-desc-ex3').innerHTML = t.tl_desc_ex3;
+        document.getElementById('tl-title-ex4').innerHTML = t.tl_title_ex4; document.getElementById('tl-date-ex4').innerHTML = t.tl_date_ex4; document.getElementById('tl-role-ex4').innerHTML = t.tl_role_ex4; document.getElementById('tl-desc-ex4').innerHTML = t.tl_desc_ex4;
+
         document.getElementById('subtitle-innovation').innerHTML = t.subtitle_innovation;
         document.getElementById('badge-innspira').innerHTML = t.badge_innspira;
         document.getElementById('p-d-safe').innerHTML = t.p_d_safe;
